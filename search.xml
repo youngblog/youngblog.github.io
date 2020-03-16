@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>反射性xss</title>
+      <link href="/2020/03/16/%E5%8F%8D%E5%B0%84%E5%9E%8Bxss/"/>
+      <url>/2020/03/16/%E5%8F%8D%E5%B0%84%E5%9E%8Bxss/</url>
+      
+        <content type="html"><![CDATA[<p>没啥好说的，直接贴出我之前写的：<a href="https://mp.csdn.net/console/editor/html/104876310" target="_blank" rel="noopener">反射型xss</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> xss </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>2020版本kali安装</title>
       <link href="/2020/03/16/kali%202020.4%E5%AE%89%E8%A3%85/"/>
       <url>/2020/03/16/kali%202020.4%E5%AE%89%E8%A3%85/</url>
@@ -33,25 +52,6 @@
       <categories>
           
           <category> SQL </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>反射性xss</title>
-      <link href="/2020/03/16/%E5%8F%8D%E5%B0%84%E5%9E%8Bxss/"/>
-      <url>/2020/03/16/%E5%8F%8D%E5%B0%84%E5%9E%8Bxss/</url>
-      
-        <content type="html"><![CDATA[<p>没啥好说的，直接贴出我之前写的：<a href="https://mp.csdn.net/console/editor/html/104876310" target="_blank" rel="noopener">反射型xss</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> xss </category>
           
       </categories>
       
