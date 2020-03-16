@@ -650,6 +650,7 @@ header .go-back i {
 }
 
 @keyframes rainbow { 
+	
 	0%, 
 	100% { 
 		background: rgba(66,197,138,0.3); 
@@ -657,37 +658,42 @@ header .go-back i {
 		background: -moz-linear-gradient(135deg, rgba(66,197,138,0.3) 0%, rgba(66,197,138, 0.3) 100%); 
 		background: -webkit-linear-gradient(135deg, rgba(66,197,138,0.3) 0%, rgba(66,197,138, 0.3) 100%); 
 	} 
+	
 	16% { 
 		background: rgba(60,179,113, 0.3); 
 		background: linear-gradient(45deg, rgba(60,179,113, 0.3) 0%, rgba(60,179,113, 0.3) 100%); 
 		background: -moz-linear-gradient(135deg, rgba(60,179,113, 0.3) 0%, rgba(60,179,113, 0.3) 100%); 
 		background: -webkit-linear-gradient(135deg, rgba(60,179,113, 0.3) 0%, rgba(60,179,113, 0.3) 100%); 
 	} 
+	
 	32% { 
 		background: rgba(0,206,209, 0.3); 
 		background: linear-gradient(45deg, rgba(0,206,209, 0.3) 0%, rgba(0,206,209, 0.3) 100%); 
 		background: -moz-linear-gradient(135deg, rgba(0,206,209, 0.3) 0%, rgba(0,206,209, 0.3) 100%); 
 		background: -webkit-linear-gradient(135deg, rgba(0,206,209, 0.3) 0%, rgba(0,206,209, 0.3) 100%); 
 	} 
+	
 	48% { 
 		background: rgba(0,191,255, 0.3); 
 		background: linear-gradient(45deg, rgba(0,191,255, 0.3) 0%, rgba(0,191,255, 0.3) 100%); 
 		background: -moz-linear-gradient(135deg, rgba(0,191,255, 0.3) 0%, rgba(0,191,255, 0.3) 100%); 
 		background: -webkit-linear-gradient(135deg, rgba(0,191,255, 0.3) 0%, rgba(0,191,255, 0.3) 100%); 
 	} 
+	
 	64% { 
 		background: rgba(30,144,255, 0.3);
 		 background: linear-gradient(45deg, rgba(30,144,255, 0.3) 0%, rgba(30,144,255, 0.3) 100%); 
 		 background: -moz-linear-gradient(135deg, rgba(30,144,255, 0.3) 0%, rgba(30,144,255, 0.3) 100%);
 		  background: -webkit-linear-gradient(135deg, rgba(30,144,255, 0.3) 0%, rgba(30,144,255, 0.3) 100%); 
 	} 
+	
 	80% { 
 		background: rgba(65,105,225, 0.3); 
 		background: linear-gradient(45deg, rgba(65,105,225, 0.3) 0%, rgba(65,105,225, 0.3) 100%); 
 		background: -moz-linear-gradient(135deg, rgba(65,105,225, 0.3) 0%, rgba(65,105,225, 0.3) 100%); 
 		background: -webkit-linear-gradient(135deg, rgba(65,105,225, 0.3) 0%, rgba(65,105,225, 0.3) 100%); 
-		} 
-	}
+	} 
+}
 
 .index-card {
     margin-top: -10px;
