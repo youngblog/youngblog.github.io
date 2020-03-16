@@ -23,11 +23,49 @@
     
     
     <entry>
+      <title>SQL注入</title>
+      <link href="/2020/03/16/SQL%E6%B3%A8%E5%85%A5/"/>
+      <url>/2020/03/16/SQL%E6%B3%A8%E5%85%A5/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>——————————————————————————————————————</p><p>这是我之前发布到的其他的一个网址，这里的话我重新总结</p><p>可能分很多，我也不是很清楚，只是皮毛的研究了一下</p><h2 id="1，sql按数据库分的话，常用的有："><a href="#1，sql按数据库分的话，常用的有：" class="headerlink" title="1，sql按数据库分的话，常用的有："></a>1，sql按数据库分的话，常用的有：</h2><p><strong>MySQL，access，oracle，ms sql</strong></p><h2 id="2，按传参类型，分"><a href="#2，按传参类型，分" class="headerlink" title="2，按传参类型，分"></a>2，按传参类型，分</h2><p>Get，Post，cookie</p><p>总而言之有：<br><code>盲注</code>       ：（盲注分布尔型，和时间型）<br><code>union注入</code>：（我叫他显错注入）<br><code>head注入</code> ： （在请求头注入）<br><code>Post注入</code>  ：（也就是对于表单的注入，例如登录框）</p><p>还有就是关于其他数据库的骚姿势，例如<strong>mysql</strong>的<strong>dnslog</strong>注入，<strong>mssql</strong>的反弹注入</p><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>我也就废话不多说，写出来，这是我原本csdn写的，不想重复，就这样把对应地址贴出来</p><h4 id="Mysql数据库注入："><a href="#Mysql数据库注入：" class="headerlink" title="Mysql数据库注入："></a>Mysql数据库注入：</h4><p><code>1：union注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104343242" target="_blank" rel="noopener">点击查看</a></p><p><code>2：盲注：</code><br><a href="https://blog.csdn.net/m0_46304840/article/details/104640938" target="_blank" rel="noopener">布尔型</a><br><a href="https://blog.csdn.net/m0_46304840/article/details/104688966" target="_blank" rel="noopener">时间型</a><br><code>3：报错注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104733922" target="_blank" rel="noopener">点击查看</a><br><code>4：宽字节注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104758798" target="_blank" rel="noopener">点击查看</a><br><code>5：cookie注入&amp;base64注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104774792" target="_blank" rel="noopener">点击查看</a><br><code>6：head注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104805895" target="_blank" rel="noopener">xff头注入</a><br>————————————————————————————————————————</p><h4 id="Access数据库注入"><a href="#Access数据库注入" class="headerlink" title="Access数据库注入"></a>Access数据库注入</h4><p><code>偏移注入&amp;移位溢注&amp;逐字猜解：：</code></p><p><a href="https://blog.csdn.net/m0_46304840/article/details/104808825" target="_blank" rel="noopener">点击查看</a></p><h4 id="MS-SQL数据库注入"><a href="#MS-SQL数据库注入" class="headerlink" title="MS SQL数据库注入"></a>MS SQL数据库注入</h4><p><code>mssql-union注入：</code> <a href="https://blog.csdn.net/m0_46304840/article/details/104815241" target="_blank" rel="noopener">union注入</a><br><code>mssql-反弹注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104818304" target="_blank" rel="noopener">反弹注入</a></p><p>至于其他的还没写，以后直接更新到这里</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> SQL </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>反射性xss</title>
+      <link href="/2020/03/16/%E5%8F%8D%E5%B0%84%E5%9E%8Bxss/"/>
+      <url>/2020/03/16/%E5%8F%8D%E5%B0%84%E5%9E%8Bxss/</url>
+      
+        <content type="html"><![CDATA[<p>没啥好说的，直接贴出我之前写的：<a href="https://mp.csdn.net/console/editor/html/104876310" target="_blank" rel="noopener">反射型xss</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> xss </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>我是谁？</title>
       <link href="/2020/03/16/%E6%88%91%E6%98%AF%E8%B0%81%EF%BC%9F/"/>
       <url>/2020/03/16/%E6%88%91%E6%98%AF%E8%B0%81%EF%BC%9F/</url>
       
-        <content type="html"><![CDATA[<h3 id="在下尘世中的一届小白，辣鸡中的战斗机"><a href="#在下尘世中的一届小白，辣鸡中的战斗机" class="headerlink" title="在下尘世中的一届小白，辣鸡中的战斗机"></a>在下尘世中的一届小白，辣鸡中的战斗机</h3><p>在安全圈内的一个混子选手，打王者也是王者里面的混子</p><p>所以只能不断的去论坛学习学习，但是没办法，我就是个靓仔<br><img src="https://img-blog.csdnimg.cn/20200316174518780.jpg" alt="这是靓仔"><br>—————————————————————————————————————————————————————</p><h2 id="关于我这个战斗机的简介"><a href="#关于我这个战斗机的简介" class="headerlink" title="关于我这个战斗机的简介"></a>关于我这个战斗机的简介</h2><p><code>ID</code>：Young，youngboy<br><code>职业</code>：无呜呜呜<del>~</del><br><code>性格</code>：外冷内也冷，比较内向<br><code>住址</code>：福建莆田内，啷个哩个啷<br><code>喜欢看的剧</code>：我在未来等你，大唐女法医<br><code>喜欢的游戏</code>：也就一个王者荣耀吧（鄙人就是小学生）<br><code>其他爱好</code>：打游戏，看书，游泳，听歌<br><code>一些经历</code>：也就挖过洞，在各大src飘荡不小心上了个榜。然后就没啥了吧</p><p>—————————————————————————————————————————————————————</p><h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>你问我爱你有多深，我也不知道该咋写了。蹭个免费博客玩<br>（不要问我为什么，问就是没钱）</p>]]></content>
+        <content type="html"><![CDATA[<h3 id="在下尘世中的一届小白，辣鸡中的战斗机"><a href="#在下尘世中的一届小白，辣鸡中的战斗机" class="headerlink" title="在下尘世中的一届小白，辣鸡中的战斗机"></a>在下尘世中的一届小白，辣鸡中的战斗机</h3><p>在安全圈内的一个混子选手，打王者也是王者里面的混子</p><p>所以只能不断的去论坛学习学习，但是没办法，我就是个靓仔<br><img src="https://img-blog.csdnimg.cn/20200316174518780.jpg" alt="这是靓仔"><br>———————————————————————————————————————————————————</p><h2 id="关于我这个战斗机的简介"><a href="#关于我这个战斗机的简介" class="headerlink" title="关于我这个战斗机的简介"></a>关于我这个战斗机的简介</h2><p><code>ID</code>：Young，youngboy<br><code>职业</code>：无QAQ<br><code>性格</code>：外冷内也冷，比较内向<br><code>住址</code>：福建莆田内，啷个哩个啷<br><code>喜欢看的剧</code>：我在未来等你，大唐女法医<br><code>喜欢的游戏</code>：也就一个王者荣耀吧（鄙人就是小学生）<br><code>其他爱好</code>：打游戏，看书，游泳，听歌<br><code>一些经历</code>：也就挖过洞，在各大src飘荡不小心上了个榜。然后就没啥了吧<br><code>为什么做安全</code>：做安全只是为了兴趣，简单就是装逼。小时候电影看多了趴<br>              做安全为兴趣的同时也赚点钱不然就吃土了</p><p>———————————————————————————————————————————————————</p><h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>你问我爱你有多深，我也不知道该咋写了。蹭个免费博客玩<br>（不要问我为什么，问就是没钱）</p><p>预计发展方向：二进制<del>~</del></p>]]></content>
       
       
       
