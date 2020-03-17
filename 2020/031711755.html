@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SQL注入, Youngboy,github">
+    <meta name="keywords" content="Linux常用命令, Youngboy,github">
     <meta name="description" content="北冥有鱼，其名为鲲，鲲之大，不知其几千里也； 化而为鸟，其名为鹏.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SQL注入 | Young&#39;s Blogs</title>
+    <title>Linux常用命令 | Young&#39;s Blogs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SQL注入</h1>
+                    <h1 class="description center-align post-title">Linux常用命令</h1>
                 </div>
             </div>
         </div>
@@ -449,8 +449,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/SQL/" class="post-category">
-                                SQL
+                            <a href="/categories/Liunx/" class="post-category">
+                                Liunx
                             </a>
                         
                     </div>
@@ -462,28 +462,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-16
+                    2020-03-17
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-16
+                    2020-03-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    318
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -494,20 +494,43 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>——————————————————————————————————————</p>
-<p>这是我之前发布到的其他的一个网址，这里的话我重新总结</p>
-<p>可能分很多，我也不是很清楚，只是皮毛的研究了一下</p>
-<h2 id="1，sql按数据库分的话，常用的有："><a href="#1，sql按数据库分的话，常用的有：" class="headerlink" title="1，sql按数据库分的话，常用的有："></a>1，sql按数据库分的话，常用的有：</h2><p><strong>MySQL，access，oracle，ms sql</strong></p>
-<h2 id="2，按传参类型，分"><a href="#2，按传参类型，分" class="headerlink" title="2，按传参类型，分"></a>2，按传参类型，分</h2><p>Get，Post，cookie</p>
-<p>总而言之有：<br><code>盲注</code>       ：（盲注分布尔型，和时间型）<br><code>union注入</code>：（我叫他显错注入）<br><code>head注入</code> ： （在请求头注入）<br><code>Post注入</code>  ：（也就是对于表单的注入，例如登录框）</p>
-<p>还有就是关于其他数据库的骚姿势，例如<strong>mysql</strong>的<strong>dnslog</strong>注入，<strong>mssql</strong>的反弹注入</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>我也就废话不多说，写出来，这是我原本csdn写的，不想重复，就这样把对应地址贴出来</p>
-<h4 id="Mysql数据库注入："><a href="#Mysql数据库注入：" class="headerlink" title="Mysql数据库注入："></a>Mysql数据库注入：</h4><p><code>1：union注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104343242" target="_blank" rel="noopener">点击查看</a></p>
-<p><code>2：盲注：</code><br><a href="https://blog.csdn.net/m0_46304840/article/details/104640938" target="_blank" rel="noopener">布尔型</a><br><a href="https://blog.csdn.net/m0_46304840/article/details/104688966" target="_blank" rel="noopener">时间型</a><br><code>3：报错注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104733922" target="_blank" rel="noopener">点击查看</a><br><code>4：宽字节注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104758798" target="_blank" rel="noopener">点击查看</a><br><code>5：cookie注入&amp;base64注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104774792" target="_blank" rel="noopener">点击查看</a><br><code>6：head注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104805895" target="_blank" rel="noopener">xff头注入</a><br>————————————————————————————————————————</p>
-<h4 id="Access数据库注入"><a href="#Access数据库注入" class="headerlink" title="Access数据库注入"></a>Access数据库注入</h4><p><code>偏移注入&amp;移位溢注&amp;逐字猜解：：</code></p>
-<p><a href="https://blog.csdn.net/m0_46304840/article/details/104808825" target="_blank" rel="noopener">点击查看</a></p>
-<h4 id="MS-SQL数据库注入"><a href="#MS-SQL数据库注入" class="headerlink" title="MS SQL数据库注入"></a>MS SQL数据库注入</h4><p><code>mssql-union注入：</code> <a href="https://blog.csdn.net/m0_46304840/article/details/104815241" target="_blank" rel="noopener">union注入</a><br><code>mssql-反弹注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104818304" target="_blank" rel="noopener">反弹注入</a></p>
-<p>至于其他的还没写，以后直接更新到这里</p>
+                <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>废话不多说，冲冲冲<br>什么是shell呢？<br><img src="https://img-blog.csdnimg.cn/20200211113656866.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>看看这张图，早期是开机后直接面对黑黑的命令行，shell命令才能控制其他软件</p>
+<p><strong>shell</strong> ：是为用户与机器之间搭建成的一个桥梁，让我们能够通过shell来对计算机进行操作和交互，从而达到让计算机为我们服务的目的。<br><img src="https://img-blog.csdnimg.cn/20200211145731715.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>shell与终端的区别</strong><br><strong>终端</strong>：<em>接收用户的输入，并传递给shell程序，接收程序输出并展示到屏幕</em><br><strong>shell</strong>： <em>接收并解析用户的命令给操作系统执行，将结果输出到终端</em></p>
+<h1 id="vim的使用"><a href="#vim的使用" class="headerlink" title="vim的使用"></a>vim的使用</h1><p>我们写文档的时候会通过编辑器来编辑文档<br>vim是kali linux自带的编辑器<br>vim的作用<br> 1.编写代码<br>2. 编写文档</p>
+<h3 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h3><p>先使用touch命令，创建文件<br>touch  hello.txt</p>
+<p><img src="https://img-blog.csdnimg.cn/20200211150048361.png" alt="在这里插入图片描述"><br>我们在进入文件，进行修改编辑文档，这就是vim的用处之一</p>
+<p>使用 <code>vim hello.txt</code>就可以进入编辑了</p>
+<h3 id="0x02进入文档，进行编辑"><a href="#0x02进入文档，进行编辑" class="headerlink" title="0x02进入文档，进行编辑"></a>0x02进入文档，进行编辑</h3><p><img src="https://img-blog.csdnimg.cn/2020021115023414.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里我输入 的话按个字母i<br><img src="https://img-blog.csdnimg.cn/20200211165725914.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>会显示插入，这时候就可以书写了<br>然后我写入hello world文本<br><img src="https://img-blog.csdnimg.cn/20200211165326706.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如何保存退出嘞？<br>先按下键盘的右上角的Esc会像下图显示<br><img src="https://img-blog.csdnimg.cn/20200211165631237.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="退出写入模式"><br>会退出写入模式<br>然后再按<code>shift</code> + <code>:</code> 号<br><img src="https://img-blog.csdnimg.cn/20200211165913383.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这时候会显示一个 冒号，我们输入wq，就可以退出了<br><img src="https://img-blog.csdnimg.cn/20200211170003338.png" alt="在这里插入图片描述"><br>w：保存<br>q：退出<br>wq 和 x 都是保存退出<br>q！：强制退出<br>w！：强制保存，管理员才有权限<br>insert 键: 在键盘的回退键旁边，点 ins 可以直接切换到插入模式</p>
+<p>单独写一个w，是保存，但不退出<br>单独写一个q，是退出，不保存<br>wq 和 x  都是保存退出<br>q！是强制退出，不会保存<br>w! 是强制保存，单不会退出<br>这样就看的懂吧<br><strong>下面是一些其他的方式</strong></p>
+<pre class=" language-bash"><code class="language-bash">i：在当前光标所在字符的前面，转为输入模式
+I：在当前光标所在行的行首转换为输入模式
+a：在当前光标所在字符的后面，转为输入模式
+A：在光标所在行的行尾，转换为输入模式
+o：在当前光标所在行的下方，新建一行，并转为输入模式
+O：在当前光标所在行的上方，新建一行，并转为输入模式
+s：删除光标所在字符
+r：替换光标处字符</code></pre>
+<p>查找<br>普通模式：　<br>/PATTERN：从当前位置向后查找<br>？PATTERN：从当前位置向前查找</p>
+<p><img src="https://img-blog.csdnimg.cn/20200211170320351.png" alt="在这里插入图片描述"></p>
+<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><p><strong>1.echo命令</strong><br>echo命令用于在终端输出字符串或变量提取后的值<br>格式为 “echo [字符串 | $变量]”。<br><img src="https://img-blog.csdnimg.cn/20200211171241584.png" alt="具体设计shell编程，我不会"><br><strong>2.date命令</strong><br>date命令用于显示及设置系统的时间或日期，格式为“date [选项] [+指定的格式]”。<br><img src="https://img-blog.csdnimg.cn/20200211171117872.png" alt="在这里插入图片描述"></p>
+<p><strong>3.poweroff命令</strong><br>poweroff 是条关机的命令，其格式为poweroff。</p>
+<p><strong>4.top命令</strong><br>显示当前系统正在执行的进程的相关信息，包括进程ID、内存占用率等，格式为“top [参数]”。</p>
+<p>具体查看这篇博客<br><a href="https://www.cnblogs.com/niuben/p/12017242.html" target="_blank" rel="noopener">https://www.cnblogs.com/niuben/p/12017242.html</a></p>
+<p><strong>5.ifconfig命令</strong></p>
+<p>ifconfig命令用于获取网卡配置与网络状态等信息，格式为“ifconfig [网络设备] [参数]”。<br><img src="https://img-blog.csdnimg.cn/20200211171734559.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>6.uname命令</strong></p>
+<p>uname命令用于查看系统内核与系统版本等信息，格式为“uname [-a]”。<br><img src="https://img-blog.csdnimg.cn/20200211171810608.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>7.who命令</strong></p>
+<p>who用于查看当前登入主机的用户终端信息，格式为“who [参数]”。<br>这个不用我说了吧，不懂后面加个 –help<br><img src="https://img-blog.csdnimg.cn/20200211171850317.png" alt="在这里插入图片描述"></p>
+<p><strong>8.history命令</strong></p>
+<p>history命令用于显示历史执行过的命令，格式为“history [-c]”。<br><img src="https://img-blog.csdnimg.cn/20200211171945336.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>9.pwd命令</strong></p>
+<p>pwd命令用于显示用户当前所处的工作目录，格式为“pwd [选项]”。<br>注意，linux大小写敏感，千万不要小写<br><img src="https://img-blog.csdnimg.cn/20200211172156677.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>10.cd命令</strong></p>
+<p>cd命令用于切换工作路径，格式为“cd [目录名称]”。<br>这个就不用我说了吧<br><img src="https://img-blog.csdnimg.cn/20200211172307300.png" alt="在这里插入图片描述"></p>
+<p><strong>11.ls命令</strong></p>
+<p>ls命令用于显示目录中的文件信息，格式为“ls [选项] [文件] ”。</p>
+<p>依然是你懂的~~</p>
+<h2 id="文末"><a href="#文末" class="headerlink" title="文末"></a>文末</h2><p>内容比较多，接下来我会继续补全，我讲的是常用命令<br>有说错的地方评论指出，我会改正。<br>欢迎大佬们捧场，感兴趣的可以加我vx互相交流<br><img src="https://img-blog.csdnimg.cn/20200211173014847.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_1,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_1,color_FFFFFF,t_10" alt="在这里插入图片描述"><br>（另外：我不是打广告，只是互相交流，人多了我会创个群，方便一起交流）</p>
 
             </div>
             <hr/>
@@ -533,7 +556,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/0316undefined.html">http://yoursite.com/2020/0316undefined.html</a>
+                    <a href="http://yoursite.com/2020/031711755.html">http://yoursite.com/2020/031711755.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1001,6 +1024,57 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2020/031748230.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Linux常用命令（二）">
+                        
+                        <span class="card-title">Linux常用命令（二）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            内容
+
+0x01 . cat命令
+cat命令用于查看纯文本文件（内容较少的），格式为“cat [选项] [文件]”。 如图，继上一篇里面我的创建文档，
+
+
+里面只有hello world单词
+
+
+0x02. more命令
+more命令用于查
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-17
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Liunx/" class="post-category">
+                                    Liunx
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2020/031665118.html">
                     <div class="card-image">
                         
@@ -1018,48 +1092,6 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/kali/" class="post-category">
-                                    kali
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/031648744.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="反射性xss">
-                        
-                        <span class="card-title">反射性xss</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            没啥好说的，直接贴出我之前写的：反射型xss
-
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
                             </span>
@@ -1067,8 +1099,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/xss/" class="post-category">
-                                    xss
+                            <a href="/categories/kali/" class="post-category">
+                                    kali
                                 </a>
                             
                             

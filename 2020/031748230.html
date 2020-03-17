@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SQL注入, Youngboy,github">
+    <meta name="keywords" content="Linux常用命令（二）, Youngboy,github">
     <meta name="description" content="北冥有鱼，其名为鲲，鲲之大，不知其几千里也； 化而为鸟，其名为鹏.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SQL注入 | Young&#39;s Blogs</title>
+    <title>Linux常用命令（二） | Young&#39;s Blogs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SQL注入</h1>
+                    <h1 class="description center-align post-title">Linux常用命令（二）</h1>
                 </div>
             </div>
         </div>
@@ -449,8 +449,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/SQL/" class="post-category">
-                                SQL
+                            <a href="/categories/Liunx/" class="post-category">
+                                Liunx
                             </a>
                         
                     </div>
@@ -462,28 +462,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-16
+                    2020-03-17
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-16
+                    2020-03-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    318
+                    651
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -494,20 +494,79 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>——————————————————————————————————————</p>
-<p>这是我之前发布到的其他的一个网址，这里的话我重新总结</p>
-<p>可能分很多，我也不是很清楚，只是皮毛的研究了一下</p>
-<h2 id="1，sql按数据库分的话，常用的有："><a href="#1，sql按数据库分的话，常用的有：" class="headerlink" title="1，sql按数据库分的话，常用的有："></a>1，sql按数据库分的话，常用的有：</h2><p><strong>MySQL，access，oracle，ms sql</strong></p>
-<h2 id="2，按传参类型，分"><a href="#2，按传参类型，分" class="headerlink" title="2，按传参类型，分"></a>2，按传参类型，分</h2><p>Get，Post，cookie</p>
-<p>总而言之有：<br><code>盲注</code>       ：（盲注分布尔型，和时间型）<br><code>union注入</code>：（我叫他显错注入）<br><code>head注入</code> ： （在请求头注入）<br><code>Post注入</code>  ：（也就是对于表单的注入，例如登录框）</p>
-<p>还有就是关于其他数据库的骚姿势，例如<strong>mysql</strong>的<strong>dnslog</strong>注入，<strong>mssql</strong>的反弹注入</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>我也就废话不多说，写出来，这是我原本csdn写的，不想重复，就这样把对应地址贴出来</p>
-<h4 id="Mysql数据库注入："><a href="#Mysql数据库注入：" class="headerlink" title="Mysql数据库注入："></a>Mysql数据库注入：</h4><p><code>1：union注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104343242" target="_blank" rel="noopener">点击查看</a></p>
-<p><code>2：盲注：</code><br><a href="https://blog.csdn.net/m0_46304840/article/details/104640938" target="_blank" rel="noopener">布尔型</a><br><a href="https://blog.csdn.net/m0_46304840/article/details/104688966" target="_blank" rel="noopener">时间型</a><br><code>3：报错注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104733922" target="_blank" rel="noopener">点击查看</a><br><code>4：宽字节注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104758798" target="_blank" rel="noopener">点击查看</a><br><code>5：cookie注入&amp;base64注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104774792" target="_blank" rel="noopener">点击查看</a><br><code>6：head注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104805895" target="_blank" rel="noopener">xff头注入</a><br>————————————————————————————————————————</p>
-<h4 id="Access数据库注入"><a href="#Access数据库注入" class="headerlink" title="Access数据库注入"></a>Access数据库注入</h4><p><code>偏移注入&amp;移位溢注&amp;逐字猜解：：</code></p>
-<p><a href="https://blog.csdn.net/m0_46304840/article/details/104808825" target="_blank" rel="noopener">点击查看</a></p>
-<h4 id="MS-SQL数据库注入"><a href="#MS-SQL数据库注入" class="headerlink" title="MS SQL数据库注入"></a>MS SQL数据库注入</h4><p><code>mssql-union注入：</code> <a href="https://blog.csdn.net/m0_46304840/article/details/104815241" target="_blank" rel="noopener">union注入</a><br><code>mssql-反弹注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104818304" target="_blank" rel="noopener">反弹注入</a></p>
-<p>至于其他的还没写，以后直接更新到这里</p>
+                <h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><hr>
+
+<h3 id="0x01-cat命令"><a href="#0x01-cat命令" class="headerlink" title="0x01 . cat命令"></a><code>0x01</code> . cat命令</h3><blockquote>
+<p>cat命令用于查看纯文本文件（内容较少的），格式为“cat [选项] [文件]”。 如图，继上一篇里面我的创建文档，</p>
+</blockquote>
+<blockquote>
+<p>里面只有hello world单词</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200317204341704.png" alt=""></p>
+<h3 id="0x02-more命令"><a href="#0x02-more命令" class="headerlink" title="0x02. more命令"></a><code>0x02</code>. more命令</h3><blockquote>
+<p>more命令用于查看纯文本文件（内容较多的），格式为“more [选项]文件”。 刚好昨天我昨天对6个网站进行nmap探测</p>
+</blockquote>
+<blockquote>
+<p>这时候可以用more命令查看</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200317204520717.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""></p>
+<h3 id="0x03-head命令"><a href="#0x03-head命令" class="headerlink" title="0x03. head命令"></a><code>0x03</code>. head命令</h3><blockquote>
+<p>head命令用于查看纯文本文档的前N行，格式为“head [选项] [文件]”。</p>
+<p>head -n 3 url.txt   就会看到前3行的url，文件里有6行url</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200317204600646.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""></p>
+<h3 id="0x04-wc命令"><a href="#0x04-wc命令" class="headerlink" title="0x04. wc命令"></a><code>0x04</code>. wc命令</h3><blockquote>
+<p>wc命令用于统计指定文本的行数、字数、字节数，格式为“wc [参数] 文本”。 </p>
+</blockquote>
+<blockquote>
+<p>wc –help  就可以查看具体参数了</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200317204633754.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""></p>
+<h3 id="0x05-stat命令"><a href="#0x05-stat命令" class="headerlink" title="0x05.stat命令"></a><code>0x05</code>.stat命令</h3><blockquote>
+<p>stat命令用于查看文件的具体存储信息和时间等信息，格式为“stat 文件名称”</p>
+</blockquote>
+<blockquote>
+<p>stat hello.txt   操作简单，一看就懂</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/2020031720470926.png" alt=""></p>
+<h3 id="0x06-touch命令"><a href="#0x06-touch命令" class="headerlink" title="0x06. touch命令"></a><code>0x06</code>. touch命令</h3><blockquote>
+<p>touch命令用于创建空白文件或设置文件的时间，</p>
+<p>格式为<code>touch [选项] [文件]</code></p>
+</blockquote>
+<blockquote>
+<p>写py的时候也可以这样创建个文件</p>
+</blockquote>
+<h3 id="0x07-mkdir命令"><a href="#0x07-mkdir命令" class="headerlink" title="0x07. mkdir命令"></a><code>0x07</code>. mkdir命令</h3><blockquote>
+<p>mkdir命令用于创建空白的目录，格式为“mkdir [选项] 目录”。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200317204815429.png" alt=""></p>
+<h3 id="0x08-cp命令"><a href="#0x08-cp命令" class="headerlink" title="0x08.cp命令"></a><code>0x08</code>.cp命令</h3><blockquote>
+<p>cp命令用于复制文件或目录，<br>格式为“<code>cp [选项] 源文件 目标文件</code>”。<br> 随便 cp hello.txt    或者复制目录 cp love</p>
+</blockquote>
+<h3 id="0x09-mv命令"><a href="#0x09-mv命令" class="headerlink" title="0x09. mv命令"></a><code>0x09</code>. mv命令</h3><blockquote>
+<p>mv命令用于移动文件或将文件重命名</p>
+</blockquote>
+<blockquote>
+<p>格式为“mv [选项] 源文件 [目标路径|目标文件名]”。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200317204911329.png" alt=""></p>
+<h3 id="0x10-file命令"><a href="#0x10-file命令" class="headerlink" title="0x10. file命令"></a><code>0x10</code>. file命令</h3><blockquote>
+<p>file命令用于查看文件的类型，格式为“file 文件名”。</p>
+</blockquote>
+<h3 id="0x11-tar命令"><a href="#0x11-tar命令" class="headerlink" title="0x11. tar命令"></a><code>0x11</code>. tar命令</h3><blockquote>
+<p>tar命令用于对文件进行打包压缩或解压，格式为“tar [选项] [文件]”。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200317204957177.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""></p>
+<h3 id="0x12-find命令"><a href="#0x12-find命令" class="headerlink" title="0x12. find命令"></a><code>0x12</code>. find命令</h3><blockquote>
+<p>find命令用于按照指定条件来查找文件，格式为“find [查找路径] 寻找条件 操作”</p>
+</blockquote>
+<h2 id="使用chmod命令进行文件的权限修改"><a href="#使用chmod命令进行文件的权限修改" class="headerlink" title="使用chmod命令进行文件的权限修改"></a><code>使用chmod命令进行文件的权限修改</code></h2><p><code>chmod [选项] &lt;模式,模式...&gt; &lt;文件名...&gt;</code></p>
+<p>文件和目录的权限<br>linux中文件和目录的权限有所不同</p>
+<p><strong>文件的权限:</strong><br>r 可以读文件       数值为  4<br>w 可以写文件  数值为 2<br>x 可以执行文件  数值为1</p>
+<p><strong>目录的权限:</strong></p>
+<p><code>xr</code> 可以读取（cp）和查看（ls）目录的内容（即文件和目录），同时还需要可执行权限</p>
+<p><code>xw</code> 可以在目录里创建文件（touch）和目录（mkdir）和删除文件（rm）和目录（rmdir），同时还需要可执行权限</p>
+<p><code>xx</code> 可以进入目录（cd）和执行文件 实践过程 </p>
 
             </div>
             <hr/>
@@ -533,7 +592,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/0316undefined.html">http://yoursite.com/2020/0316undefined.html</a>
+                    <a href="http://yoursite.com/2020/031748230.html">http://yoursite.com/2020/031748230.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -997,42 +1056,53 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/031665118.html">
+                <a href="/2020/031748230.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="2020版本kali安装">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Linux常用命令（二）">
                         
-                        <span class="card-title">2020版本kali安装</span>
+                        <span class="card-title">Linux常用命令（二）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言——————————————————————————————————————总所周知，这个最新版本的变化很大（其实就是桌面变化大）其实嘞，物竞天择，随时代潮流。我刚好想试一试，那么就安装一个最新版本的，kali 2020.1
-正文第一步
+                            内容
+
+0x01 . cat命令
+cat命令用于查看纯文本文件（内容较少的），格式为“cat [选项] [文件]”。 如图，继上一篇里面我的创建文档，
+
+
+里面只有hello world单词
+
+
+0x02. more命令
+more命令用于查
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/kali/" class="post-category">
-                                    kali
+                            <a href="/categories/Liunx/" class="post-category">
+                                    Liunx
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -1043,32 +1113,32 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/031648744.html">
+                <a href="/2020/031711755.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="反射性xss">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Linux常用命令">
                         
-                        <span class="card-title">反射性xss</span>
+                        <span class="card-title">Linux常用命令</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            没啥好说的，直接贴出我之前写的：反射型xss
-
+                            正文废话不多说，冲冲冲什么是shell呢？看看这张图，早期是开机后直接面对黑黑的命令行，shell命令才能控制其他软件
+shell ：是为用户与机器之间搭建成的一个桥梁，让我们能够通过shell来对计算机进行操作和交互，从而达到让计算机为我
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-17
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/xss/" class="post-category">
-                                    xss
+                            <a href="/categories/Liunx/" class="post-category">
+                                    Liunx
                                 </a>
                             
                             
