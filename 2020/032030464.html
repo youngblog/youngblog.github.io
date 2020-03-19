@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="存储型&amp;dom型, Youngboy,github">
+    <meta name="keywords" content="python中request模块的基本使用, Youngboy,github">
     <meta name="description" content="北冥有鱼，其名为鲲，鲲之大，不知其几千里也； 化而为鸟，其名为鹏.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>存储型&amp;dom型 | Young&#39;s Blogs</title>
+    <title>python中request模块的基本使用 | Young&#39;s Blogs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">存储型&amp;dom型</h1>
+                    <h1 class="description center-align post-title">python中request模块的基本使用</h1>
                 </div>
             </div>
         </div>
@@ -449,8 +449,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/xss/" class="post-category">
-                                xss
+                            <a href="/categories/Python/" class="post-category">
+                                Python
                             </a>
                         
                     </div>
@@ -462,28 +462,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-16
+                    2020-03-20
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-17
+                    2020-03-20
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    386
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    1 分
                 </div>
                 
 
@@ -499,73 +499,73 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="0x01-存储型xss"><a href="#0x01-存储型xss" class="headerlink" title="0x01.存储型xss"></a>0x01.存储型xss</h1><hr>
+                <h2 id="Requests库的基础使用"><a href="#Requests库的基础使用" class="headerlink" title="Requests库的基础使用"></a>Requests库的基础使用</h2><p><strong>Get/Post请求</strong> </p>
+<p>Get请求</p>
+<pre class=" language-python"><code class="language-python"> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'http://www.baidu.com'</span><span class="token punctuation">,</span>参数<span class="token punctuation">)</span>        </code></pre>
+<p>Post请求</p>
+<pre class=" language-python"><code class="language-python"> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span><span class="token string">'http://www.baidu.com'</span><span class="token punctuation">,</span>参数<span class="token punctuation">)</span></code></pre>
+<h3 id="0x01-响应体内容"><a href="#0x01-响应体内容" class="headerlink" title="0x01 .响应体内容"></a>0x01 .响应体内容</h3><table>
+<thead>
+<tr>
+<th>用法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>r.encoding</code></td>
+<td>获取当前编码</td>
+</tr>
+<tr>
+<td><code>r.encoding = ‘utf-8’</code></td>
+<td>设置编码</td>
+</tr>
+<tr>
+<td><code>r.text</code></td>
+<td>以encoding解析返回内容。字符串方式的响应体，会根据响应头部的字符编码进行解码</td>
+</tr>
+<tr>
+<td><code>r.content</code></td>
+<td>以字节（二进制）返回。字节方式的响应体会自动为你解码gzip和deflate压缩</td>
+</tr>
+<tr>
+<td><code>r.headers</code></td>
+<td>以字典对象存储服务器响应头，但是字典比较特殊，字典键不区分大小写，若键不存在，则返回None</td>
+</tr>
+<tr>
+<td><code>r.status_code</code></td>
+<td>响应状态码 <em>特殊方法</em></td>
+</tr>
+<tr>
+<td><code>r.json()</code></td>
+<td>Requests 中内置的json解码器，以json形式返回内容，确保json格式，不然解析出错会抛异常</td>
+</tr>
+<tr>
+<td><code>r.raise_for_status()</code></td>
+<td>失败请求(非200响应) 抛出异常</td>
+</tr>
+</tbody></table>
+<h3 id="0x02-进阶应用"><a href="#0x02-进阶应用" class="headerlink" title="0x02. 进阶应用"></a>0x02. 进阶应用</h3><p><strong>1.定制header/cookies 内容</strong></p>
+<pre class=" language-python"><code class="language-python">header <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'user-agent'</span><span class="token punctuation">:</span><span class="token string">'User-Agent: Mozilla/5.0'</span><span class="token punctuation">}</span>
+cookie <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span><span class="token string">'值'</span><span class="token punctuation">}</span>
+r<span class="token punctuation">.</span>request<span class="token punctuation">.</span>get<span class="token operator">/</span>post<span class="token punctuation">(</span><span class="token string">'https://www.baidu.com'</span><span class="token punctuation">,</span>headers<span class="token operator">=</span>header<span class="token punctuation">,</span>cookies<span class="token operator">=</span>cookie<span class="token punctuation">)</span></code></pre>
+<p><strong>2.设置http代理</strong></p>
+<pre class=" language-python"><code class="language-python">proxies <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'http'</span><span class="token punctuation">:</span><span class="token string">'120.79.212.174'</span><span class="token punctuation">,</span><span class="token string">'https'</span><span class="token punctuation">:</span><span class="token string">'60.167.20.246'</span><span class="token punctuation">}</span>
+baidu <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'https://www.baidu.com'</span><span class="token punctuation">,</span>proxies<span class="token operator">=</span>proxies<span class="token punctuation">)</span></code></pre>
+<p>如果需要用户名密码验证</p>
+<pre class=" language-python"><code class="language-python">proxies <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'http'</span><span class="token punctuation">:</span><span class="token string">'username:password@120.79.212.174'</span><span class="token punctuation">}</span>
+baidu <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'https://www.baidu.com'</span><span class="token punctuation">,</span>proxies<span class="token operator">=</span>proxies<span class="token punctuation">)</span></code></pre>
+<p><strong>3.基础身份认证</strong></p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> requests
+<span class="token keyword">from</span> requests<span class="token punctuation">.</span>auth <span class="token keyword">import</span> HTTPBasicAuth
 
-<p><strong>1. 什么是存储型xss？</strong></p>
-<blockquote>
-<p>攻击者事先将恶意代码上传或储存到漏洞服务器中，只要受害者浏览包含此恶意代码的页面就会执行恶意代码。只要访问了这个页面的访客，都有可能会执行这段恶意脚本<br>（因此储存型XSS的危害会更大。因为存储型XSS的代码存在于网页的代码中，可以说是永久型的）</p>
-</blockquote>
-<p><strong>2. 源码剖析</strong><br>这里直接贴出php源码</p>
-<pre class=" language-php"><code class="language-php"><span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span></span>
-<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
-    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gbk<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
-    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span></span>存储型<span class="token constant">XSS</span><span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span></span>
-<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span></span>
-<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span></span>
-    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
-        输入你的<span class="token constant">ID</span>：  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></span> <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span></span>
-        输入你的Name：<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></span> <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span></span>
-        <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>提交<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
-    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span></span>
-<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">></span></span></span>
-<span class="token delimiter">&lt;?php</span>
-    <span class="token variable">$id</span><span class="token operator">=</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">"id"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token variable">$name</span><span class="token operator">=</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token function">mysql_connect</span><span class="token punctuation">(</span><span class="token string">"localhost"</span><span class="token punctuation">,</span><span class="token string">"root"</span><span class="token punctuation">,</span><span class="token string">"root"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">mysql_select_db</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token variable">$sql</span><span class="token operator">=</span><span class="token string">"insert into xss value ($id,'$name')"</span><span class="token punctuation">;</span>
-    <span class="token variable">$result</span><span class="token operator">=</span><span class="token function">mysql_query</span><span class="token punctuation">(</span><span class="token variable">$sql</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token delimiter">?></span>
-<span class="token delimiter">&lt;?php</span>    
-    <span class="token keyword">echo</span> <span class="token string">"回显内容："</span><span class="token punctuation">;</span>
-    <span class="token keyword">echo</span> <span class="token string">"&lt;br />"</span><span class="token punctuation">;</span>
-    <span class="token variable">$sql</span><span class="token operator">=</span><span class="token string">"select * from xss where id=1"</span><span class="token punctuation">;</span>
-    <span class="token variable">$result</span><span class="token operator">=</span><span class="token function">mysql_query</span><span class="token punctuation">(</span><span class="token variable">$sql</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token variable">$row</span><span class="token operator">=</span><span class="token function">mysql_fetch_array</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">echo</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token delimiter">?></span>
-<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></span>
-<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></span></code></pre>
-<p>可以看到的是，先在第一段部分，接受用户的内容，第二段是将内容插入<br>数据库，第三个回显内容就是从数据库查询。<br>（其实那2个php可以合成一个php，但是我不想，懒得）<br>具体内容我在反射型xss已经讲过了，可以狭义的概述</p>
-<blockquote>
-<p><code>存储型xss</code>：<strong>用户输入内容插入了数据库，内存，文件等其他地方。然后再次访问的时候没有输入payload，就会自动弹窗</strong><br>（例如留言板，或者个人资料修改。第一次插入后，连续访问还自动弹窗，说明这就是存储型xss）</p>
-<p><code>反射型xss</code>：<strong>用户想要利用，就得输入一次payload</strong> （例如在搜索处发现xss，想要让他弹窗，就得重新输入一遍）</p>
-</blockquote>
-<p><strong>3. 靶场演示</strong><br>通过源码，我们知道这是这是输出xss表中的内容<br>我们先看下xss表有没有内容<br><img src="https://img-blog.csdnimg.cn/20200317113852628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>发现没有内容，这时候我们进入靶场先插入id和name<br><img src="https://img-blog.csdnimg.cn/20200317113948174.png" alt="在这里插入图片描述"><br>然后会输出我们的名字<br><img src="https://img-blog.csdnimg.cn/20200317114029746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>这时候就成功的输出了，我们查看下xss这个表中有没有内容<br><img src="https://img-blog.csdnimg.cn/20200317114118487.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这时候发现有条内容了。说明我们插入，或者我们平时注册的时候<br>会插入数据库等等，一般在网站后台可以看到</p>
-<blockquote>
-<p>我应该把上面的第三个php输出内容的代码单独拿出来，模拟管理员访问的页面 QAQ 但是写到这里了，我也不想弄，大概理解个意思就好了</p>
-</blockquote>
-<p>然后我把xss表内容删除掉，插入我们恶意语句的代码<br><img src="https://img-blog.csdnimg.cn/20200317114930473.png" alt="在这里插入图片描述"><br>payload：<code>&lt;script&gt;alert(\&#39;Young\&#39;)&lt;/script&gt;</code><br>这是提交，发现弹窗了<br><img src="https://img-blog.csdnimg.cn/20200317115039712.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>注意这里为啥没有回显内容，因为他把我们输入的内容当做代码执行了，所以没有显示<br>（你见过执行的代码会显示给用户嘛 QAQ）<br><img src="https://img-blog.csdnimg.cn/20200317115153286.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这时候发现数据库有了一条数据，那就是我们插入的数据<br>恶意的js语句<br>这种存储型xss漏洞存在于，留言板，个人资料等等<br>因为会保存进数据库，然后在后台显示，所以后台管理员只要看到这条信息<br>他就中招了</p>
-<blockquote>
-<p>至于会不会被发现，这个就不用担心，内容会被当做代码执行，所以不会显示的</p>
-</blockquote>
-<p>我们可以查看一下掌控安全的靶场<br><img src="https://img-blog.csdnimg.cn/20200317115651421.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这时候点击一下查看留言，因为好多人都会在这里插<br>（你也可以在留言反馈那边弹一条）<br><img src="https://img-blog.csdnimg.cn/20200317115807285.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然而也不知道是谁在这插，插这么多，我点不完。所以就不演示了</p>
-<h1 id="0x02-Dom型xss"><a href="#0x02-Dom型xss" class="headerlink" title="0x02.Dom型xss"></a>0x02.Dom型xss</h1><hr>
-**什么是 dom—based xss？**
-`狭义的总结`：
-原本不应该出现xss的地方，但是经过javascript的操作之后产生了xss
-
-<p>这里涉及到了document对象的一些操作，看过前面偏移注入的话应该知道<br><code>document.cookie</code>  这样的话就是查看自己的cookie<br><img src="https://img-blog.csdnimg.cn/20200317141516218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>这里的话也可以使用下面这条命令，判断是否伪静态<br>如果使用这条的话，时间再不断的变化，就是动态</p>
-<p><code>document.lastModifiled</code></p>
-<p>还有其他的一些方法<br><img src="https://img-blog.csdnimg.cn/20200317142919710.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里具体讲<code>document.write()</code><br>这个有啥用？<br>其实就是在页面上面输出<br><img src="https://img-blog.csdnimg.cn/20200317143505236.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>先判断下是不是动态页面，然后再写<br><code>document.write(&quot;young&quot;)</code><br>要write什么可以自己定义<br><img src="https://img-blog.csdnimg.cn/20200317143432531.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然而上面提到了，其实这个write() 也是个js语句<br>接受编码，那我们试着将下面这个编码，看会不会弹窗<br><code>&lt;script&gt;alert(1)&lt;/script&gt;</code><br><img src="https://img-blog.csdnimg.cn/20200317144009626.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>编码后再使用document.write()写入<br><img src="https://img-blog.csdnimg.cn/20200317144052305.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>发现这里弹窗了<del>~<br>我们通过js编码后，它成功的弹窗了<br>（但是这个不是漏洞，这里想说的是，像document.write() 会自动对编码进行解码</del>）</p>
-<p>似乎扯的有点远了，但是如果被拦截了<br>这里可以通过Js代码的解码，去进行绕过 QAQ<br>然而xss的时候，也可以使用burp<br>因为有可能前端有限制，但是数据包没有</p>
-<p>例如还有比较偏的，在上传头像的地方打xss QAQ</p>
-<h2 id="靶场实战"><a href="#靶场实战" class="headerlink" title="靶场实战"></a>靶场实战</h2><p>这里的话借用靶场，因为我觉得这个靶场很容易讲的话很容易理解<br><img src="https://img-blog.csdnimg.cn/20200317152317345.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>通过审查源码，我们可以发现，这里是document.write()进行输出到页面上的<br>这时候我们可以尝试的，也在这个页面弹窗，通过修改发现，这个输入点是在url那边<br><code>&lt;script&gt;alert(1)&lt;/script&gt;</code><br>这时候发现，似乎没有弹窗<br><img src="https://img-blog.csdnimg.cn/20200317152801970.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>但是注意看，我们输入的内容，已经被<code>&lt;script&gt;</code>给包围了<br>这时候我们用其他的语句测试<br><code>&lt;img src=a onerror=alert(1) /&gt;</code><br><img src="https://img-blog.csdnimg.cn/20200317152957637.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这时候成功的弹窗了，说明了我们输入的内容被执行了<br>可以简单理解成，标签内不可以使用<code>&lt;script&gt;</code></p>
-<p>其他常用的弹窗语句<br>1.<code>&lt;img src=a onerror=alert(1) &gt;</code><br>2.<code>&lt;svg onload=alert(1)&gt;</code><br>这几个是我经常用的</p>
-<h2 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h2><p>dom型xss其实本质上还是反射型xss，他没有与数据库交互，没次想要弹窗，都需要输入一次payload<br>对dom型xss没有深入了解</p>
-<p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊<br><img src="https://img-blog.csdnimg.cn/20200317153445786.png" alt="尴尬"></p>
+url <span class="token operator">=</span> <span class="token string">'https://qiyuanxuetang.net/hidden-basic-auth/user/passwd'</span>
+r <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">=</span>url<span class="token punctuation">,</span>auth<span class="token operator">=</span>HTTPBasicAuth<span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">,</span><span class="token string">'passwd'</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># r = requests.get(url=url,auth=('user','passwd') //简写</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h3 id="0x03-推荐阅读文章"><a href="#0x03-推荐阅读文章" class="headerlink" title="0x03.推荐阅读文章"></a>0x03.推荐阅读文章</h3><ol>
+<li><a href="https://blog.csdn.net/qq_29286967/article/details/81025237" target="_blank" rel="noopener">request模块的深入和使用</a></li>
+<li><a href="https://blog.csdn.net/weixin_44494778/article/details/93709582" target="_blank" rel="noopener">request基本使用</a><br>也可以看看官方解释</li>
+</ol>
 
             </div>
             <hr/>
@@ -591,7 +591,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/0316476.html">http://yoursite.com/2020/0316476.html</a>
+                    <a href="http://yoursite.com/2020/032030464.html">http://yoursite.com/2020/032030464.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1055,42 +1055,47 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/031611755.html">
+                <a href="/2020/032030464.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="kali的基本配置">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="python中request模块的基本使用">
                         
-                        <span class="card-title">kali的基本配置</span>
+                        <span class="card-title">python中request模块的基本使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            0x01 ：vmware网络配置
-在有下角有个网络适配器点击一下就出现了虚拟机设置虚拟机有三个网络配置1：桥接模式（虚拟机和主机在同一个网络环境下的两台电脑）2：NAT模式（虚拟机通过主机联网）3：主机模式（只能虚拟机和主机直接交互）前面2
+                            Requests库的基础使用Get/Post请求 
+Get请求
+ requests.get('http://www.baidu.com',参数)        
+Post请求
+ requests.post('http://www.baidu
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/kali/" class="post-category">
-                                    kali
+                            <a href="/categories/Python/" class="post-category">
+                                    Python
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -1101,30 +1106,43 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03165880.html">
+                <a href="/2020/031748230.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Who are Young?">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Linux常用命令（二）">
                         
-                        <span class="card-title">Who are Young?</span>
+                        <span class="card-title">Linux常用命令（二）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在下尘世中的一届小白，辣鸡中的战斗机在安全圈内的一个混子选手，打王者也是王者里面的混子
-所以只能不断的去论坛学习学习，但是没办法，我就是个靓仔—————————————————————————————————————————————————
+                            内容
+
+0x01 . cat命令
+cat命令用于查看纯文本文件（内容较少的），格式为“cat [选项] [文件]”。 如图，继上一篇里面我的创建文档，
+
+
+里面只有hello world单词
+
+
+0x02. more命令
+more命令用于查
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-17
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Young
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Liunx/" class="post-category">
+                                    Liunx
+                                </a>
+                            
                             
                         </span>
                     </div>
