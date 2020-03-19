@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="python中request模块的基本使用, Youngboy,github">
+    <meta name="keywords" content="urllib3模块的基本使用, Youngboy,github">
     <meta name="description" content="北冥有鱼，其名为鲲，鲲之大，不知其几千里也； 化而为鸟，其名为鹏.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>python中request模块的基本使用 | Young&#39;s Blogs</title>
+    <title>urllib3模块的基本使用 | Young&#39;s Blogs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">python中request模块的基本使用</h1>
+                    <h1 class="description center-align post-title">urllib3模块的基本使用</h1>
                 </div>
             </div>
         </div>
@@ -476,14 +476,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    386
+                    696
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -499,73 +499,142 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Requests库的基础使用"><a href="#Requests库的基础使用" class="headerlink" title="Requests库的基础使用"></a>Requests库的基础使用</h2><p><strong>Get/Post请求</strong> </p>
-<p>Get请求</p>
-<pre class=" language-python"><code class="language-python"> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'http://www.baidu.com'</span><span class="token punctuation">,</span>参数<span class="token punctuation">)</span>        </code></pre>
-<p>Post请求</p>
-<pre class=" language-python"><code class="language-python"> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span><span class="token string">'http://www.baidu.com'</span><span class="token punctuation">,</span>参数<span class="token punctuation">)</span></code></pre>
-<h3 id="0x01-响应体内容"><a href="#0x01-响应体内容" class="headerlink" title="0x01 .响应体内容"></a>0x01 .响应体内容</h3><table>
-<thead>
-<tr>
-<th>用法</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>r.encoding</code></td>
-<td>获取当前编码</td>
-</tr>
-<tr>
-<td><code>r.encoding = ‘utf-8’</code></td>
-<td>设置编码</td>
-</tr>
-<tr>
-<td><code>r.text</code></td>
-<td>以encoding解析返回内容。字符串方式的响应体，会根据响应头部的字符编码进行解码</td>
-</tr>
-<tr>
-<td><code>r.content</code></td>
-<td>以字节（二进制）返回。字节方式的响应体会自动为你解码gzip和deflate压缩</td>
-</tr>
-<tr>
-<td><code>r.headers</code></td>
-<td>以字典对象存储服务器响应头，但是字典比较特殊，字典键不区分大小写，若键不存在，则返回None</td>
-</tr>
-<tr>
-<td><code>r.status_code</code></td>
-<td>响应状态码 <em>特殊方法</em></td>
-</tr>
-<tr>
-<td><code>r.json()</code></td>
-<td>Requests 中内置的json解码器，以json形式返回内容，确保json格式，不然解析出错会抛异常</td>
-</tr>
-<tr>
-<td><code>r.raise_for_status()</code></td>
-<td>失败请求(非200响应) 抛出异常</td>
-</tr>
-</tbody></table>
-<h3 id="0x02-进阶应用"><a href="#0x02-进阶应用" class="headerlink" title="0x02. 进阶应用"></a>0x02. 进阶应用</h3><p><strong>1.定制header/cookies 内容</strong></p>
-<pre class=" language-python"><code class="language-python">header <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'user-agent'</span><span class="token punctuation">:</span><span class="token string">'User-Agent: Mozilla/5.0'</span><span class="token punctuation">}</span>
-cookie <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span><span class="token string">'值'</span><span class="token punctuation">}</span>
-r<span class="token punctuation">.</span>request<span class="token punctuation">.</span>get<span class="token operator">/</span>post<span class="token punctuation">(</span><span class="token string">'https://www.baidu.com'</span><span class="token punctuation">,</span>headers<span class="token operator">=</span>header<span class="token punctuation">,</span>cookies<span class="token operator">=</span>cookie<span class="token punctuation">)</span></code></pre>
-<p><strong>2.设置http代理</strong></p>
-<pre class=" language-python"><code class="language-python">proxies <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'http'</span><span class="token punctuation">:</span><span class="token string">'120.79.212.174'</span><span class="token punctuation">,</span><span class="token string">'https'</span><span class="token punctuation">:</span><span class="token string">'60.167.20.246'</span><span class="token punctuation">}</span>
-baidu <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'https://www.baidu.com'</span><span class="token punctuation">,</span>proxies<span class="token operator">=</span>proxies<span class="token punctuation">)</span></code></pre>
-<p>如果需要用户名密码验证</p>
-<pre class=" language-python"><code class="language-python">proxies <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'http'</span><span class="token punctuation">:</span><span class="token string">'username:password@120.79.212.174'</span><span class="token punctuation">}</span>
-baidu <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'https://www.baidu.com'</span><span class="token punctuation">,</span>proxies<span class="token operator">=</span>proxies<span class="token punctuation">)</span></code></pre>
-<p><strong>3.基础身份认证</strong></p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> requests
-<span class="token keyword">from</span> requests<span class="token punctuation">.</span>auth <span class="token keyword">import</span> HTTPBasicAuth
+                <h2 id="urllib3模块的基本使用"><a href="#urllib3模块的基本使用" class="headerlink" title="urllib3模块的基本使用"></a>urllib3模块的基本使用</h2><hr>
+简单的请求
+get请求
 
-url <span class="token operator">=</span> <span class="token string">'https://qiyuanxuetang.net/hidden-basic-auth/user/passwd'</span>
-r <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">=</span>url<span class="token punctuation">,</span>auth<span class="token operator">=</span>HTTPBasicAuth<span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">,</span><span class="token string">'passwd'</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># r = requests.get(url=url,auth=('user','passwd') //简写</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<h3 id="0x03-推荐阅读文章"><a href="#0x03-推荐阅读文章" class="headerlink" title="0x03.推荐阅读文章"></a>0x03.推荐阅读文章</h3><ol>
-<li><a href="https://blog.csdn.net/qq_29286967/article/details/81025237" target="_blank" rel="noopener">request模块的深入和使用</a></li>
-<li><a href="https://blog.csdn.net/weixin_44494778/article/details/93709582" target="_blank" rel="noopener">request基本使用</a><br>也可以看看官方解释</li>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> urllib3
+
+http <span class="token operator">=</span> urllib3<span class="token punctuation">.</span>PoolManager<span class="token punctuation">(</span><span class="token punctuation">)</span>
+baidu <span class="token operator">=</span> http<span class="token punctuation">.</span>request<span class="token punctuation">(</span><span class="token string">"get"</span><span class="token punctuation">,</span><span class="token string">"https://www.baidu.com"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>baidu<span class="token punctuation">.</span>status<span class="token punctuation">)</span></code></pre>
+<p>post请求</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> urllib3
+
+http <span class="token operator">=</span> urllib3<span class="token punctuation">.</span>PoolManager<span class="token punctuation">(</span><span class="token punctuation">)</span>
+baidu <span class="token operator">=</span> http<span class="token punctuation">.</span>request<span class="token punctuation">(</span><span class="token string">"get"</span><span class="token punctuation">,</span><span class="token string">"https://www.baidu.com"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>baidu<span class="token punctuation">.</span>status<span class="token punctuation">)</span></code></pre>
+<h2 id="urllib3的其他拓展"><a href="#urllib3的其他拓展" class="headerlink" title="urllib3的其他拓展"></a>urllib3的其他拓展</h2><hr>
+### 1、最简单
+
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> urllib<span class="token punctuation">.</span>request
+response <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span><span class="token string">'http://python.org/'</span><span class="token punctuation">)</span>
+html <span class="token operator">=</span> response<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<h3 id="2、使用-Request"><a href="#2、使用-Request" class="headerlink" title="2、使用 Request"></a>2、使用 Request</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> urllib<span class="token punctuation">.</span>request
+req <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>Request<span class="token punctuation">(</span><span class="token string">'http://python.org/'</span><span class="token punctuation">)</span>
+response <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>req<span class="token punctuation">)</span>
+the_page <span class="token operator">=</span> response<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<h3 id="3、发送数据"><a href="#3、发送数据" class="headerlink" title="3、发送数据"></a>3、发送数据</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> urllib<span class="token punctuation">.</span>parse
+<span class="token keyword">import</span> urllib<span class="token punctuation">.</span>request
+url <span class="token operator">=</span> <span class="token string">'http://localhost/login.php'</span>
+user_agent <span class="token operator">=</span> <span class="token string">'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'</span>
+values <span class="token operator">=</span> <span class="token punctuation">{</span>
+<span class="token string">'act'</span> <span class="token punctuation">:</span> <span class="token string">'login'</span><span class="token punctuation">,</span>
+<span class="token string">'login[email]'</span> <span class="token punctuation">:</span> <span class="token string">'yzhang@i9i8.com'</span><span class="token punctuation">,</span>
+<span class="token string">'login[password]'</span> <span class="token punctuation">:</span> <span class="token string">'123456'</span>
+<span class="token punctuation">}</span>
+data <span class="token operator">=</span> urllib<span class="token punctuation">.</span>parse<span class="token punctuation">.</span>urlencode<span class="token punctuation">(</span>values<span class="token punctuation">)</span>
+req <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>Request<span class="token punctuation">(</span>url<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+req<span class="token punctuation">.</span>add_header<span class="token punctuation">(</span><span class="token string">'Referer'</span><span class="token punctuation">,</span> <span class="token string">'http://www.python.org/'</span><span class="token punctuation">)</span>
+response <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>req<span class="token punctuation">)</span>
+the_page <span class="token operator">=</span> response<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>the_page<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h3 id="4、发送数据和header"><a href="#4、发送数据和header" class="headerlink" title="4、发送数据和header"></a>4、发送数据和header</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> urllib<span class="token punctuation">.</span>parse
+<span class="token keyword">import</span> urllib<span class="token punctuation">.</span>request
+url <span class="token operator">=</span> <span class="token string">'http://localhost/login.php'</span>
+user_agent <span class="token operator">=</span> <span class="token string">'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'</span>
+values <span class="token operator">=</span> <span class="token punctuation">{</span>
+<span class="token string">'act'</span> <span class="token punctuation">:</span> <span class="token string">'login'</span><span class="token punctuation">,</span>
+<span class="token string">'login[email]'</span> <span class="token punctuation">:</span> <span class="token string">'yzhang@i9i8.com'</span><span class="token punctuation">,</span>
+<span class="token string">'login[password]'</span> <span class="token punctuation">:</span> <span class="token string">'123456'</span>
+<span class="token punctuation">}</span>
+headers <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token string">'User-Agent'</span> <span class="token punctuation">:</span> user_agent <span class="token punctuation">}</span>
+data <span class="token operator">=</span> urllib<span class="token punctuation">.</span>parse<span class="token punctuation">.</span>urlencode<span class="token punctuation">(</span>values<span class="token punctuation">)</span>
+req <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>Request<span class="token punctuation">(</span>url<span class="token punctuation">,</span> data<span class="token punctuation">,</span> headers<span class="token punctuation">)</span>
+response <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>req<span class="token punctuation">)</span>
+the_page <span class="token operator">=</span> response<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>the_page<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h3 id="5、http-错误"><a href="#5、http-错误" class="headerlink" title="5、http 错误"></a>5、http 错误</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> urllib<span class="token punctuation">.</span>request
+req <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>Request<span class="token punctuation">(</span><span class="token string">'http://www.111cn.net '</span><span class="token punctuation">)</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>req<span class="token punctuation">)</span>
+<span class="token keyword">except</span> urllib<span class="token punctuation">.</span>error<span class="token punctuation">.</span>HTTPError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>code<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h3 id="6、异常处理1"><a href="#6、异常处理1" class="headerlink" title="6、异常处理1"></a>6、异常处理1</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> urllib<span class="token punctuation">.</span>request <span class="token keyword">import</span> Request<span class="token punctuation">,</span> urlopen
+<span class="token keyword">from</span> urllib<span class="token punctuation">.</span>error <span class="token keyword">import</span> URLError<span class="token punctuation">,</span> HTTPError
+req <span class="token operator">=</span> Request<span class="token punctuation">(</span><span class="token string">"http://www.111cn.net /"</span><span class="token punctuation">)</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+response <span class="token operator">=</span> urlopen<span class="token punctuation">(</span>req<span class="token punctuation">)</span>
+<span class="token keyword">except</span> HTTPError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'The server couldn'</span>t fulfill the request<span class="token punctuation">.</span>'<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Error code: '</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span>code<span class="token punctuation">)</span>
+<span class="token keyword">except</span> URLError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'We failed to reach a server.'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Reason: '</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span>reason<span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"good!"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h3 id="7、异常处理2"><a href="#7、异常处理2" class="headerlink" title="7、异常处理2"></a>7、异常处理2</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> urllib<span class="token punctuation">.</span>request <span class="token keyword">import</span> Request<span class="token punctuation">,</span> urlopen
+<span class="token keyword">from</span> urllib<span class="token punctuation">.</span>error <span class="token keyword">import</span>  URLError
+req <span class="token operator">=</span> Request<span class="token punctuation">(</span><span class="token string">"http://www.111cn.net /"</span><span class="token punctuation">)</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+response <span class="token operator">=</span> urlopen<span class="token punctuation">(</span>req<span class="token punctuation">)</span>
+<span class="token keyword">except</span> URLError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+<span class="token keyword">if</span> hasattr<span class="token punctuation">(</span>e<span class="token punctuation">,</span> <span class="token string">'reason'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'We failed to reach a server.'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Reason: '</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span>reason<span class="token punctuation">)</span>
+<span class="token keyword">elif</span> hasattr<span class="token punctuation">(</span>e<span class="token punctuation">,</span> <span class="token string">'code'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'The server couldn'</span>t fulfill the request<span class="token punctuation">.</span>'<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Error code: '</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span>code<span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"good!"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h3 id="8、HTTP-认证"><a href="#8、HTTP-认证" class="headerlink" title="8、HTTP 认证"></a>8、HTTP 认证</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> urllib<span class="token punctuation">.</span>request
+<span class="token comment" spellcheck="true"># create a password manager</span>
+password_mgr <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>HTTPPasswordMgrWithDefaultRealm<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># Add the username and password.</span>
+<span class="token comment" spellcheck="true"># If we knew the realm, we could use it instead of None.</span>
+top_level_url <span class="token operator">=</span> <span class="token string">"https://www.111cn.net /"</span>
+password_mgr<span class="token punctuation">.</span>add_password<span class="token punctuation">(</span>None<span class="token punctuation">,</span> top_level_url<span class="token punctuation">,</span> <span class="token string">'rekfan'</span><span class="token punctuation">,</span> <span class="token string">'xxxxxx'</span><span class="token punctuation">)</span>
+handler <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>HTTPBasicAuthHandler<span class="token punctuation">(</span>password_mgr<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># create "opener" (OpenerDirector instance)</span>
+opener <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>build_opener<span class="token punctuation">(</span>handler<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># use the opener to fetch a URL</span>
+a_url <span class="token operator">=</span> <span class="token string">"https://www.111cn.net /"</span>
+x <span class="token operator">=</span> opener<span class="token punctuation">.</span>open<span class="token punctuation">(</span>a_url<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># Install the opener.</span>
+<span class="token comment" spellcheck="true"># Now all calls to urllib.request.urlopen use our opener.</span>
+urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>install_opener<span class="token punctuation">(</span>opener<span class="token punctuation">)</span>
+a <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>a_url<span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf8'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span></code></pre>
+<h3 id="9、使用代理"><a href="#9、使用代理" class="headerlink" title="9、使用代理"></a>9、使用代理</h3><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">#! /usr/bin/env python3</span>
+<span class="token keyword">import</span> urllib<span class="token punctuation">.</span>request
+proxy_support <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>ProxyHandler<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'sock5'</span><span class="token punctuation">:</span> <span class="token string">'localhost:1080'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+opener <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>build_opener<span class="token punctuation">(</span>proxy_support<span class="token punctuation">)</span>
+urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>install_opener<span class="token punctuation">(</span>opener<span class="token punctuation">)</span>
+a <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span><span class="token string">"http://www.111cn.net "</span><span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span></code></pre>
+<h3 id="10、超时"><a href="#10、超时" class="headerlink" title="10、超时"></a>10、超时</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> socket
+<span class="token keyword">import</span> urllib<span class="token punctuation">.</span>request
+<span class="token comment" spellcheck="true"># timeout in seconds</span>
+timeout <span class="token operator">=</span> <span class="token number">2</span>
+socket<span class="token punctuation">.</span>setdefaulttimeout<span class="token punctuation">(</span>timeout<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># this call to urllib.request.urlopen now uses the default timeout</span>
+<span class="token comment" spellcheck="true"># we have set in the socket module</span>
+req <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>Request<span class="token punctuation">(</span><span class="token string">'http://www.111cn.net /'</span><span class="token punctuation">)</span>
+a <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>req<span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span></code></pre>
+<h2 id="urllib3推荐文章"><a href="#urllib3推荐文章" class="headerlink" title="urllib3推荐文章"></a>urllib3推荐文章</h2><hr>
+
+<p>因为我没怎么经常用urllib3这个模块<br>所以推荐一下别人的文章，写的不错</p>
+<ol>
+<li><a href="https://www.jianshu.com/p/d2f093ac01d6" target="_blank" rel="noopener">urllib和urllib3的使用</a></li>
+<li><a href="https://www.cnblogs.com/springsnow/p/12118558.html" target="_blank" rel="noopener">Python HTTP客户端模块urllib、urllib3、requests库</a></li>
+<li><a href="https://www.pianshen.com/article/820125448/" target="_blank" rel="noopener">python3下 urllib常用模块</a></li>
 </ol>
+<p>这三篇文章特别详细，比其他地方好多了<br>（<em>先保存，因为要写个自动化信息收集的工具，又要上班<br>果断时间再回来看</em>）</p>
 
             </div>
             <hr/>
@@ -591,7 +660,7 @@ r <span class="token operator">=</span> requests<span class="token punctuation">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/032030464.html">http://yoursite.com/2020/032030464.html</a>
+                    <a href="http://yoursite.com/2020/032048346.html">http://yoursite.com/2020/032048346.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1055,10 +1124,9 @@ r <span class="token operator">=</span> requests<span class="token punctuation">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2020/032030464.html">
                     <div class="card-image">
@@ -1080,9 +1148,9 @@ Post请求
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-20
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-20
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1095,7 +1163,6 @@ Post请求
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -1106,38 +1173,41 @@ Post请求
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/032048346.html">
+                <a href="/2020/031748230.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="urllib3模块的基本使用">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Linux常用命令（二）">
                         
-                        <span class="card-title">urllib3模块的基本使用</span>
+                        <span class="card-title">Linux常用命令（二）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            urllib3模块的基本使用
-简单的请求
-get请求
+                            内容
 
-import urllib3
+0x01 . cat命令
+cat命令用于查看纯文本文件（内容较少的），格式为“cat [选项] [文件]”。 如图，继上一篇里面我的创建文档，
 
-http = urllib3.PoolManager()
-baidu = http.request("get","https://www.baidu.c
+
+里面只有hello world单词
+
+
+0x02. more命令
+more命令用于查
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-17
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Python/" class="post-category">
-                                    Python
+                            <a href="/categories/Liunx/" class="post-category">
+                                    Liunx
                                 </a>
                             
                             
