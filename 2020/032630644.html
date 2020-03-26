@@ -476,7 +476,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    894
+                    953
                 </div>
                 
 
@@ -560,6 +560,7 @@
 <p><strong>注意</strong><br><strong>1.</strong> 一般情况下PHP不会开启fopen的gopher wrapper<br><strong>2.</strong> file_get_contents的gopher协议不能URL编码<br><strong>3.</strong> file_get_contents关于Gopher的302跳转会出现bug，导致利用失败<br><strong>4.</strong> curl/libcurl 7.43 上gopher协议存在bug(%00截断) 经测试7.49 可用<br><strong>5.</strong> curl_exec() //默认不跟踪跳转，<br><strong>6.</strong> file_get_contents()  //   file_get_contents支持  php://input协议</p>
 <p><strong>2.协议</strong><br><strong>（1）file</strong>： 在有回显的情况下，利用 file 协议可以读取任意内容<br><strong>（2）dict</strong>：泄露安装软件版本信息，查看端口，操作内网redis服务等<br><strong>（3）gopher</strong>：gopher支持发出GET、POST请求：可以先截获get请求包和post请求包，再构造成符合gopher协议的请求。gopher协议是ssrf利用中一个最强大的协议(俗称万能协议)。可用于反弹shell<br>（<strong>4）http/s</strong>：探测内网主机存活</p>
 <h2 id="0x02-一些ssrf利用文章"><a href="#0x02-一些ssrf利用文章" class="headerlink" title="0x02.一些ssrf利用文章"></a>0x02.一些ssrf利用文章</h2><p><strong>1.</strong><a href="https://www.xd10086.com/posts/1516523858457311553/" target="_blank" rel="noopener">SSRF漏洞的利用与攻击内网应用实战</a><br><strong>2.</strong> <a href="https://mp.weixin.qq.com/s?__biz=MzI4NTE4NDAyNA==&mid=2650383259&idx=1&sn=68a01c433d744e94ebc14d568e2ac174&chksm=f3fd1aecc48a93fa27183525f9593efb43a172d1af2c690818cbda7d85a6334879a1b4df2bd6&scene=21#wechat_redirect" target="_blank" rel="noopener">Web安全基础学习之SSRF漏洞利用及绕过方式</a><br><strong>3.</strong><a href="https://mp.weixin.qq.com/s/ZL91c2YnHbIu75KG20eBJA" target="_blank" rel="noopener">挖洞达人必杀技之SSRF漏洞的利用与攻击内网应用实战</a></p>
+<h2 id="0x03-修复方式"><a href="#0x03-修复方式" class="headerlink" title="0x03 修复方式"></a>0x03 修复方式</h2><p><strong>1.</strong>限制请求的端口，只能为web端口，只允许访问http 和 https的请求<br><strong>2.</strong>限制不能访问内网ip，以防止对内网进行攻击<br><strong>3.</strong>屏蔽 返回的详细信息</p>
 
             </div>
             <hr/>
@@ -1364,7 +1365,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.3k</span>&nbsp;字
+                class="white-color">7.4k</span>&nbsp;字
             
             
             
