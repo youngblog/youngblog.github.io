@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="kali的基本配置, Youngboy,github">
+    <meta name="keywords" content="文件操作审计, Youngboy,github">
     <meta name="description" content="北冥有鱼，其名为鲲，鲲之大，不知其几千里也； 化而为鸟，其名为鹏.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>kali的基本配置 | Young&#39;s Blogs</title>
+    <title>文件操作审计 | Young&#39;s Blogs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">kali的基本配置</h1>
+                    <h1 class="description center-align post-title">文件操作审计</h1>
                 </div>
             </div>
         </div>
@@ -449,8 +449,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/kali/" class="post-category">
-                                kali
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                代码审计
                             </a>
                         
                     </div>
@@ -462,28 +462,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-16
+                    2020-04-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-17
+                    2020-04-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    776
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    5 分
                 </div>
                 
 
@@ -499,48 +499,124 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="0x01-：vmware网络配置"><a href="#0x01-：vmware网络配置" class="headerlink" title="0x01 ：vmware网络配置"></a>0x01 ：vmware网络配置</h1><hr>
-<p>在有下角有个网络适配器<br><img src="https://img-blog.csdnimg.cn/20200317004057207.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>点击一下就出现了虚拟机设置<br><img src="https://img-blog.csdnimg.cn/20200317004201978.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_5,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_14,color_FFFFFF,t_60" alt="在这里插入图片描述"><br>虚拟机有三个网络配置<br><code>1</code>：桥接模式（虚拟机和主机在同一个网络环境下的两台电脑）<br><code>2</code>：NAT模式（虚拟机通过主机联网）<br><code>3</code>：主机模式（只能虚拟机和主机直接交互）<br>前面2个应该比较熟悉，而第三个，意思就是无法ping通外网，只能虚拟机和宿主机直接互相ping通</p>
-<h1 id="0x02：kali系统更新配置"><a href="#0x02：kali系统更新配置" class="headerlink" title="0x02：kali系统更新配置"></a>0x02：kali系统更新配置</h1><hr>
-<p>更新配置这里使用老版本的，新版本的以后在弄（新版本msf依赖下载好慢，不习惯）</p>
-<p>选择不更新 Metasploit<br><strong>1:</strong> 查看当前的系统中所有软件包状态</p>
-<p><code>sudo dbjg --get-selections | more</code><br>这时候可以找打软件包为 “metasploit-framework”<br><strong>2:</strong> 给metasploit-framework锁定当前版本不更新</p>
-<p><code>sudo apt-mark hold metasploit-framework</code><br><strong>3：</strong> 查看当前已锁定的软件包<br><code>sudo dbkg --get-selections | grep hold</code><br><strong>4:</strong> 取消软件保留设置</p>
-<p><code>sudo -apt-mark unhold metasploit-framework</code><br>但是一般情况下的话不会去锁定哒<del>~</del></p>
-<p><strong>kali系统更新后出现一些问题</strong><br>进入 <code>/usr/share/metasploit-framework</code> 目录下<br>使用命令</p>
-<p><code>gem install bundler</code><br><code>gem update --system</code><br>然后就可以成功的启动了，具体可以问度娘的~~</p>
-<h3 id="一、配置kali系统源"><a href="#一、配置kali系统源" class="headerlink" title="一、配置kali系统源"></a>一、配置kali系统源</h3><p><strong>1.</strong> 使用编辑器打开系统源文本<br><code>leafpad /etc/apt/aources.list</code></p>
-<p><strong>2.</strong> 填写源</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#中科大</span>
-deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
-deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
-<span class="token comment" spellcheck="true">#阿里云</span>
-deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
-deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
-<span class="token comment" spellcheck="true">#清华大学</span>
-deb http://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free
-deb-src https://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free
-<span class="token comment" spellcheck="true">#163</span>
-deb http://mirrors.163.com/debian wheezy main non-free contrib
-deb-src http://mirrors.163.com/debian wheezy main non-free contrib
-deb http://mirrors.163.com/debian wheezy-proposed-updates main non-free contrib
-deb-src http://mirrors.163.com/debian wheezy-proposed-updates main non-free contrib
-deb-src http://mirrors.163.com/debian-security wheezy/updates main non-free contrib
-<span class="token comment" spellcheck="true">#东软大学</span>
-deb http://mirrors.neusoft.edu.cn/kali kali-rolling/main non-free contrib
-deb-src http://mirrors.neusoft.edu.cn/kali kali-rolling/main non-free contrib
-<span class="token comment" spellcheck="true">#官方源</span>
-deb http://http.kali.org/kali kali-rolling main non-free contrib
-deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre>
-<p>任意选一个就好了，可以选清华，或者中科大</p>
-<p><strong>3.</strong> 使用更新命令</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> upgrade <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> dist-upgrade</code></pre>
-<h1 id="0x03：kali配置ssh服务"><a href="#0x03：kali配置ssh服务" class="headerlink" title="0x03：kali配置ssh服务"></a>0x03：kali配置ssh服务</h1><ol>
-<li>开启ss服务</li>
-</ol>
-<p><code>service ssh start</code><br>2. 查看ssh服务状态</p>
-<p><code>service ssh status</code><br>3. 关闭ssh服务</p>
-<p><code>service ssh stop</code><br>步骤：<br>先是打开ssh服务，然后ifconfig查看虚拟机ip<br><img src="https://img-blog.csdnimg.cn/20200317011416793.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后就可以填主机，协议要选ssh<br>名称随意<br><img src="https://img-blog.csdnimg.cn/20200317011558319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>之后会提示我们输入用户名，就是虚拟机用户名<br>root （我的是root）<br>填写完后会要求我们输入密码<br><img src="https://img-blog.csdnimg.cn/20200317011712365.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输入你自己虚拟机的密码既可<br>然后点击记住密码，下次就可以直接登录了<br><img src="https://img-blog.csdnimg.cn/20200317011804574.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>出现这个标志就说明成功了。啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦</p>
+                <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文章来自 公众号：404安全</p>
+<h1 id="0x00-文件包含"><a href="#0x00-文件包含" class="headerlink" title="0x00 文件包含"></a>0x00 文件包含</h1><h3 id="本地包含"><a href="#本地包含" class="headerlink" title="本地包含"></a>本地包含</h3><p>本地文件包含（Local File Include）简称 LFI，文件包含在php中，一般涉及到的危险函数有<code>include()</code>、<code>include_once()</code>、<code>require()</code>、<code>require_once()</code>，在包含文件名中存在可控变量的话就可能存在包含漏洞，由于这几个函数的特性也可能产生其他漏洞，后面一一讲到。</p>
+<p>示例：</p>
+<pre><code>&lt;?php
+    $file = $_GET[&#39;name&#39;];
+    include($file);
+?&gt;
+</code></pre><p>payload:</p>
+<pre><code>http://127.0.0.1/test.php?name=D:\phpstudy\PHPTutorial\MySQL\my.ini
+</code></pre><p>这是个最简单的文件包含，没有任何过滤。但是一般程序不会这么写，一般会指定后缀，这样我们就需要截断来绕过了。</p>
+<pre><code>&lt;?php
+    $file = $_GET[&#39;name&#39;];
+    include($file . &quot;html&quot;);
+?&gt;
+</code></pre><p>在PHP5.2.x中我们可以通过使用%00来截断后面的内容、也可以使用路径长度截断，不过都在php5.3中被修复了。</p>
+<p>payload：</p>
+<pre><code>http://127.0.0.1/test.php?name=D:\phpstudy\PHPTutorial\MySQL\my.ini%00
+</code></pre><p><img src="/2020/040155793.htm/1.5.1.png" alt="file"></p>
+<p>利用字符.或者/.或者./来截断。系统文件路径长度限制：windows 259个byteslinux 4096个bytes。</p>
+<h3 id="远程包含"><a href="#远程包含" class="headerlink" title="远程包含"></a>远程包含</h3><p>远程文件包含漏洞(Remote File Inclusion)简称RFI，他需要我们的php.ini中配置<code>allow_url_include</code>、 <code>allow_url_fopen</code>。</p>
+<p>1.包含远程文件 </p>
+<p>需要打开<code>allow_url_include=On</code>、 <code>allow_url_fopen = On</code></p>
+<p><img src="/2020/040155793.htm/1.5.2.png" alt="file"></p>
+<p>他可以利用?号截断，不受版本限制</p>
+<p>payload：</p>
+<pre><code>http://127.0.0.1/test.php?name=http://127.0.0.1/1.txt?
+</code></pre><p>2.伪协议</p>
+<pre><code>file:// — 访问本地文件系统
+http:// — 访问 HTTP(s) 网址
+ftp:// — 访问 FTP(s) URLs
+php:// — 访问各个输入/输出流（I/O streams）
+zlib:// — 压缩流
+data:// — 数据（RFC 2397）
+glob:// — 查找匹配的文件路径模式
+phar:// — PHP 归档
+ssh2:// — Secure Shell 2
+rar:// — RAR
+ogg:// — 音频流
+expect:// — 处理交互式的流
+</code></pre><p>各种伪协议的使用方法网上很多，大家搜索一下吧。</p>
+<h3 id="实战审计"><a href="#实战审计" class="headerlink" title="实战审计"></a>实战审计</h3><p>直接看主页index.php</p>
+<pre><code>&lt;?php
+//单一入口模式
+error_reporting(0); //关闭错误显示
+$file=addslashes($_GET[&#39;r&#39;]); //接收文件名
+$action=$file==&#39;&#39;?&#39;index&#39;:$file; //判断为空或者等于index
+include(&#39;files/&#39;.$action.&#39;.php&#39;); //载入相应文件
+?&gt;
+</code></pre><p>他会包含files目录下的文件，因为他没有过滤../所以可以包含任意目录下的文件，由于加了后缀所以漏洞存在于低版本php。</p>
+<p><img src="/2020/040155793.htm/1.5.3.png" alt="file"></p>
+<h1 id="0x01-任意文件删除"><a href="#0x01-任意文件删除" class="headerlink" title="0x01 任意文件删除"></a>0x01 任意文件删除</h1><p>任意文件删除审计一般来说我们都是搜索函数<code>unlink</code> 然后回溯去看。</p>
+<p>inc\zzz_file.php</p>
+<p><img src="/2020/040155793.htm/1.5.4.png" alt="file"></p>
+<p>首先判断传入的参数是否为空，然后拼接路径，第516行中出现了一个函数<code>ifstrin</code>,我们跟进看看</p>
+<p><img src="/2020/040155793.htm/1.5.5.png" alt="file"></p>
+<p>只是个简单的判断没啥特殊情况，我们再来看看拿来调用了这个文件。</p>
+<p><img src="/2020/040155793.htm/1.5.6.png" alt="file"></p>
+<pre><code>function file_path( $path ) {
+    $list=array();
+    $path= substr( $path, 0, strrpos( $path, &#39;/&#39; ));
+    $list=splits($path,&#39;/&#39;);
+    return $list;
+}
+
+function arr_search($arr1, $arr2 ) {
+    $result=false;
+    foreach ( $arr1 as $v ) {
+       if(in_array( $v,$arr2 )) return true;        
+    }
+    return $result;
+}
+</code></pre><p>获取参数，然后看看我们传入的路径是否存在这个数组里面的值，也就是基本上是没有过滤的，因为我们完全可以通过../ 跳回去。</p>
+<p>payload：</p>
+<pre><code>POST /zzzp6p/admin/save.php?act=delfile
+
+path=/zzzp6p/upload/../install/1install.lock
+</code></pre><p>这里我们走的下面的分支不能删除 <code>array( &#39;php&#39;, &#39;db&#39;, &#39;mdb&#39;, &#39;tpl&#39; )</code> 这个数组的文件。</p>
+<p>要删除任意文件只需要使用</p>
+<pre><code>path=/zzzp6p/runtime/../install/1.db
+</code></pre><p>让<code>ifstrin()</code>为true走上面的分支即可。</p>
+<p>一般来说我们任意文件删除 是配合删除install.lock来达到网站重装漏洞。</p>
+<h1 id="0x02-任意文件下载"><a href="#0x02-任意文件下载" class="headerlink" title="0x02 任意文件下载"></a>0x02 任意文件下载</h1><p>任意文件下载常见于文件的显示和下载的地方，一般关注的文件是和下载有关的，比如download。当然你还可以搭建源码，来寻找能够下载的地方。</p>
+<p>常见的下载或读取函数: <code>file_get_contents()</code>、<code>readfile()</code> 、<code>fopen()</code></p>
+<p>在网上找到个别人审计的实例，结合起来审计一下，用到的源码是Ear_Music_20180820_UTF8</p>
+<p>搜索down相关的词语，找到文件\template\default\source\down.php</p>
+<p><img src="/2020/040155793.htm/1.5.7.png" alt="file"></p>
+<p>我们看看<code>$file</code>参数怎么来的,先是调用函数<code>getfield()</code>,转到函数去看看</p>
+<p><img src="/2020/040155793.htm/1.5.8.png" alt="file"></p>
+<p>不出意外应该是从数据库中读取路径，再来看看<code>geturl()</code>函数</p>
+<p><img src="/2020/040155793.htm/1.5.9.png" alt="file"></p>
+<p>构造下载地址，这些地方没什么问题，我们来看看什么地方对储存地址的表中插入了数据，搜索表名<code>lyric</code>。</p>
+<p>\source\user\music\ajax.php</p>
+<p><img src="/2020/040155793.htm/1.5.10.png" alt="file"></p>
+<p>我们看到<code>$lyric</code>经过 <code>checkrename</code>、 <code>SafeRequest</code>这两个函数的清洗，先来转到函数<code>SafeRequest</code>。</p>
+<p><img src="/2020/040155793.htm/1.5.11.png" alt="file"></p>
+<p>我们传入的mode是get，然后经过<code>addslashes()</code>的转义，下面在替换为空，也就是我们基本上是不能使用<code>\\</code>了，我们在看看<code>checkrename</code></p>
+<p><img src="/2020/040155793.htm/1.5.12.png" alt="file"></p>
+<p>这里正则匹配了我们的</p>
+<pre><code>.\ 
+?iframe=
+.php?
+</code></pre><p>这里完全看不懂他匹配后缀为php?这个的意义何在，直接php就绕过了。</p>
+<p>所以综合起来就是不要带有<code>\ 和 ./</code> 这里我们只要传入绝对路径就可以了</p>
+<p>登陆前台找到上传歌曲的页面在歌词地址中插入payload</p>
+<p>payload：</p>
+<pre><code>D:/phpstudy/PHPTutorial/WWW/Ear_Music/template/default/source/down.php
+</code></pre><p><img src="/2020/040155793.htm/1.5.13.png" alt="file"></p>
+<h1 id="0x03-文件上传"><a href="#0x03-文件上传" class="headerlink" title="0x03 文件上传"></a>0x03 文件上传</h1><p>文件上传只有一个函数 <code>move_uploaded_file()</code> 一般来说，我们就可以搜索这个函数来回溯，看他的验证方式，是黑名单还是白名单，是否是前端限制，是否只是简单的验证了文件头，是否是能绕过的正则匹配，是否渲染了图片。</p>
+<p>结合zzzphp来审计一下文件上传，全局搜索<code>move_uploaded_file</code></p>
+<p>\zzzcms\inc\zzz_file.php</p>
+<p><img src="/2020/040155793.htm/1.5.14.png" alt="file"></p>
+<p>回溯看看那里调用了这个函数</p>
+<p><img src="/2020/040155793.htm/1.5.15.png" alt="file"></p>
+<p>典型的黑名单验证，可以使用asa绕过，只需要在后台添加这个扩展名</p>
+<p><img src="/2020/040155793.htm/1.5.16.png" alt="file"></p>
+<p>上传即可，当然也可以通过上图中的 switch分支，只要传入的 type不是他的类型就可以跳过后台添加这个步骤，</p>
+<p><img src="/2020/040155793.htm/1.5.17.png" alt="file"></p>
+<h1 id="0x04-文末"><a href="#0x04-文末" class="headerlink" title="0x04 文末"></a>0x04 文末</h1><p>对文件的操作还见于写入其他配置文件，典型的有thinkphp缓存文件写入。</p>
 
             </div>
             <hr/>
@@ -566,7 +642,7 @@ deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://youngscript.github.io/2020/031611755.html">http://youngscript.github.io/2020/031611755.html</a>
+                    <a href="http://youngscript.github.io/2020/040155793.html">http://youngscript.github.io/2020/040155793.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1034,34 +1110,32 @@ deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/031626401.html">
+                <a href="/2020/040120077.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="SQL注入">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="XSS与CSRF审计">
                         
-                        <span class="card-title">SQL注入</span>
+                        <span class="card-title">XSS与CSRF审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言——————————————————————————————————————
-这是我之前发布到的其他的一个网址，这里的话我重新总结
-可能分很多，我也不是很清楚，只是皮毛的研究了一下
-1，sql按数据库分的话，常用的有：MySQL，acc
+                            0x00 简介本文章来自 公众号：404安全
+XSS分为反射型和储存型，一般来说反射型的用处不是很大利用难度相对较高，存储型XSS一般常见于发布评论、留言、收获地址、个人信息等等。对于xss的审计我们一般就在这些点找，有用户控制输入信息输出
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/SQL/" class="post-category">
-                                    SQL
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
                                 </a>
                             
                             
@@ -1078,32 +1152,33 @@ deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/031665118.html">
+                <a href="/2020/040118560.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="2020版本kali安装">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="逻辑漏洞审计">
                         
-                        <span class="card-title">2020版本kali安装</span>
+                        <span class="card-title">逻辑漏洞审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言——————————————————————————————————————总所周知，这个最新版本的变化很大（其实就是桌面变化大）其实嘞，物竞天择，随时代潮流。我刚好想试一试，那么就安装一个最新版本的，kali 2020.1
-正文第一步
+                            0x00 简介本文章来自 公众号：404安全
+逻辑漏洞是指由于程序逻辑不严，或者函数使用不当，导致发生越权访问，cookies绕过，越权密码修改，重复安装等等问题。一般逻辑漏洞的挖掘需要对代码有一定阅读能力。
+0x01 越权越权一般是对co
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/kali/" class="post-category">
-                                    kali
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
                                 </a>
                             
                             

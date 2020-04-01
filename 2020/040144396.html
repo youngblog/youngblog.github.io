@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="kali的基本配置, Youngboy,github">
+    <meta name="keywords" content="初始代码审计, Youngboy,github">
     <meta name="description" content="北冥有鱼，其名为鲲，鲲之大，不知其几千里也； 化而为鸟，其名为鹏.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>kali的基本配置 | Young&#39;s Blogs</title>
+    <title>初始代码审计 | Young&#39;s Blogs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -324,7 +324,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">kali的基本配置</h1>
+                    <h1 class="description center-align post-title">初始代码审计</h1>
                 </div>
             </div>
         </div>
@@ -449,8 +449,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/kali/" class="post-category">
-                                kali
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                代码审计
                             </a>
                         
                     </div>
@@ -462,28 +462,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-16
+                    2020-04-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-17
+                    2020-04-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    776
+                    825
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    2 分
                 </div>
                 
 
@@ -499,48 +499,22 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="0x01-：vmware网络配置"><a href="#0x01-：vmware网络配置" class="headerlink" title="0x01 ：vmware网络配置"></a>0x01 ：vmware网络配置</h1><hr>
-<p>在有下角有个网络适配器<br><img src="https://img-blog.csdnimg.cn/20200317004057207.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>点击一下就出现了虚拟机设置<br><img src="https://img-blog.csdnimg.cn/20200317004201978.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_5,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_14,color_FFFFFF,t_60" alt="在这里插入图片描述"><br>虚拟机有三个网络配置<br><code>1</code>：桥接模式（虚拟机和主机在同一个网络环境下的两台电脑）<br><code>2</code>：NAT模式（虚拟机通过主机联网）<br><code>3</code>：主机模式（只能虚拟机和主机直接交互）<br>前面2个应该比较熟悉，而第三个，意思就是无法ping通外网，只能虚拟机和宿主机直接互相ping通</p>
-<h1 id="0x02：kali系统更新配置"><a href="#0x02：kali系统更新配置" class="headerlink" title="0x02：kali系统更新配置"></a>0x02：kali系统更新配置</h1><hr>
-<p>更新配置这里使用老版本的，新版本的以后在弄（新版本msf依赖下载好慢，不习惯）</p>
-<p>选择不更新 Metasploit<br><strong>1:</strong> 查看当前的系统中所有软件包状态</p>
-<p><code>sudo dbjg --get-selections | more</code><br>这时候可以找打软件包为 “metasploit-framework”<br><strong>2:</strong> 给metasploit-framework锁定当前版本不更新</p>
-<p><code>sudo apt-mark hold metasploit-framework</code><br><strong>3：</strong> 查看当前已锁定的软件包<br><code>sudo dbkg --get-selections | grep hold</code><br><strong>4:</strong> 取消软件保留设置</p>
-<p><code>sudo -apt-mark unhold metasploit-framework</code><br>但是一般情况下的话不会去锁定哒<del>~</del></p>
-<p><strong>kali系统更新后出现一些问题</strong><br>进入 <code>/usr/share/metasploit-framework</code> 目录下<br>使用命令</p>
-<p><code>gem install bundler</code><br><code>gem update --system</code><br>然后就可以成功的启动了，具体可以问度娘的~~</p>
-<h3 id="一、配置kali系统源"><a href="#一、配置kali系统源" class="headerlink" title="一、配置kali系统源"></a>一、配置kali系统源</h3><p><strong>1.</strong> 使用编辑器打开系统源文本<br><code>leafpad /etc/apt/aources.list</code></p>
-<p><strong>2.</strong> 填写源</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#中科大</span>
-deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
-deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
-<span class="token comment" spellcheck="true">#阿里云</span>
-deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
-deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
-<span class="token comment" spellcheck="true">#清华大学</span>
-deb http://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free
-deb-src https://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free
-<span class="token comment" spellcheck="true">#163</span>
-deb http://mirrors.163.com/debian wheezy main non-free contrib
-deb-src http://mirrors.163.com/debian wheezy main non-free contrib
-deb http://mirrors.163.com/debian wheezy-proposed-updates main non-free contrib
-deb-src http://mirrors.163.com/debian wheezy-proposed-updates main non-free contrib
-deb-src http://mirrors.163.com/debian-security wheezy/updates main non-free contrib
-<span class="token comment" spellcheck="true">#东软大学</span>
-deb http://mirrors.neusoft.edu.cn/kali kali-rolling/main non-free contrib
-deb-src http://mirrors.neusoft.edu.cn/kali kali-rolling/main non-free contrib
-<span class="token comment" spellcheck="true">#官方源</span>
-deb http://http.kali.org/kali kali-rolling main non-free contrib
-deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre>
-<p>任意选一个就好了，可以选清华，或者中科大</p>
-<p><strong>3.</strong> 使用更新命令</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> upgrade <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> dist-upgrade</code></pre>
-<h1 id="0x03：kali配置ssh服务"><a href="#0x03：kali配置ssh服务" class="headerlink" title="0x03：kali配置ssh服务"></a>0x03：kali配置ssh服务</h1><ol>
-<li>开启ss服务</li>
-</ol>
-<p><code>service ssh start</code><br>2. 查看ssh服务状态</p>
-<p><code>service ssh status</code><br>3. 关闭ssh服务</p>
-<p><code>service ssh stop</code><br>步骤：<br>先是打开ssh服务，然后ifconfig查看虚拟机ip<br><img src="https://img-blog.csdnimg.cn/20200317011416793.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后就可以填主机，协议要选ssh<br>名称随意<br><img src="https://img-blog.csdnimg.cn/20200317011558319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>之后会提示我们输入用户名，就是虚拟机用户名<br>root （我的是root）<br>填写完后会要求我们输入密码<br><img src="https://img-blog.csdnimg.cn/20200317011712365.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输入你自己虚拟机的密码既可<br>然后点击记住密码，下次就可以直接登录了<br><img src="https://img-blog.csdnimg.cn/20200317011804574.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>出现这个标志就说明成功了。啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦</p>
+                <h1 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h1><p>本文章来自 公众号：404安全</p>
+<p>终于来到了代码审计篇章。希望看了朋友有所收获，我们通常把代码审计分为黑盒和白盒，我们一般结合起来用。</p>
+<p>通常我们白盒审计有多种方法我们可以归纳为：</p>
+<p>1.通读全文</p>
+<p>2.回溯</p>
+<p>其中通读全文费时间，但是有利于代码审计的经验积累，也能更深入的挖掘一些难以发现的漏洞。功能回溯我们可以定向的审计一些功能和函数，最常见的就是对命令执行函数的回溯，和上传等功能的审计。通过熟悉白盒审计有利于漏洞的发掘，因为代码审计和开发都能熟悉到程序中那些地方会存在对数据库的操作和功能函数的调用，举个简单的例子当我们看到download的时候，我们就会想到是不是有任意文件下载。</p>
+<h1 id="0x01-环境与工具"><a href="#0x01-环境与工具" class="headerlink" title="0x01 环境与工具"></a>0x01 环境与工具</h1><p>我们在代码审计中又可以分为静态和动态，静态我们通常用于无法搭建原来的环境只能看代码逻辑来判断是否存在漏洞，而动态调试就可以debug、输出、监控SQL语句来看非常方便。</p>
+<p>接下来代码审计工具基本就用到Sublime Text 3、VSCode、Seay源代码审计系统、PHPStorm+XDebug、文件对比、MYSQL监控、编码转换、正则调试等。其中文件对比工具可以拿来和更新补丁后的文件进行对于对比定位漏洞代码区，PHPStorm+XDebug可以动态调试定位漏洞成因,也有利于漏洞的发掘。当然你也可以用那些自动化审计的，貌似还支持代码回溯，还是能审计到一些漏洞的。环境能用基本就用phpstudy了。</p>
+<h1 id="0x02-知识准备"><a href="#0x02-知识准备" class="headerlink" title="0x02 知识准备"></a>0x02 知识准备</h1><p>代码审计我们需要对php有一定的了解，当然是越深入越好，我们也不纠结，代码审计需不需要精通php什么的，只能说知识面在什么层次就能审计到什么层次的漏洞，但是至少你得看得懂代码。</p>
+<p>我们应该具备一些知识：</p>
+<p>1.基本的正则</p>
+<p>2.数据库的一些语法(这个我在前面的数据库维基已经讲的差不多了)</p>
+<p>3.至少你得看懂php代码</p>
+<p>4.php配置文件以及常见函数</p>
+<h1 id="0x03-关于文章的一些问题"><a href="#0x03-关于文章的一些问题" class="headerlink" title="0x03 关于文章的一些问题"></a>0x03 关于文章的一些问题</h1><p>前面我们的实验环境我基本上不会使用框架类的，我尽量使用一些很普通的网站，还有如何用phpstudy之类的来本地搭建网站这些我也不会讲，这些基础的问题搜索一下就有，不能独立解决问题怎么能进步，遇到一些特殊的问题我还是会说一下的。</p>
+<h1 id="0x04-文末"><a href="#0x04-文末" class="headerlink" title="0x04 文末"></a>0x04 文末</h1><p>当然如果你跟我一样是一个新手才入门代码审计，看这篇文章最好不过了，因为我会讲的很细,当然我可能很多东西也讲不到，还请大家多看看别人的审计思路，只有不断的学习才有提高。</p>
 
             </div>
             <hr/>
@@ -566,7 +540,7 @@ deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://youngscript.github.io/2020/031611755.html">http://youngscript.github.io/2020/031611755.html</a>
+                    <a href="http://youngscript.github.io/2020/040144396.html">http://youngscript.github.io/2020/040144396.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1034,34 +1008,32 @@ deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/031626401.html">
+                <a href="/2020/04013701.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="SQL注入">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="变量覆盖审计">
                         
-                        <span class="card-title">SQL注入</span>
+                        <span class="card-title">变量覆盖审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言——————————————————————————————————————
-这是我之前发布到的其他的一个网址，这里的话我重新总结
-可能分很多，我也不是很清楚，只是皮毛的研究了一下
-1，sql按数据库分的话，常用的有：MySQL，acc
+                            0x00 简介本文章来自 公众号：404安全
+变量覆盖，顾名思义就是可以覆盖已有变量值，导致变量覆盖的漏洞有：extract()、parse_str()、import_request_variables() 使用不当，或者使用了$$或者开启
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/SQL/" class="post-category">
-                                    SQL
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
                                 </a>
                             
                             
@@ -1078,32 +1050,32 @@ deb-src http://http.kali.org/kali kali-rolling main non-free contrib</code></pre
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/031665118.html">
+                <a href="/2020/040134002.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="2020版本kali安装">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="SQL注入审计">
                         
-                        <span class="card-title">2020版本kali安装</span>
+                        <span class="card-title">SQL注入审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言——————————————————————————————————————总所周知，这个最新版本的变化很大（其实就是桌面变化大）其实嘞，物竞天择，随时代潮流。我刚好想试一试，那么就安装一个最新版本的，kali 2020.1
-正文第一步
+                            0x00 简介本文章来自 公众号：404安全
+为什么第一章我们学习，因为看这篇文章的朋友大概也看过我前面写的MySQL_wiki系列，这里来SQL注入的话我们能方便理解，同时sql注入也是审计中我们经常想要找到的，比较以来就getshell
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/kali/" class="post-category">
-                                    kali
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
                                 </a>
                             
                             

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="通读全文审计, Youngboy,github">
+    <meta name="keywords" content="函数或弱类型的缺陷和特性, Youngboy,github">
     <meta name="description" content="北冥有鱼，其名为鲲，鲲之大，不知其几千里也； 化而为鸟，其名为鹏.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>通读全文审计 | Young&#39;s Blogs</title>
+    <title>函数或弱类型的缺陷和特性 | Young&#39;s Blogs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">通读全文审计</h1>
+                    <h1 class="description center-align post-title">函数或弱类型的缺陷和特性</h1>
                 </div>
             </div>
         </div>
@@ -476,14 +476,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    526
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    1 分
                 </div>
                 
 
@@ -499,60 +499,24 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h1><p>本文章来自 公众号：404安全</p>
-<p>通读全文推荐大家开始可以审计一些比较好看懂的CMS，我们先看大体网站框架，这里你大概知道什么文件夹是放什么类型的文件，然后从<code>index.php</code>文件开始往里面读,然后重点关注是否有全局过滤等等。</p>
-<h1 id="0x01-实例审计"><a href="#0x01-实例审计" class="headerlink" title="0x01 实例审计"></a>0x01 实例审计</h1><p>本文用到的源码是zzzphp，我们通过这个程序粗略的了解如何通读全文代码来审计，这里只做简单分析，不深入审计。</p>
-<h2 id="了解网站框架"><a href="#了解网站框架" class="headerlink" title="了解网站框架"></a>了解网站框架</h2><pre><code>├─admin             //后台
-├─config            //配置文件
-├─form              //前台
-├─images            //图片
-├─inc               //包含文件
-├─install           //安装文件
-├─js                //js文件
-├─plugins           //插件
-├─runtime           //临时
-├─search            //搜索
-├─template          //模板
-├─upload            //上传文件夹
-└─wap               //手机
-</code></pre><p>首先我们看到这个结构，有一点审计基础或者会点英语应该都能看懂这些目录的意思，当然也有个别程序猿喜欢另类一点的命名规则，大体都是这样。</p>
-<h2 id="了解网站过滤与路由"><a href="#了解网站过滤与路由" class="headerlink" title="了解网站过滤与路由"></a>了解网站过滤与路由</h2><p>我觉得全文通读不是无脑的去挨着读，这样比较浪费时间，我们一般应该先去读他的核心文件，一般都在包含文件夹里面，怎么去找核心文件一般是看文件名比如包含<code>main</code> <code>common</code>等等，也可以看看文件大小一般核心文件包含函数多文件相对较大，还可以通过入口文件一步一步去看，比如这里的核心文件就是<code>zzz_main.php</code>我们无非是先关注参数的获取、是否有全局过滤。</p>
-<p>我们来到 <code>\inc\zzz_main.php</code></p>
-<p><code>getlocation()</code> 解析URL</p>
-<p><img src="./img/2.0.0.png" alt="file"></p>
-<p><code>getform()</code>获取参数</p>
-<p><img src="./img/2.0.1.png" alt="file"></p>
-<p>过滤函数<code>txt_html()</code> 但是通常有关过滤的函数包含一些字符<code>safe</code>之类 或者包含函数 <code>htmlspecialchars()</code> <code>addslashes()</code></p>
-<p><img src="./img/2.0.2.png" alt="file"></p>
-<h2 id="了解系统DB类"><a href="#了解系统DB类" class="headerlink" title="了解系统DB类"></a>了解系统DB类</h2><p>除了这个文件我们还可以看看<code>mysql</code> <code>db</code> 之类的关键词文件，看看他数据库连接的方式是否存在宽字节注入的可能，还有他的连接方式。</p>
-<p><img src="./img/2.0.6.png" alt="file"></p>
-<h2 id="开始审计"><a href="#开始审计" class="headerlink" title="开始审计"></a>开始审计</h2><p>看完这些我们就可以从<code>index.php</code>一层一层读了。</p>
-<p>来到 <code>index.php</code> 直接包含文件<code>inc/zzz_client.php</code> 先判断<code>isinstall</code> 然后执行后面</p>
-<p><img src="./img/2.0.3.png" alt="file"></p>
-<p>看到最后一句<code>ParseGlobal(G(&#39;sid&#39;),G(&#39;cid&#39;));</code> 这里调用了<code>ParseGlobal()</code> 函数我们可以跟进去看看。</p>
-<p>进入if分支</p>
-<pre><code>if ( $sid &gt; 0 ) {
-    $data = db_load_one( &#39;sort&#39;, &#39;sid=&#39; . $sid );
-</code></pre><p>跟进函数<code>db_load_one()</code> 这里会把传入的&amp;替换为and</p>
-<p><img src="./img/2.0.4.png" alt="file"></p>
-<p>跟进函数 <code>find_one()</code></p>
-<p><img src="./img/2.0.5.png" alt="file"></p>
-<p>这里我就不详细跟了只介绍思路，基本上确定这里如果传入的参数没过滤那么这里就会存在注入。</p>
-<p>这里跟一下 <code>G()</code> 就会发现是<code>$GLOBALS[ &#39;sid&#39; ]</code> 获取的，也就是前面解析url那里获取的值也没有过滤，那么这里基本上就是一个注入了。</p>
-<p>读完这些文件我们就可以从各个功能文件夹的index读进去，比如这里我们来到<code>\search\index.php</code></p>
-<pre><code>&lt;?php
-define(&#39;LOCATION&#39;, &#39;search&#39;);
-require dirname(dirname(__FILE__)). &#39;/inc/zzz_client.php&#39;;
-</code></pre><p>还是回到刚刚我们跟进的文件 <code>/inc/zzz_client.php</code> 搜索<code>search</code>关键词然后读源码分析</p>
-<pre><code>    case &#39;search&#39;:
-         $tplfile= TPL_DIR . &#39;search.html&#39;; 
-        break;
-</code></pre><p>看到选中<code>Search</code>后赋值给了变量<code>$tplfile</code> 然后我们在追踪变量在那个地方被调用过</p>
-<p><img src="./img/2.0.7.png" alt="file"></p>
-<p>发现他解析模板的过程，然后跟进<code>ParserTemplate</code> 来到<code>inc\zzz_template.php</code> 然后往下面读发现一个函数<code>getform()</code></p>
-<p><img src="./img/2.0.8.png" alt="file"></p>
-<p><code>getform()</code>函数获取过滤之后还被被 <code>safe_key()</code> 函数过滤，但是看到下面还有函数<code>get_cookie</code> 看样子也是获取参数的，但是这个用到函数<code>isset()</code> 他是一个检测变量的函数，定义了即为true 所以这里根本进不去，不然就是一个注入了,当然这也是一个老版本的注入，我这里的版本已经修复了。接下来还可以从<code>admin</code>的<code>index.php</code>开始读，多关注一些功能点，推荐可以搭建起来熟悉一下整套程序。</p>
-<h1 id="0x02-文末"><a href="#0x02-文末" class="headerlink" title="0x02 文末"></a>0x02 文末</h1><p>通读这个ZZZCMS 我们可以知道，他在调用<code>getform()</code>函数的时候我们基本不考虑注入了，因为已经被过滤了，除非他后面用其他函数处理了一下。在调试复杂语句的时候我们可以通过mysql监控软件来调试。当我们发现一类函数或者写法存在漏洞的时候，可以使用全文搜索，来查找相同的代码对一类进行完整挖掘。</p>
+                <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文章来自 公众号：404安全</p>
+<h1 id="0x00-in-array"><a href="#0x00-in-array" class="headerlink" title="0x00  in_array()"></a>0x00  in_array()</h1><p><code>in_array(search,array,type)</code> 如果给定的值 search 存在于数组 array 中则返回 true。如果第三个参数设置为 true，函数只有在元素存在于数组中且数据类型与给定值相同时才返回 true。如果没有在数组中找到参数，函数返回 false。 </p>
+<p>那么为什么会出现安全问题呢，我们来看看下面代码</p>
+<p><img src="/2020/040143195.htm/1.7.1.png" alt="file"></p>
+<p>在没设置第三个参数的情况下<code>in_array()</code>函数将会吧<code>1 and 1=1</code>转为数字1比较，那么这样就造成了一些安全问题，在注入或上传的情况下可能绕过。</p>
+<h1 id="0x01-is-number"><a href="#0x01-is-number" class="headerlink" title="0x01 is_number()"></a>0x01 is_number()</h1><p><code>is_number()</code> 函数他会判断变量是否为数字或者数字字符串，假如我们传入的字符串为16进制，那么他也是认定为数字的。</p>
+<p><img src="/2020/040143195.htm/1.7.2.png" alt="file"></p>
+<p>我们知道我们向mysql插入数据的时候是可以是16进制的，他取出来就会还原成原始字符串，这样用<code>is_number()</code> 函数检测后肯能就会存在二次注入。</p>
+<h1 id="0x02-PHP弱类型的特性"><a href="#0x02-PHP弱类型的特性" class="headerlink" title="0x02 PHP弱类型的特性"></a>0x02 PHP弱类型的特性</h1><p>php是一款弱类型语言，他在使用==比较字符串的时候会把字符串类型转化成相同的再比较，那么这样也会造成一些问题.</p>
+<p><img src="/2020/040143195.htm/1.7.3.png" alt="file"></p>
+<p>他能遇到字符串的0e,0x就会解析成对应的科学计数和16进制。</p>
+<h1 id="0x03-switch"><a href="#0x03-switch" class="headerlink" title="0x03 switch()"></a>0x03 switch()</h1><p>case是数字类型时，switch会把参数转换为int类型</p>
+<p><img src="/2020/040143195.htm/1.7.4.png" alt="file"></p>
+<h1 id="0x04-strcmp"><a href="#0x04-strcmp" class="headerlink" title="0x04 strcmp()"></a>0x04 strcmp()</h1><p>比较函数如果两者相等返回0，string1&gt;string2返回&gt;0 反之小于0。在5.3及以后的php版本中，当strcmp()括号内是一个数组与字符串比较时，也会返回0。</p>
+<p><img src="/2020/040143195.htm/1.7.5.png" alt="file"></p>
+<h1 id="0x05-preg-match"><a href="#0x05-preg-match" class="headerlink" title="0x05 preg_match()"></a>0x05 preg_match()</h1><p>如果在进行正则表达式匹配的时候，没有限制字符串的开始和结束(^ 和 $)，则可以存在绕过的问题。</p>
+<p><img src="/2020/040143195.htm/1.7.6.png" alt="file"></p>
+<h1 id="0x06-文末"><a href="#0x06-文末" class="headerlink" title="0x06 文末"></a>0x06 文末</h1><p>当然还有反序列化、变量覆盖等等，这里就不全部写了，我会单独拿出来写，还有一些函数的特性留给大家自行搜索。</p>
 
             </div>
             <hr/>
@@ -568,7 +532,7 @@ require dirname(dirname(__FILE__)). &#39;/inc/zzz_client.php&#39;;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com" rel="external nofollow noreferrer">Young</a>
+                    <a href="http://youngscript.github.io" rel="external nofollow noreferrer">Young</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -578,7 +542,7 @@ require dirname(dirname(__FILE__)). &#39;/inc/zzz_client.php&#39;;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/040126401.html">http://yoursite.com/2020/040126401.html</a>
+                    <a href="http://youngscript.github.io/2020/040143195.html">http://youngscript.github.io/2020/040143195.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -591,7 +555,7 @@ require dirname(dirname(__FILE__)). &#39;/inc/zzz_client.php&#39;;
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="http://yoursite.com" target="_blank">Young</a>
+                    <a href="http://youngscript.github.io" target="_blank">Young</a>
                     !
                 </span>
             </div>
@@ -1046,19 +1010,21 @@ require dirname(dirname(__FILE__)). &#39;/inc/zzz_client.php&#39;;
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/040126401.html">
+                <a href="/2020/040118560.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="反序列化审计">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="逻辑漏洞审计">
                         
-                        <span class="card-title">反序列化审计</span>
+                        <span class="card-title">逻辑漏洞审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            0x00 简介本文章来自 公众号：404安全PHP反序列化漏洞，在我们使用unserialize()进行反序列化的时候，如果反序列化对象中存在一些我们可以利用的魔法函数且传入的变量可控，那么这个过程就可能触发这个魔法函数，来执行我们想要的过
+                            0x00 简介本文章来自 公众号：404安全
+逻辑漏洞是指由于程序逻辑不严，或者函数使用不当，导致发生越权访问，cookies绕过，越权密码修改，重复安装等等问题。一般逻辑漏洞的挖掘需要对代码有一定阅读能力。
+0x01 越权越权一般是对co
                         
                     </div>
                     <div class="publish-info">
@@ -1087,32 +1053,32 @@ require dirname(dirname(__FILE__)). &#39;/inc/zzz_client.php&#39;;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/032630644.html">
+                <a href="/2020/04013701.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="ssrf漏洞详解">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="变量覆盖审计">
                         
-                        <span class="card-title">ssrf漏洞详解</span>
+                        <span class="card-title">变量覆盖审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            0x01. ssrf概述1、SSRF漏洞概述SSRF(服务器端请求伪造)： 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。
-一般情况下，SSRF攻击的目标是从外网无法访问的内部系统。（因为它是由服务端发起的，所以它能够请求到与它相连
+                            0x00 简介本文章来自 公众号：404安全
+变量覆盖，顾名思义就是可以覆盖已有变量值，导致变量覆盖的漏洞有：extract()、parse_str()、import_request_variables() 使用不当，或者使用了$$或者开启
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/SSRF/" class="post-category">
-                                    SSRF
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
                                 </a>
                             
                             
@@ -1345,7 +1311,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             <span id="year">2020</span>
-            <a href="http://yoursite.com" target="_blank">Young</a>
+            <a href="http://youngscript.github.io" target="_blank">Young</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
