@@ -613,9 +613,9 @@ if (!empty($_POST)){ foreach($_POST AS $key =&gt; $value) $$key = addslashes_yec
         die(json_encode_yec($res));
     }    
 </code></pre><p>其中传入的$gid经过<code>explode</code>函数分割（这里sql语句中不能使用@字符），然后foreach循环取出来后带入sql语句，也没有单双引号之类的包裹，比较明显的一处注入了。</p>
-<p><img src="/2020/040161007.htm/2.1.0.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401203158965.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>如果没用绕过是会触发360webscan的</p>
-<p><img src="/2020/040161007.htm/2.1.1.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401203212735.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt="\[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-34aOpFGs-1585744288016)(./img/2.1.1.png)\]"></p>
 <h1 id="0x02-文末"><a href="#0x02-文末" class="headerlink" title="0x02 文末"></a>0x02 文末</h1><p>这套程序在1.2.4这里修复了这个逻辑方面的问题貌似漏洞就没啥了。本版本还有很多注入大家可以自己审计一下，也可以看看水泡泡巨佬的<a href="https://www.cnblogs.com/r00tuser/p/9014869.html" target="_blank" rel="noopener">https://www.cnblogs.com/r00tuser/p/9014869.html</a></p>
 
             </div>
@@ -1153,32 +1153,32 @@ if (!empty($_POST)){ foreach($_POST AS $key =&gt; $value) $$key = addslashes_yec
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/040117605.html">
+                <a href="/2020/032630644.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="代码执行审计">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="ssrf漏洞详解">
                         
-                        <span class="card-title">代码执行审计</span>
+                        <span class="card-title">ssrf漏洞详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            0x00 简介本文章来自 公众号：404安全
-代码执行也是我们经常遇到的，通常是eval()、assert()，当然还有回调函数比如call_user_func() array_map()，正则函数，动态调用等等，因为程序对传入的参数过滤不
+                            0x01. ssrf概述1、SSRF漏洞概述SSRF(服务器端请求伪造)： 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。
+一般情况下，SSRF攻击的目标是从外网无法访问的内部系统。（因为它是由服务端发起的，所以它能够请求到与它相连
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-26
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
-                                    代码审计
+                            <a href="/categories/SSRF/" class="post-category">
+                                    SSRF
                                 </a>
                             
                             
@@ -1417,7 +1417,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.6k</span>&nbsp;字
+                class="white-color">18.7k</span>&nbsp;字
             
             
             

@@ -501,9 +501,9 @@
             <div id="articleContent">
                 <h1 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h1><p>本文章来自 公众号：404安全<br>PHP反序列化漏洞，在我们使用<code>unserialize()</code>进行反序列化的时候，如果反序列化对象中存在一些我们可以利用的魔法函数且传入的变量可控，那么这个过程就可能触发这个魔法函数，来执行我们想要的过程。</p>
 <h1 id="0x01-初识反序列化"><a href="#0x01-初识反序列化" class="headerlink" title="0x01 初识反序列化"></a>0x01 初识反序列化</h1><p>反序列化我们需要了解php的类和魔术方法，这里举个简单的例子用到的魔术方法是<code>__destruct</code> 销毁一个类之前执行执行析构方法。</p>
-<p><img src="/2020/040118672.htm/1.9.1.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401200818728.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>当对象创建后输出我们的<code>$a</code>变量的值。那么我们把它的值改变后用<code>serialize()</code>看看</p>
-<p><img src="/2020/040118672.htm/1.9.2.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401200841950.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p><code>O:4:&quot;test&quot;:1:{s:1:&quot;a&quot;;s:5:&quot;12345&quot;;}</code> 是我们序列化的值，然后<code>unserialize($_GET[&#39;id&#39;]);</code>传入我们改变的值 <code>O:4:&quot;test&quot;:1:{s:1:&quot;a&quot;;s:3:&quot;404&quot;;}</code> 成功打印了我们的改变的值，因为反序列化我们可以控制类属性且这个过程会触发这些能够触发的魔术方法。</p>
 <p>这里网上可以找到一些魔术方法,当然还有些可以绕过具体大家搜索一下我这里就不细写了，具体情况具体分析，反序列化难一点的还是需要很大的耐心才能完成。</p>
 <pre><code>__wakeup() //使用unserialize时触发
@@ -533,8 +533,7 @@ class foo2{
         eval($this-&gt;str);
     }
 }
-?&gt;
-</code></pre><p>我们看到在foo2中<code>evaltest()</code>函数中存在eval，而foo1中调用了函数<code>evaltest()</code>，我们就想可不可以让foo1调用foo2中的<code>evaltest()</code>函数顺边还把它的<code>$str</code>中的值改写了。</p>
+?&gt;</code></pre><p>我们看到在foo2中<code>evaltest()</code>函数中存在eval，而foo1中调用了函数<code>evaltest()</code>，我们就想可不可以让foo1调用foo2中的<code>evaltest()</code>函数顺边还把它的<code>$str</code>中的值改写了。</p>
 <pre><code>&lt;?php
 class foo1{
     public $varr;
@@ -553,27 +552,29 @@ class foo2{
 $obj = new foo1();
 echo serialize($obj); 
 ?&gt;</code></pre><p>我们把<code>$varr</code>变量赋值为<code>new foo2()</code> 然后它再去调用 <code>evaltest()</code>函数 然后我们把<code>$str</code>的值换成 我们想执行的命令。</p>
-<p><img src="/2020/040118672.htm/1.9.3.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401200911528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
+<hr>
+
 <h1 id="0x03-实例审计"><a href="#0x03-实例审计" class="headerlink" title="0x03 实例审计"></a>0x03 实例审计</h1><p>找了半天源码我觉得最有意义的，审计的最多的一次反序列化当属Typecho1.1版本的漏洞了。可能看起来有点吃力我尽量分析的详细一点。</p>
 <p>来到文件 <code>install.php</code></p>
-<p><img src="/2020/040118672.htm/1.9.4.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401200940720.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>我们看到要绕过<code>install.php</code>这个程序的<code>exit</code> 我们只需要传入的<code>finish</code>值不为空且<code>referer</code>为本站的值就能绕过。</p>
 <p>我们来到核心部分</p>
-<p><img src="/2020/040118672.htm/1.9.5.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/2020040120100676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>这里调用<code>Typecho_Cookie</code>类的<code>get</code>方法 ，我这里就不跟进去了，就是获取cookies的<code>__typecho_config</code> 字段值，然后<code>base64_decode()</code>在进行反序例化赋值给变量<code>$config</code>,然后我们全局搜索下魔术方法<code>__destruct</code>之类的发现没有可以利用的点.</p>
-<p><img src="/2020/040118672.htm/1.9.7.png" alt="file"></p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-5Abty5vn-1585742842063)(./img/1.9.7.png)]</p>
 <p>然后我们跟进这个<code>Typecho_Db</code>类看看，他传入了<code>$config[&#39;adapter&#39;]</code> 和 <code>$config[&#39;prefix&#39;]</code>。</p>
 <p>var\Typecho\Db.php</p>
-<p><img src="/2020/040118672.htm/1.9.6.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401201049906.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>这里使用<code>.</code>连接<code>$adapterName</code>为一个类的话那么会触发<code>__toString()</code>这个魔术方法。</p>
-<p><img src="/2020/040118672.htm/1.9.8.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401201108646.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>然后全局搜索<code>__toString()</code>,来看看那里可以利，找到<code>\var\Typecho\Feed.php</code>。</p>
-<p><img src="/2020/040118672.htm/1.9.9.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401201122813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>如果<code>$item[&#39;author&#39;]</code>是一个类且<code>screenName</code>是一个私有或者未定义的属性那么就会自动触发<code>__get()</code></p>
-<p><img src="/2020/040118672.htm/1.9.10.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401201136793.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>那么我们就搜索看看那里有可以利用的<code>__get()</code></p>
 <p>在var\Typecho\Request.php 有这么一处</p>
-<p><img src="/2020/040118672.htm/1.9.11.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401201238725.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>我把跟进的代码都放在了一块，其中__get 调用了 <code>get()</code>函数，然后它又调用了<code>_applyFilter()</code>函数，其中还有可以造成命令执行的回调函数<code>call_user_func()</code>和<code>array_map()</code> 其中参数还可以控制，那么我的攻击链也算找完了，下面来梳理一下</p>
 <p>攻击链：</p>
 <pre><code>install.php
@@ -628,7 +629,7 @@ $payload = array(&#39;adapter&#39;=&gt;new Typecho_Feed());
 echo base64_encode(serialize($payload));
 ?&gt;
 </code></pre><p>为什么这里payload <code>phpinfo();exit();</code>中有<code>exit()</code> ,因为程序开始使用了<code>ob_start()</code> 这个函数会把输出放进缓冲区，触发异常后<code>ob_end_clean()</code> 会清空缓冲区，导致没有回显。所以可以找到个函数来跳出或者执行后我们报错跳出又或者直接不要回显写入一句话。</p>
-<p><img src="/2020/040118672.htm/1.9.12.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401201409908.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>这类反序列化一般寻找起来还是很有难度的，个人感觉两头向中间来找方便一些，找到可以利用的入口，再到可以利用的函数，再从入口点想办法到利用点。</p>
 <h1 id="0x04-文末"><a href="#0x04-文末" class="headerlink" title="0x04 文末"></a>0x04 文末</h1><p>反序列化的地方还可以搭配注入 比如espcms的search.php注入。</p>
 
@@ -1124,20 +1125,20 @@ echo base64_encode(serialize($payload));
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/040134002.html">
+                <a href="/2020/04013701.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="SQL注入审计">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="变量覆盖审计">
                         
-                        <span class="card-title">SQL注入审计</span>
+                        <span class="card-title">变量覆盖审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             0x00 简介本文章来自 公众号：404安全
-为什么第一章我们学习，因为看这篇文章的朋友大概也看过我前面写的MySQL_wiki系列，这里来SQL注入的话我们能方便理解，同时sql注入也是审计中我们经常想要找到的，比较以来就getshell
+变量覆盖，顾名思义就是可以覆盖已有变量值，导致变量覆盖的漏洞有：extract()、parse_str()、import_request_variables() 使用不当，或者使用了$$或者开启
                         
                     </div>
                     <div class="publish-info">
@@ -1431,7 +1432,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.6k</span>&nbsp;字
+                class="white-color">18.7k</span>&nbsp;字
             
             
             

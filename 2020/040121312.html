@@ -519,24 +519,26 @@
 <h2 id="了解网站过滤与路由"><a href="#了解网站过滤与路由" class="headerlink" title="了解网站过滤与路由"></a>了解网站过滤与路由</h2><p>我觉得全文通读不是无脑的去挨着读，这样比较浪费时间，我们一般应该先去读他的核心文件，一般都在包含文件夹里面，怎么去找核心文件一般是看文件名比如包含<code>main</code> <code>common</code>等等，也可以看看文件大小一般核心文件包含函数多文件相对较大，还可以通过入口文件一步一步去看，比如这里的核心文件就是<code>zzz_main.php</code>我们无非是先关注参数的获取、是否有全局过滤。</p>
 <p>我们来到 <code>\inc\zzz_main.php</code></p>
 <p><code>getlocation()</code> 解析URL</p>
-<p><img src="/2020/040121312.htm/2.0.0.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401201932464.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p><code>getform()</code>获取参数</p>
-<p><img src="/2020/040121312.htm/2.0.1.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401201948231.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>过滤函数<code>txt_html()</code> 但是通常有关过滤的函数包含一些字符<code>safe</code>之类 或者包含函数 <code>htmlspecialchars()</code> <code>addslashes()</code></p>
-<p><img src="/2020/040121312.htm/2.0.2.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401202033385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
+<hr>
+
 <h2 id="了解系统DB类"><a href="#了解系统DB类" class="headerlink" title="了解系统DB类"></a>了解系统DB类</h2><p>除了这个文件我们还可以看看<code>mysql</code> <code>db</code> 之类的关键词文件，看看他数据库连接的方式是否存在宽字节注入的可能，还有他的连接方式。</p>
-<p><img src="/2020/040121312.htm/2.0.6.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401202103836.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <h2 id="开始审计"><a href="#开始审计" class="headerlink" title="开始审计"></a>开始审计</h2><p>看完这些我们就可以从<code>index.php</code>一层一层读了。</p>
 <p>来到 <code>index.php</code> 直接包含文件<code>inc/zzz_client.php</code> 先判断<code>isinstall</code> 然后执行后面</p>
-<p><img src="/2020/040121312.htm/2.0.3.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401202122196.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>看到最后一句<code>ParseGlobal(G(&#39;sid&#39;),G(&#39;cid&#39;));</code> 这里调用了<code>ParseGlobal()</code> 函数我们可以跟进去看看。</p>
 <p>进入if分支</p>
 <pre><code>if ( $sid &gt; 0 ) {
     $data = db_load_one( &#39;sort&#39;, &#39;sid=&#39; . $sid );
 </code></pre><p>跟进函数<code>db_load_one()</code> 这里会把传入的&amp;替换为and</p>
-<p><img src="/2020/040121312.htm/2.0.4.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401202854872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>跟进函数 <code>find_one()</code></p>
-<p><img src="/2020/040121312.htm/2.0.5.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401202733577.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>这里我就不详细跟了只介绍思路，基本上确定这里如果传入的参数没过滤那么这里就会存在注入。</p>
 <p>这里跟一下 <code>G()</code> 就会发现是<code>$GLOBALS[ &#39;sid&#39; ]</code> 获取的，也就是前面解析url那里获取的值也没有过滤，那么这里基本上就是一个注入了。</p>
 <p>读完这些文件我们就可以从各个功能文件夹的index读进去，比如这里我们来到<code>\search\index.php</code></p>
@@ -548,9 +550,9 @@ require dirname(dirname(__FILE__)). &#39;/inc/zzz_client.php&#39;;
          $tplfile= TPL_DIR . &#39;search.html&#39;; 
         break;
 </code></pre><p>看到选中<code>Search</code>后赋值给了变量<code>$tplfile</code> 然后我们在追踪变量在那个地方被调用过</p>
-<p><img src="/2020/040121312.htm/2.0.7.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401202913462.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>发现他解析模板的过程，然后跟进<code>ParserTemplate</code> 来到<code>inc\zzz_template.php</code> 然后往下面读发现一个函数<code>getform()</code></p>
-<p><img src="/2020/040121312.htm/2.0.8.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401203036341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p><code>getform()</code>函数获取过滤之后还被被 <code>safe_key()</code> 函数过滤，但是看到下面还有函数<code>get_cookie</code> 看样子也是获取参数的，但是这个用到函数<code>isset()</code> 他是一个检测变量的函数，定义了即为true 所以这里根本进不去，不然就是一个注入了,当然这也是一个老版本的注入，我这里的版本已经修复了。接下来还可以从<code>admin</code>的<code>index.php</code>开始读，多关注一些功能点，推荐可以搭建起来熟悉一下整套程序。</p>
 <h1 id="0x02-文末"><a href="#0x02-文末" class="headerlink" title="0x02 文末"></a>0x02 文末</h1><p>通读这个ZZZCMS 我们可以知道，他在调用<code>getform()</code>函数的时候我们基本不考虑注入了，因为已经被过滤了，除非他后面用其他函数处理了一下。在调试复杂语句的时候我们可以通过mysql监控软件来调试。当我们发现一类函数或者写法存在漏洞的时候，可以使用全文搜索，来查找相同的代码对一类进行完整挖掘。</p>
 
@@ -1352,7 +1354,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.6k</span>&nbsp;字
+                class="white-color">18.7k</span>&nbsp;字
             
             
             

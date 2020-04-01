@@ -476,7 +476,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    643
+                    642
                 </div>
                 
 
@@ -503,31 +503,29 @@
 <p>变量覆盖，顾名思义就是可以覆盖已有变量值，导致变量覆盖的漏洞有：<code>extract()</code>、<code>parse_str()</code>、<code>import_request_variables()</code> 使用不当，或者使用了<code>$$</code>或者开启了全局变量注册。</p>
 <h1 id="0x01-变量覆盖演示"><a href="#0x01-变量覆盖演示" class="headerlink" title="0x01 变量覆盖演示"></a>0x01 变量覆盖演示</h1><p><strong>extract()</strong></p>
 <p><code>extract(array,extract_rules,prefix)</code><br>函数从数组中将变量导入到当前的符号表，即将数组中的键值对注册成函数，使用数组键名作为变量名，使用数组键值作为变量值。</p>
-<p><img src="/2020/04013701.htm/1.8.1.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401200214722.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>可以看到我们初始变量值为a但是覆盖之后就变成了我们输入的值。</p>
 <p><strong>parse_str()</strong></p>
 <p><code>parse_str()</code>函数用于把查询字符串解析到变量中，如果没有array 参数，则由该函数设置的变量将覆盖已存在的同名变量。在没有array参数的情况下使用此函数，并且在PHP 7.2中将废弃不设置参数的行为,此函数没有返回值。</p>
-<p><img src="/2020/04013701.htm/1.8.2.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401200232943.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p><strong>import_request_variables()</strong></p>
 <p><code>import_request_variables ( string $types , string $prefix )</code><br>将 GET／POST／Cookie 变量导入到全局作用域中, types 参数指定需要导入的变量, G代表GET，P代表POST，C代表COOKIE。此函数只能用于PHP4.1 ~ PHP5.4。</p>
-<p><img src="/2020/04013701.htm/1.8.3.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401200250569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p><strong>$$</strong></p>
 <p>典型的例子就是foreach来遍历数组中的值作为变量。</p>
-<p><img src="/2020/04013701.htm/1.8.4.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401200307107.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>其中<code>$_key</code>的值为a,那么 <code>$a</code>的值就被覆盖为2了。</p>
 <p>还有全局注册register_globals这些，php配置默认都是关闭的。</p>
 <h1 id="0x02-实战审计"><a href="#0x02-实战审计" class="headerlink" title="0x02 实战审计"></a>0x02 实战审计</h1><p>本次用到的是MetInfo cms的变量覆盖漏洞，跟进主页来到核心配置文件</p>
 <p>\include\common.inc.php</p>
-<p><img src="/2020/04013701.htm/1.8.5.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401200324653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>看到文件的24~28行，明显用到了我们上面说的&amp;&amp;变量覆盖的写法，不过这里他用到了<code>daddslashes()</code>防注入，不过并不影响我们这章讲的知识。</p>
 <p>随便来到一个子文件看看他的加载方式\news\index.php</p>
-<p><img src="/2020/04013701.htm/1.8.6.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401200340311.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>第7行包含一个变量，那么这个变量在什么地方，我们跟进 include/module.php 看看，在本文件搜索<code>$module</code>变量。</p>
-<p><img src="/2020/04013701.htm/1.8.7.png" alt="file"></p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片<img src="https://img-blog.csdnimg.cn/20200401200615614.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>这里其实低版本的源码中没有这句话<code>$module = &#39;&#39;;</code> 其中<code>$module</code>变量都在<code>$fmodule != 7</code> 这个if条件中，我给大家打包的是低版本，我安装错了。 也就是只要我们传入的<code>$fmodule</code>的值为7那么我们就可以覆盖这个<code>$module</code>的值</p>
-<p><img src="/2020/04013701.htm/1.8.8.png" alt="file"></p>
-<p>只要上传一张图片或者其他文件就可以包含了，因为<code>require_once</code>的时候并没有判断他的后缀名。</p>
-<p>在变量覆盖的时候一定要注意初始化的值和覆盖的顺序。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200401200411370.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt><br>只要上传一张图片或者其他文件就可以包含了，因为<code>require_once</code>的时候并没有判断他的后缀名。</p>
 
             </div>
             <hr/>
@@ -1063,24 +1061,19 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/040144396.html">
+                <a href="/2020/040118672.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="初始代码审计">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="反序列化审计">
                         
-                        <span class="card-title">初始代码审计</span>
+                        <span class="card-title">反序列化审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            0x00 简介本文章来自 公众号：404安全
-终于来到了代码审计篇章。希望看了朋友有所收获，我们通常把代码审计分为黑盒和白盒，我们一般结合起来用。
-通常我们白盒审计有多种方法我们可以归纳为：
-1.通读全文
-2.回溯
-其中通读全文费时间，但是
+                            0x00 简介本文章来自 公众号：404安全PHP反序列化漏洞，在我们使用unserialize()进行反序列化的时候，如果反序列化对象中存在一些我们可以利用的魔法函数且传入的变量可控，那么这个过程就可能触发这个魔法函数，来执行我们想要的过
                         
                     </div>
                     <div class="publish-info">
@@ -1331,7 +1324,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.6k</span>&nbsp;字
+                class="white-color">18.7k</span>&nbsp;字
             
             
             

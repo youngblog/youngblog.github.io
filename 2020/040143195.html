@@ -502,20 +502,20 @@
                 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文章来自 公众号：404安全</p>
 <h1 id="0x00-in-array"><a href="#0x00-in-array" class="headerlink" title="0x00  in_array()"></a>0x00  in_array()</h1><p><code>in_array(search,array,type)</code> 如果给定的值 search 存在于数组 array 中则返回 true。如果第三个参数设置为 true，函数只有在元素存在于数组中且数据类型与给定值相同时才返回 true。如果没有在数组中找到参数，函数返回 false。 </p>
 <p>那么为什么会出现安全问题呢，我们来看看下面代码</p>
-<p><img src="/2020/040143195.htm/1.7.1.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401195938792.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>在没设置第三个参数的情况下<code>in_array()</code>函数将会吧<code>1 and 1=1</code>转为数字1比较，那么这样就造成了一些安全问题，在注入或上传的情况下可能绕过。</p>
 <h1 id="0x01-is-number"><a href="#0x01-is-number" class="headerlink" title="0x01 is_number()"></a>0x01 is_number()</h1><p><code>is_number()</code> 函数他会判断变量是否为数字或者数字字符串，假如我们传入的字符串为16进制，那么他也是认定为数字的。</p>
-<p><img src="/2020/040143195.htm/1.7.2.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401195955987.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>我们知道我们向mysql插入数据的时候是可以是16进制的，他取出来就会还原成原始字符串，这样用<code>is_number()</code> 函数检测后肯能就会存在二次注入。</p>
 <h1 id="0x02-PHP弱类型的特性"><a href="#0x02-PHP弱类型的特性" class="headerlink" title="0x02 PHP弱类型的特性"></a>0x02 PHP弱类型的特性</h1><p>php是一款弱类型语言，他在使用==比较字符串的时候会把字符串类型转化成相同的再比较，那么这样也会造成一些问题.</p>
-<p><img src="/2020/040143195.htm/1.7.3.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401200012878.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>他能遇到字符串的0e,0x就会解析成对应的科学计数和16进制。</p>
 <h1 id="0x03-switch"><a href="#0x03-switch" class="headerlink" title="0x03 switch()"></a>0x03 switch()</h1><p>case是数字类型时，switch会把参数转换为int类型</p>
-<p><img src="/2020/040143195.htm/1.7.4.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401200027146.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <h1 id="0x04-strcmp"><a href="#0x04-strcmp" class="headerlink" title="0x04 strcmp()"></a>0x04 strcmp()</h1><p>比较函数如果两者相等返回0，string1&gt;string2返回&gt;0 反之小于0。在5.3及以后的php版本中，当strcmp()括号内是一个数组与字符串比较时，也会返回0。</p>
-<p><img src="/2020/040143195.htm/1.7.5.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401200049798.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <h1 id="0x05-preg-match"><a href="#0x05-preg-match" class="headerlink" title="0x05 preg_match()"></a>0x05 preg_match()</h1><p>如果在进行正则表达式匹配的时候，没有限制字符串的开始和结束(^ 和 $)，则可以存在绕过的问题。</p>
-<p><img src="/2020/040143195.htm/1.7.6.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401200106807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <h1 id="0x06-文末"><a href="#0x06-文末" class="headerlink" title="0x06 文末"></a>0x06 文末</h1><p>当然还有反序列化、变量覆盖等等，这里就不全部写了，我会单独拿出来写，还有一些函数的特性留给大家自行搜索。</p>
 
             </div>
@@ -1317,7 +1317,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.6k</span>&nbsp;字
+                class="white-color">18.7k</span>&nbsp;字
             
             
             

@@ -505,27 +505,22 @@
 <pre><code>&lt;?php
     $file = $_GET[&#39;name&#39;];
     include($file);
-?&gt;
-</code></pre><p>payload:</p>
-<pre><code>http://127.0.0.1/test.php?name=D:\phpstudy\PHPTutorial\MySQL\my.ini
-</code></pre><p>这是个最简单的文件包含，没有任何过滤。但是一般程序不会这么写，一般会指定后缀，这样我们就需要截断来绕过了。</p>
+?&gt;</code></pre><p>payload:</p>
+<pre><code>http://127.0.0.1/test.php?name=D:\phpstudy\PHPTutorial\MySQL\my.ini</code></pre><p>这是个最简单的文件包含，没有任何过滤。但是一般程序不会这么写，一般会指定后缀，这样我们就需要截断来绕过了。</p>
 <pre><code>&lt;?php
     $file = $_GET[&#39;name&#39;];
     include($file . &quot;html&quot;);
-?&gt;
-</code></pre><p>在PHP5.2.x中我们可以通过使用%00来截断后面的内容、也可以使用路径长度截断，不过都在php5.3中被修复了。</p>
+?&gt;</code></pre><p>在PHP5.2.x中我们可以通过使用%00来截断后面的内容、也可以使用路径长度截断，不过都在php5.3中被修复了。</p>
 <p>payload：</p>
-<pre><code>http://127.0.0.1/test.php?name=D:\phpstudy\PHPTutorial\MySQL\my.ini%00
-</code></pre><p><img src="/2020/040155793.htm/1.5.1.png" alt="file"></p>
-<p>利用字符.或者/.或者./来截断。系统文件路径长度限制：windows 259个byteslinux 4096个bytes。</p>
+<pre><code>http://127.0.0.1/test.php?name=D:\phpstudy\PHPTutorial\MySQL\my.ini%00</code></pre><p><img src="https://img-blog.csdnimg.cn/2020040119452140.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
+<p>利用字符.或者/.或者./来截断。系统文件路径长度限制：<br><code>windows: 259个bytes</code><br><code>linux: 4096个bytes</code></p>
 <h3 id="远程包含"><a href="#远程包含" class="headerlink" title="远程包含"></a>远程包含</h3><p>远程文件包含漏洞(Remote File Inclusion)简称RFI，他需要我们的php.ini中配置<code>allow_url_include</code>、 <code>allow_url_fopen</code>。</p>
 <p>1.包含远程文件 </p>
 <p>需要打开<code>allow_url_include=On</code>、 <code>allow_url_fopen = On</code></p>
-<p><img src="/2020/040155793.htm/1.5.2.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401194619186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>他可以利用?号截断，不受版本限制</p>
 <p>payload：</p>
-<pre><code>http://127.0.0.1/test.php?name=http://127.0.0.1/1.txt?
-</code></pre><p>2.伪协议</p>
+<pre><code>http://127.0.0.1/test.php?name=http://127.0.0.1/1.txt?</code></pre><p>2.伪协议</p>
 <pre><code>file:// — 访问本地文件系统
 http:// — 访问 HTTP(s) 网址
 ftp:// — 访问 FTP(s) URLs
@@ -548,14 +543,14 @@ $action=$file==&#39;&#39;?&#39;index&#39;:$file; //判断为空或者等于index
 include(&#39;files/&#39;.$action.&#39;.php&#39;); //载入相应文件
 ?&gt;
 </code></pre><p>他会包含files目录下的文件，因为他没有过滤../所以可以包含任意目录下的文件，由于加了后缀所以漏洞存在于低版本php。</p>
-<p><img src="/2020/040155793.htm/1.5.3.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401194717587.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <h1 id="0x01-任意文件删除"><a href="#0x01-任意文件删除" class="headerlink" title="0x01 任意文件删除"></a>0x01 任意文件删除</h1><p>任意文件删除审计一般来说我们都是搜索函数<code>unlink</code> 然后回溯去看。</p>
 <p>inc\zzz_file.php</p>
-<p><img src="/2020/040155793.htm/1.5.4.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401194734414.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>首先判断传入的参数是否为空，然后拼接路径，第516行中出现了一个函数<code>ifstrin</code>,我们跟进看看</p>
-<p><img src="/2020/040155793.htm/1.5.5.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401194750581.png#pic_center" alt></p>
 <p>只是个简单的判断没啥特殊情况，我们再来看看拿来调用了这个文件。</p>
-<p><img src="/2020/040155793.htm/1.5.6.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401194806476.png#pic_center" alt></p>
 <pre><code>function file_path( $path ) {
     $list=array();
     $path= substr( $path, 0, strrpos( $path, &#39;/&#39; ));
@@ -574,48 +569,44 @@ function arr_search($arr1, $arr2 ) {
 <p>payload：</p>
 <pre><code>POST /zzzp6p/admin/save.php?act=delfile
 
-path=/zzzp6p/upload/../install/1install.lock
-</code></pre><p>这里我们走的下面的分支不能删除 <code>array( &#39;php&#39;, &#39;db&#39;, &#39;mdb&#39;, &#39;tpl&#39; )</code> 这个数组的文件。</p>
+path=/zzzp6p/upload/../install/1install.lock</code></pre><p>这里我们走的下面的分支不能删除 <code>array( &#39;php&#39;, &#39;db&#39;, &#39;mdb&#39;, &#39;tpl&#39; )</code> 这个数组的文件。</p>
 <p>要删除任意文件只需要使用</p>
-<pre><code>path=/zzzp6p/runtime/../install/1.db
-</code></pre><p>让<code>ifstrin()</code>为true走上面的分支即可。</p>
+<pre><code>path=/zzzp6p/runtime/../install/1.db</code></pre><p>让<code>ifstrin()</code>为true走上面的分支即可。</p>
 <p>一般来说我们任意文件删除 是配合删除install.lock来达到网站重装漏洞。</p>
 <h1 id="0x02-任意文件下载"><a href="#0x02-任意文件下载" class="headerlink" title="0x02 任意文件下载"></a>0x02 任意文件下载</h1><p>任意文件下载常见于文件的显示和下载的地方，一般关注的文件是和下载有关的，比如download。当然你还可以搭建源码，来寻找能够下载的地方。</p>
 <p>常见的下载或读取函数: <code>file_get_contents()</code>、<code>readfile()</code> 、<code>fopen()</code></p>
 <p>在网上找到个别人审计的实例，结合起来审计一下，用到的源码是Ear_Music_20180820_UTF8</p>
 <p>搜索down相关的词语，找到文件\template\default\source\down.php</p>
-<p><img src="/2020/040155793.htm/1.5.7.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401194851115.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>我们看看<code>$file</code>参数怎么来的,先是调用函数<code>getfield()</code>,转到函数去看看</p>
-<p><img src="/2020/040155793.htm/1.5.8.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401194905942.png#pic_center" alt></p>
 <p>不出意外应该是从数据库中读取路径，再来看看<code>geturl()</code>函数</p>
-<p><img src="/2020/040155793.htm/1.5.9.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401194926435.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>构造下载地址，这些地方没什么问题，我们来看看什么地方对储存地址的表中插入了数据，搜索表名<code>lyric</code>。</p>
 <p>\source\user\music\ajax.php</p>
-<p><img src="/2020/040155793.htm/1.5.10.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401194958596.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>我们看到<code>$lyric</code>经过 <code>checkrename</code>、 <code>SafeRequest</code>这两个函数的清洗，先来转到函数<code>SafeRequest</code>。</p>
-<p><img src="/2020/040155793.htm/1.5.11.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401195016316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>我们传入的mode是get，然后经过<code>addslashes()</code>的转义，下面在替换为空，也就是我们基本上是不能使用<code>\\</code>了，我们在看看<code>checkrename</code></p>
-<p><img src="/2020/040155793.htm/1.5.12.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401195040468.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>这里正则匹配了我们的</p>
 <pre><code>.\ 
 ?iframe=
-.php?
-</code></pre><p>这里完全看不懂他匹配后缀为php?这个的意义何在，直接php就绕过了。</p>
+.php?</code></pre><p>这里完全看不懂他匹配后缀为php?这个的意义何在，直接php就绕过了。</p>
 <p>所以综合起来就是不要带有<code>\ 和 ./</code> 这里我们只要传入绝对路径就可以了</p>
 <p>登陆前台找到上传歌曲的页面在歌词地址中插入payload</p>
 <p>payload：</p>
-<pre><code>D:/phpstudy/PHPTutorial/WWW/Ear_Music/template/default/source/down.php
-</code></pre><p><img src="/2020/040155793.htm/1.5.13.png" alt="file"></p>
+<pre><code>D:/phpstudy/PHPTutorial/WWW/Ear_Music/template/default/source/down.php</code></pre><p><img src="https://img-blog.csdnimg.cn/2020040119510863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <h1 id="0x03-文件上传"><a href="#0x03-文件上传" class="headerlink" title="0x03 文件上传"></a>0x03 文件上传</h1><p>文件上传只有一个函数 <code>move_uploaded_file()</code> 一般来说，我们就可以搜索这个函数来回溯，看他的验证方式，是黑名单还是白名单，是否是前端限制，是否只是简单的验证了文件头，是否是能绕过的正则匹配，是否渲染了图片。</p>
 <p>结合zzzphp来审计一下文件上传，全局搜索<code>move_uploaded_file</code></p>
 <p>\zzzcms\inc\zzz_file.php</p>
-<p><img src="/2020/040155793.htm/1.5.14.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401195134341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>回溯看看那里调用了这个函数</p>
-<p><img src="/2020/040155793.htm/1.5.15.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401195203698.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>典型的黑名单验证，可以使用asa绕过，只需要在后台添加这个扩展名</p>
-<p><img src="/2020/040155793.htm/1.5.16.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/2020040119522365.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <p>上传即可，当然也可以通过上图中的 switch分支，只要传入的 type不是他的类型就可以跳过后台添加这个步骤，</p>
-<p><img src="/2020/040155793.htm/1.5.17.png" alt="file"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200401195240885.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70#pic_center" alt></p>
 <h1 id="0x04-文末"><a href="#0x04-文末" class="headerlink" title="0x04 文末"></a>0x04 文末</h1><p>对文件的操作还见于写入其他配置文件，典型的有thinkphp缓存文件写入。</p>
 
             </div>
@@ -1417,7 +1408,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.6k</span>&nbsp;字
+                class="white-color">18.7k</span>&nbsp;字
             
             
             
