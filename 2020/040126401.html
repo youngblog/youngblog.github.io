@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="过滤逻辑错误审计, Youngboy,github">
+    <meta name="keywords" content="通读全文审计, Youngboy,github">
     <meta name="description" content="北冥有鱼，其名为鲲，鲲之大，不知其几千里也； 化而为鸟，其名为鹏.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>过滤逻辑错误审计 | Young&#39;s Blogs</title>
+    <title>通读全文审计 | Young&#39;s Blogs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">过滤逻辑错误审计</h1>
+                    <h1 class="description center-align post-title">通读全文审计</h1>
                 </div>
             </div>
         </div>
@@ -476,7 +476,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    929
+                    1.2k
                 </div>
                 
 
@@ -500,123 +500,59 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h1><p>本文章来自 公众号：404安全</p>
-<p>本文审计的系统为云ec电商系统版本1.2.3，网上也有审计文章这里主要是讲讲，有些程序可能本身他的过滤代码还是比较不错，但是逻辑问题造成了过滤函数没有起作用。</p>
-<h1 id="0x01-实例审计"><a href="#0x01-实例审计" class="headerlink" title="0x01 实例审计"></a>0x01 实例审计</h1><p>还是先从index.php文件看进去吧！</p>
+<p>通读全文推荐大家开始可以审计一些比较好看懂的CMS，我们先看大体网站框架，这里你大概知道什么文件夹是放什么类型的文件，然后从<code>index.php</code>文件开始往里面读,然后重点关注是否有全局过滤等等。</p>
+<h1 id="0x01-实例审计"><a href="#0x01-实例审计" class="headerlink" title="0x01 实例审计"></a>0x01 实例审计</h1><p>本文用到的源码是zzzphp，我们通过这个程序粗略的了解如何通读全文代码来审计，这里只做简单分析，不深入审计。</p>
+<h2 id="了解网站框架"><a href="#了解网站框架" class="headerlink" title="了解网站框架"></a>了解网站框架</h2><pre><code>├─admin             //后台
+├─config            //配置文件
+├─form              //前台
+├─images            //图片
+├─inc               //包含文件
+├─install           //安装文件
+├─js                //js文件
+├─plugins           //插件
+├─runtime           //临时
+├─search            //搜索
+├─template          //模板
+├─upload            //上传文件夹
+└─wap               //手机
+</code></pre><p>首先我们看到这个结构，有一点审计基础或者会点英语应该都能看懂这些目录的意思，当然也有个别程序猿喜欢另类一点的命名规则，大体都是这样。</p>
+<h2 id="了解网站过滤与路由"><a href="#了解网站过滤与路由" class="headerlink" title="了解网站过滤与路由"></a>了解网站过滤与路由</h2><p>我觉得全文通读不是无脑的去挨着读，这样比较浪费时间，我们一般应该先去读他的核心文件，一般都在包含文件夹里面，怎么去找核心文件一般是看文件名比如包含<code>main</code> <code>common</code>等等，也可以看看文件大小一般核心文件包含函数多文件相对较大，还可以通过入口文件一步一步去看，比如这里的核心文件就是<code>zzz_main.php</code>我们无非是先关注参数的获取、是否有全局过滤。</p>
+<p>我们来到 <code>\inc\zzz_main.php</code></p>
+<p><code>getlocation()</code> 解析URL</p>
+<p><img src="./img/2.0.0.png" alt="file"></p>
+<p><code>getform()</code>获取参数</p>
+<p><img src="./img/2.0.1.png" alt="file"></p>
+<p>过滤函数<code>txt_html()</code> 但是通常有关过滤的函数包含一些字符<code>safe</code>之类 或者包含函数 <code>htmlspecialchars()</code> <code>addslashes()</code></p>
+<p><img src="./img/2.0.2.png" alt="file"></p>
+<h2 id="了解系统DB类"><a href="#了解系统DB类" class="headerlink" title="了解系统DB类"></a>了解系统DB类</h2><p>除了这个文件我们还可以看看<code>mysql</code> <code>db</code> 之类的关键词文件，看看他数据库连接的方式是否存在宽字节注入的可能，还有他的连接方式。</p>
+<p><img src="./img/2.0.6.png" alt="file"></p>
+<h2 id="开始审计"><a href="#开始审计" class="headerlink" title="开始审计"></a>开始审计</h2><p>看完这些我们就可以从<code>index.php</code>一层一层读了。</p>
+<p>来到 <code>index.php</code> 直接包含文件<code>inc/zzz_client.php</code> 先判断<code>isinstall</code> 然后执行后面</p>
+<p><img src="./img/2.0.3.png" alt="file"></p>
+<p>看到最后一句<code>ParseGlobal(G(&#39;sid&#39;),G(&#39;cid&#39;));</code> 这里调用了<code>ParseGlobal()</code> 函数我们可以跟进去看看。</p>
+<p>进入if分支</p>
+<pre><code>if ( $sid &gt; 0 ) {
+    $data = db_load_one( &#39;sort&#39;, &#39;sid=&#39; . $sid );
+</code></pre><p>跟进函数<code>db_load_one()</code> 这里会把传入的&amp;替换为and</p>
+<p><img src="./img/2.0.4.png" alt="file"></p>
+<p>跟进函数 <code>find_one()</code></p>
+<p><img src="./img/2.0.5.png" alt="file"></p>
+<p>这里我就不详细跟了只介绍思路，基本上确定这里如果传入的参数没过滤那么这里就会存在注入。</p>
+<p>这里跟一下 <code>G()</code> 就会发现是<code>$GLOBALS[ &#39;sid&#39; ]</code> 获取的，也就是前面解析url那里获取的值也没有过滤，那么这里基本上就是一个注入了。</p>
+<p>读完这些文件我们就可以从各个功能文件夹的index读进去，比如这里我们来到<code>\search\index.php</code></p>
 <pre><code>&lt;?php
-define(&#39;in_mx&#39;, TRUE);
-
-$ym_version=&#39;1.2.3&#39;;
-$p=isset($_GET[&#39;p&#39;]) ? addslashes($_GET[&#39;p&#39;]) : &#39;&#39;;
-$p=(trim($p)==&#39;&#39;) ? &#39;index&#39; : trim($p);
-
-require(&quot;./inc/function/global.php&quot;);
-
-switch ($p){
-    case &#39;admin&#39;:
-        include(&quot;./inc/function/global_admin&quot;.Ext);
-        exit();
-    break;
-    case &#39;install&#39;:
-        require(&quot;./install/index&quot;.Ext);
-        exit();
-    break;
-    default:
-        if(strpos($p, &quot;n-&quot;)===0 || $ym_url_path[0] === &#39;news&#39;){
-            include(&quot;./inc/function/global_news&quot;.Ext);
-        }
-        else{
-            include(&quot;./inc/function/global_page&quot;.Ext);
-        }
-    break;
-}
-?&gt;
-</code></pre><p>从index.php来看是GET获取P参数然后引用对应的文件，先来看看/inc/function/global.php</p>
-<pre><code>set_error_handler(&quot;customError&quot;,E_ERROR);
-$getfilter=&quot;\\b(and|or)\\b.+?(&gt;|&lt;|=|in|like)|\\/\\*.+?\\*\\/|&lt;\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)&quot;;
-$postfilter=&quot;\\b(and|or)\\b.{1,6}?(=|&gt;|&lt;|\\bin\\b|\\blike\\b)|\\/\\*.+?\\*\\/|&lt;\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)&quot;;
-$cookiefilter=&quot;\\b(and|or)\\b.{1,6}?(=|&gt;|&lt;|\\bin\\b|\\blike\\b)|\\/\\*.+?\\*\\/|&lt;\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)&quot;;
-
-function StopAttack($StrFiltKey,$StrFiltValue,$ArrFiltReq){  
-    if(is_array($StrFiltValue))
-    {
-        $StrFiltValue=implode($StrFiltValue);
-    }        
-    if (preg_match(&quot;/&quot;.$ArrFiltReq.&quot;/is&quot;,urldecode($StrFiltValue))){
-            print &quot;网址有误~&quot;;
-            exit();
-    }      
-}  
-
-foreach($_GET as $key=&gt;$value){
-    StopAttack($key,$value,$getfilter);
-}
-if ($_GET[&quot;p&quot;]!==&#39;admin&#39;){
-    foreach($_POST as $key=&gt;$value){ 
-        StopAttack($key,$value,$postfilter);
-    }
-}
-
-foreach($_COOKIE as $key=&gt;$value){ 
-    StopAttack($key,$value,$cookiefilter);
-}
-unset($_GET[&#39;_SESSION&#39;]);
-unset($_POST[&#39;_SESSION&#39;]);
-unset($_COOKIE[&#39;_SESSION&#39;]);
-</code></pre><p>这个正则貌似就是copy的360webscan的那个，这里GET、POST、COOKIE都被过滤了的，但是我们看到其中过滤POST的判断</p>
-<pre><code>if ($_GET[&quot;p&quot;]!==&#39;admin&#39;){
-    foreach($_POST as $key=&gt;$value){ 
-        StopAttack($key,$value,$postfilter);
-    }
-}</code></pre><p>如果GET传入的p=admin了就不会进入这个if语句，也达到我们绕过的目的了，然后往下面看</p>
-<pre><code>if (!empty($_GET)){ foreach($_GET AS $key =&gt; $value) $$key = addslashes_yec($value); }
-if (!empty($_POST)){ foreach($_POST AS $key =&gt; $value) $$key = addslashes_yec($value); }
-</code></pre><p>这里我们传入的P参数的值被重新覆盖掉，然后经过<code>addslashes_yec</code>函数过滤。然后我们梳理一下审计思路</p>
-<pre><code>1. 寻找SERVER获取的。
-2. 寻找数字型注入，结合上面的绕过，注入密码。
-</code></pre><p>先看看前台注入，这个cms注入比较多，我就随便写个了</p>
-<p>\inc\module\cart.php</p>
-<pre><code>    elseif ($act == &#39;remove_goods&#39;) //移除商品
-    {        
-        $ckey = $ckey ? intval($ckey) : intval($_COOKIE[&#39;ckey&#39;]);
-        $gid_list = explode(&quot;@&quot;, $gid);
-        $spec_list = explode(&quot;@&quot;, $spec);
-
-        $db = dbc();
-        $where =&#39;&#39;;
-        if($ckey != 0)
-        {
-            $where =&#39; and cid=&#39;.$ckey;
-        }
-        elseif($ym_uid !=0)
-        {
-            $where =&#39; and uid=&#39;.$ym_uid;
-        }
-        else {
-            $res[&#39;err&#39;] = &#39;请刷新页面再试&#39;;
-            die(json_encode_yec($res));
-        }
-
-        foreach ($gid_list as $k =&gt; $v) {
-            $sp = $spec_list[$k];
-            if(intval($v)&lt;=0)
-            {
-                continue;
-            }            
-
-            $db-&gt;query(&quot;delete i FROM &quot;.$db-&gt;table(&#39;cart&#39;).&quot; c join &quot;.$db-&gt;table(&#39;cart_item&#39;).&quot; i on c.id=i.cid where gid=&quot;.$v.&quot; and spec=&#39;&quot;.$sp.&quot;&#39; &quot;.$where);
-        }
-
-        $cnum = get_cart_amount(1);
-        $res[&#39;res&#39;] = $cnum;
-        $time = time() + 15552000;                
-        set_cookie(&#39;cnum&#39;,  $cnum, $time); //购物车数量
-        die(json_encode_yec($res));
-    }    
-</code></pre><p>其中传入的$gid经过<code>explode</code>函数分割（这里sql语句中不能使用@字符），然后foreach循环取出来后带入sql语句，也没有单双引号之类的包裹，比较明显的一处注入了。</p>
-<p><img src="./img/2.1.0.png" alt="file"></p>
-<p>如果没用绕过是会触发360webscan的</p>
-<p><img src="./img/2.1.1.png" alt="file"></p>
-<h1 id="0x02-文末"><a href="#0x02-文末" class="headerlink" title="0x02 文末"></a>0x02 文末</h1><p>这套程序在1.2.4这里修复了这个逻辑方面的问题貌似漏洞就没啥了。本版本还有很多注入大家可以自己审计一下，也可以看看水泡泡巨佬的<a href="https://www.cnblogs.com/r00tuser/p/9014869.html" target="_blank" rel="noopener">https://www.cnblogs.com/r00tuser/p/9014869.html</a></p>
+define(&#39;LOCATION&#39;, &#39;search&#39;);
+require dirname(dirname(__FILE__)). &#39;/inc/zzz_client.php&#39;;
+</code></pre><p>还是回到刚刚我们跟进的文件 <code>/inc/zzz_client.php</code> 搜索<code>search</code>关键词然后读源码分析</p>
+<pre><code>    case &#39;search&#39;:
+         $tplfile= TPL_DIR . &#39;search.html&#39;; 
+        break;
+</code></pre><p>看到选中<code>Search</code>后赋值给了变量<code>$tplfile</code> 然后我们在追踪变量在那个地方被调用过</p>
+<p><img src="./img/2.0.7.png" alt="file"></p>
+<p>发现他解析模板的过程，然后跟进<code>ParserTemplate</code> 来到<code>inc\zzz_template.php</code> 然后往下面读发现一个函数<code>getform()</code></p>
+<p><img src="./img/2.0.8.png" alt="file"></p>
+<p><code>getform()</code>函数获取过滤之后还被被 <code>safe_key()</code> 函数过滤，但是看到下面还有函数<code>get_cookie</code> 看样子也是获取参数的，但是这个用到函数<code>isset()</code> 他是一个检测变量的函数，定义了即为true 所以这里根本进不去，不然就是一个注入了,当然这也是一个老版本的注入，我这里的版本已经修复了。接下来还可以从<code>admin</code>的<code>index.php</code>开始读，多关注一些功能点，推荐可以搭建起来熟悉一下整套程序。</p>
+<h1 id="0x02-文末"><a href="#0x02-文末" class="headerlink" title="0x02 文末"></a>0x02 文末</h1><p>通读这个ZZZCMS 我们可以知道，他在调用<code>getform()</code>函数的时候我们基本不考虑注入了，因为已经被过滤了，除非他后面用其他函数处理了一下。在调试复杂语句的时候我们可以通过mysql监控软件来调试。当我们发现一类函数或者写法存在漏洞的时候，可以使用全文搜索，来查找相同的代码对一类进行完整挖掘。</p>
 
             </div>
             <hr/>
@@ -1114,17 +1050,15 @@ if (!empty($_POST)){ foreach($_POST AS $key =&gt; $value) $$key = addslashes_yec
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="通读全文审计">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="反序列化审计">
                         
-                        <span class="card-title">通读全文审计</span>
+                        <span class="card-title">反序列化审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            0x00 简介本文章来自 公众号：404安全
-通读全文推荐大家开始可以审计一些比较好看懂的CMS，我们先看大体网站框架，这里你大概知道什么文件夹是放什么类型的文件，然后从index.php文件开始往里面读,然后重点关注是否有全局过滤等等。
-
+                            0x00 简介本文章来自 公众号：404安全PHP反序列化漏洞，在我们使用unserialize()进行反序列化的时候，如果反序列化对象中存在一些我们可以利用的魔法函数且传入的变量可控，那么这个过程就可能触发这个魔法函数，来执行我们想要的过
                         
                     </div>
                     <div class="publish-info">
