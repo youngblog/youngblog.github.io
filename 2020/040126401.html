@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="python中request模块的基本使用, Youngboy,github">
+    <meta name="keywords" content="过滤逻辑错误审计, Youngboy,github">
     <meta name="description" content="北冥有鱼，其名为鲲，鲲之大，不知其几千里也； 化而为鸟，其名为鹏.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>python中request模块的基本使用 | Young&#39;s Blogs</title>
+    <title>过滤逻辑错误审计 | Young&#39;s Blogs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">python中request模块的基本使用</h1>
+                    <h1 class="description center-align post-title">过滤逻辑错误审计</h1>
                 </div>
             </div>
         </div>
@@ -449,8 +449,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Python/" class="post-category">
-                                Python
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                代码审计
                             </a>
                         
                     </div>
@@ -462,28 +462,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-20
+                    2020-04-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-20
+                    2020-04-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    386
+                    929
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -499,73 +499,124 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Requests库的基础使用"><a href="#Requests库的基础使用" class="headerlink" title="Requests库的基础使用"></a>Requests库的基础使用</h2><p><strong>Get/Post请求</strong> </p>
-<p>Get请求</p>
-<pre class=" language-python"><code class="language-python"> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'http://www.baidu.com'</span><span class="token punctuation">,</span>参数<span class="token punctuation">)</span>        </code></pre>
-<p>Post请求</p>
-<pre class=" language-python"><code class="language-python"> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span><span class="token string">'http://www.baidu.com'</span><span class="token punctuation">,</span>参数<span class="token punctuation">)</span></code></pre>
-<h3 id="0x01-响应体内容"><a href="#0x01-响应体内容" class="headerlink" title="0x01 .响应体内容"></a>0x01 .响应体内容</h3><table>
-<thead>
-<tr>
-<th>用法</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>r.encoding</code></td>
-<td>获取当前编码</td>
-</tr>
-<tr>
-<td><code>r.encoding = ‘utf-8’</code></td>
-<td>设置编码</td>
-</tr>
-<tr>
-<td><code>r.text</code></td>
-<td>以encoding解析返回内容。字符串方式的响应体，会根据响应头部的字符编码进行解码</td>
-</tr>
-<tr>
-<td><code>r.content</code></td>
-<td>以字节（二进制）返回。字节方式的响应体会自动为你解码gzip和deflate压缩</td>
-</tr>
-<tr>
-<td><code>r.headers</code></td>
-<td>以字典对象存储服务器响应头，但是字典比较特殊，字典键不区分大小写，若键不存在，则返回None</td>
-</tr>
-<tr>
-<td><code>r.status_code</code></td>
-<td>响应状态码 <em>特殊方法</em></td>
-</tr>
-<tr>
-<td><code>r.json()</code></td>
-<td>Requests 中内置的json解码器，以json形式返回内容，确保json格式，不然解析出错会抛异常</td>
-</tr>
-<tr>
-<td><code>r.raise_for_status()</code></td>
-<td>失败请求(非200响应) 抛出异常</td>
-</tr>
-</tbody></table>
-<h3 id="0x02-进阶应用"><a href="#0x02-进阶应用" class="headerlink" title="0x02. 进阶应用"></a>0x02. 进阶应用</h3><p><strong>1.定制header/cookies 内容</strong></p>
-<pre class=" language-python"><code class="language-python">header <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'user-agent'</span><span class="token punctuation">:</span><span class="token string">'User-Agent: Mozilla/5.0'</span><span class="token punctuation">}</span>
-cookie <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span><span class="token string">'值'</span><span class="token punctuation">}</span>
-r<span class="token punctuation">.</span>request<span class="token punctuation">.</span>get<span class="token operator">/</span>post<span class="token punctuation">(</span><span class="token string">'https://www.baidu.com'</span><span class="token punctuation">,</span>headers<span class="token operator">=</span>header<span class="token punctuation">,</span>cookies<span class="token operator">=</span>cookie<span class="token punctuation">)</span></code></pre>
-<p><strong>2.设置http代理</strong></p>
-<pre class=" language-python"><code class="language-python">proxies <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'http'</span><span class="token punctuation">:</span><span class="token string">'120.79.212.174'</span><span class="token punctuation">,</span><span class="token string">'https'</span><span class="token punctuation">:</span><span class="token string">'60.167.20.246'</span><span class="token punctuation">}</span>
-baidu <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'https://www.baidu.com'</span><span class="token punctuation">,</span>proxies<span class="token operator">=</span>proxies<span class="token punctuation">)</span></code></pre>
-<p>如果需要用户名密码验证</p>
-<pre class=" language-python"><code class="language-python">proxies <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'http'</span><span class="token punctuation">:</span><span class="token string">'username:password@120.79.212.174'</span><span class="token punctuation">}</span>
-baidu <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'https://www.baidu.com'</span><span class="token punctuation">,</span>proxies<span class="token operator">=</span>proxies<span class="token punctuation">)</span></code></pre>
-<p><strong>3.基础身份认证</strong></p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> requests
-<span class="token keyword">from</span> requests<span class="token punctuation">.</span>auth <span class="token keyword">import</span> HTTPBasicAuth
+                <h1 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h1><p>本文章来自 公众号：404安全</p>
+<p>本文审计的系统为云ec电商系统版本1.2.3，网上也有审计文章这里主要是讲讲，有些程序可能本身他的过滤代码还是比较不错，但是逻辑问题造成了过滤函数没有起作用。</p>
+<h1 id="0x01-实例审计"><a href="#0x01-实例审计" class="headerlink" title="0x01 实例审计"></a>0x01 实例审计</h1><p>还是先从index.php文件看进去吧！</p>
+<pre><code>&lt;?php
+define(&#39;in_mx&#39;, TRUE);
 
-url <span class="token operator">=</span> <span class="token string">'https://qiyuanxuetang.net/hidden-basic-auth/user/passwd'</span>
-r <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">=</span>url<span class="token punctuation">,</span>auth<span class="token operator">=</span>HTTPBasicAuth<span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">,</span><span class="token string">'passwd'</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># r = requests.get(url=url,auth=('user','passwd') //简写</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<h3 id="0x03-推荐阅读文章"><a href="#0x03-推荐阅读文章" class="headerlink" title="0x03.推荐阅读文章"></a>0x03.推荐阅读文章</h3><ol>
-<li><a href="https://blog.csdn.net/qq_29286967/article/details/81025237" target="_blank" rel="noopener">request模块的深入和使用</a></li>
-<li><a href="https://blog.csdn.net/weixin_44494778/article/details/93709582" target="_blank" rel="noopener">request基本使用</a><br>也可以看看官方解释</li>
-</ol>
+$ym_version=&#39;1.2.3&#39;;
+$p=isset($_GET[&#39;p&#39;]) ? addslashes($_GET[&#39;p&#39;]) : &#39;&#39;;
+$p=(trim($p)==&#39;&#39;) ? &#39;index&#39; : trim($p);
+
+require(&quot;./inc/function/global.php&quot;);
+
+switch ($p){
+    case &#39;admin&#39;:
+        include(&quot;./inc/function/global_admin&quot;.Ext);
+        exit();
+    break;
+    case &#39;install&#39;:
+        require(&quot;./install/index&quot;.Ext);
+        exit();
+    break;
+    default:
+        if(strpos($p, &quot;n-&quot;)===0 || $ym_url_path[0] === &#39;news&#39;){
+            include(&quot;./inc/function/global_news&quot;.Ext);
+        }
+        else{
+            include(&quot;./inc/function/global_page&quot;.Ext);
+        }
+    break;
+}
+?&gt;
+</code></pre><p>从index.php来看是GET获取P参数然后引用对应的文件，先来看看/inc/function/global.php</p>
+<pre><code>set_error_handler(&quot;customError&quot;,E_ERROR);
+$getfilter=&quot;\\b(and|or)\\b.+?(&gt;|&lt;|=|in|like)|\\/\\*.+?\\*\\/|&lt;\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)&quot;;
+$postfilter=&quot;\\b(and|or)\\b.{1,6}?(=|&gt;|&lt;|\\bin\\b|\\blike\\b)|\\/\\*.+?\\*\\/|&lt;\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)&quot;;
+$cookiefilter=&quot;\\b(and|or)\\b.{1,6}?(=|&gt;|&lt;|\\bin\\b|\\blike\\b)|\\/\\*.+?\\*\\/|&lt;\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)&quot;;
+
+function StopAttack($StrFiltKey,$StrFiltValue,$ArrFiltReq){  
+    if(is_array($StrFiltValue))
+    {
+        $StrFiltValue=implode($StrFiltValue);
+    }        
+    if (preg_match(&quot;/&quot;.$ArrFiltReq.&quot;/is&quot;,urldecode($StrFiltValue))){
+            print &quot;网址有误~&quot;;
+            exit();
+    }      
+}  
+
+foreach($_GET as $key=&gt;$value){
+    StopAttack($key,$value,$getfilter);
+}
+if ($_GET[&quot;p&quot;]!==&#39;admin&#39;){
+    foreach($_POST as $key=&gt;$value){ 
+        StopAttack($key,$value,$postfilter);
+    }
+}
+
+foreach($_COOKIE as $key=&gt;$value){ 
+    StopAttack($key,$value,$cookiefilter);
+}
+unset($_GET[&#39;_SESSION&#39;]);
+unset($_POST[&#39;_SESSION&#39;]);
+unset($_COOKIE[&#39;_SESSION&#39;]);
+</code></pre><p>这个正则貌似就是copy的360webscan的那个，这里GET、POST、COOKIE都被过滤了的，但是我们看到其中过滤POST的判断</p>
+<pre><code>if ($_GET[&quot;p&quot;]!==&#39;admin&#39;){
+    foreach($_POST as $key=&gt;$value){ 
+        StopAttack($key,$value,$postfilter);
+    }
+}</code></pre><p>如果GET传入的p=admin了就不会进入这个if语句，也达到我们绕过的目的了，然后往下面看</p>
+<pre><code>if (!empty($_GET)){ foreach($_GET AS $key =&gt; $value) $$key = addslashes_yec($value); }
+if (!empty($_POST)){ foreach($_POST AS $key =&gt; $value) $$key = addslashes_yec($value); }
+</code></pre><p>这里我们传入的P参数的值被重新覆盖掉，然后经过<code>addslashes_yec</code>函数过滤。然后我们梳理一下审计思路</p>
+<pre><code>1. 寻找SERVER获取的。
+2. 寻找数字型注入，结合上面的绕过，注入密码。
+</code></pre><p>先看看前台注入，这个cms注入比较多，我就随便写个了</p>
+<p>\inc\module\cart.php</p>
+<pre><code>    elseif ($act == &#39;remove_goods&#39;) //移除商品
+    {        
+        $ckey = $ckey ? intval($ckey) : intval($_COOKIE[&#39;ckey&#39;]);
+        $gid_list = explode(&quot;@&quot;, $gid);
+        $spec_list = explode(&quot;@&quot;, $spec);
+
+        $db = dbc();
+        $where =&#39;&#39;;
+        if($ckey != 0)
+        {
+            $where =&#39; and cid=&#39;.$ckey;
+        }
+        elseif($ym_uid !=0)
+        {
+            $where =&#39; and uid=&#39;.$ym_uid;
+        }
+        else {
+            $res[&#39;err&#39;] = &#39;请刷新页面再试&#39;;
+            die(json_encode_yec($res));
+        }
+
+        foreach ($gid_list as $k =&gt; $v) {
+            $sp = $spec_list[$k];
+            if(intval($v)&lt;=0)
+            {
+                continue;
+            }            
+
+            $db-&gt;query(&quot;delete i FROM &quot;.$db-&gt;table(&#39;cart&#39;).&quot; c join &quot;.$db-&gt;table(&#39;cart_item&#39;).&quot; i on c.id=i.cid where gid=&quot;.$v.&quot; and spec=&#39;&quot;.$sp.&quot;&#39; &quot;.$where);
+        }
+
+        $cnum = get_cart_amount(1);
+        $res[&#39;res&#39;] = $cnum;
+        $time = time() + 15552000;                
+        set_cookie(&#39;cnum&#39;,  $cnum, $time); //购物车数量
+        die(json_encode_yec($res));
+    }    
+</code></pre><p>其中传入的$gid经过<code>explode</code>函数分割（这里sql语句中不能使用@字符），然后foreach循环取出来后带入sql语句，也没有单双引号之类的包裹，比较明显的一处注入了。</p>
+<p><img src="./img/2.1.0.png" alt="file"></p>
+<p>如果没用绕过是会触发360webscan的</p>
+<p><img src="./img/2.1.1.png" alt="file"></p>
+<h1 id="0x02-文末"><a href="#0x02-文末" class="headerlink" title="0x02 文末"></a>0x02 文末</h1><p>这套程序在1.2.4这里修复了这个逻辑方面的问题貌似漏洞就没啥了。本版本还有很多注入大家可以自己审计一下，也可以看看水泡泡巨佬的<a href="https://www.cnblogs.com/r00tuser/p/9014869.html" target="_blank" rel="noopener">https://www.cnblogs.com/r00tuser/p/9014869.html</a></p>
 
             </div>
             <hr/>
@@ -591,7 +642,7 @@ r <span class="token operator">=</span> requests<span class="token punctuation">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/032030464.html">http://yoursite.com/2020/032030464.html</a>
+                    <a href="http://yoursite.com/2020/040126401.html">http://yoursite.com/2020/040126401.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1059,6 +1110,49 @@ r <span class="token operator">=</span> requests<span class="token punctuation">
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2020/040126401.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="通读全文审计">
+                        
+                        <span class="card-title">通读全文审计</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            0x00 简介本文章来自 公众号：404安全
+通读全文推荐大家开始可以审计一些比较好看懂的CMS，我们先看大体网站框架，这里你大概知道什么文件夹是放什么类型的文件，然后从index.php文件开始往里面读,然后重点关注是否有全局过滤等等。
+
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2020/032630644.html">
                     <div class="card-image">
                         
@@ -1076,63 +1170,15 @@ r <span class="token operator">=</span> requests<span class="token punctuation">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
                             <a href="/categories/SSRF/" class="post-category">
                                     SSRF
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/032048346.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="urllib3模块的基本使用">
-                        
-                        <span class="card-title">urllib3模块的基本使用</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            urllib3模块的基本使用
-简单的请求
-get请求
-
-import urllib3
-
-http = urllib3.PoolManager()
-baidu = http.request("get","https://www.baidu.c
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-20
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Python/" class="post-category">
-                                    Python
                                 </a>
                             
                             
