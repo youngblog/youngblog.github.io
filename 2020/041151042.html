@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ssrf漏洞详解, Youngboy,github">
+    <meta name="keywords" content="php中的数组, Youngboy,github">
     <meta name="description" content="北冥有鱼，其名为鲲，鲲之大，不知其几千里也； 化而为鸟，其名为鹏.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ssrf漏洞详解 | Young&#39;s Blogs</title>
+    <title>php中的数组 | Young&#39;s Blogs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ssrf漏洞详解</h1>
+                    <h1 class="description center-align post-title">php中的数组</h1>
                 </div>
             </div>
         </div>
@@ -449,8 +449,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/SSRF/" class="post-category">
-                                SSRF
+                            <a href="/categories/php/" class="post-category">
+                                php
                             </a>
                         
                     </div>
@@ -462,28 +462,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-26
+                    2020-04-11
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-26
+                    2020-04-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    953
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    5 分
                 </div>
                 
 
@@ -499,68 +499,145 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="0x01-ssrf概述"><a href="#0x01-ssrf概述" class="headerlink" title="0x01. ssrf概述"></a>0x01. ssrf概述</h2><h5 id="1、SSRF漏洞概述"><a href="#1、SSRF漏洞概述" class="headerlink" title="1、SSRF漏洞概述"></a>1、SSRF漏洞概述</h5><p><code>SSRF(服务器端请求伪造)</code>： 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。</p>
-<p>一般情况下，SSRF攻击的目标是从外网无法访问的内部系统。（因为它是由服务端发起的，所以它能够请求到与它相连而与外网隔离的内网。也就是说可以利用一个网络请求的服务，当作跳板进行攻击）<br><img src="https://img-blog.csdnimg.cn/20200326134731702.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""></p>
-<h5 id="2、SSRF漏洞产生原因"><a href="#2、SSRF漏洞产生原因" class="headerlink" title="2、SSRF漏洞产生原因"></a>2、SSRF漏洞产生原因</h5><p>SSRF 形成的原因往往是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。</p>
-<p>如：从指定URL地址获取网页文本内容，加载指定地址的图片，下载等。利用的就是服务端的请求伪造。ssrf是利用存在缺陷的web应用作为代理攻击远程和本地的服务器。</p>
-<h5 id="3-漏洞的产生"><a href="#3-漏洞的产生" class="headerlink" title="3.漏洞的产生"></a>3.漏洞的产生</h5><p>在PHP中的<code>curl()</code>，<code>file_get_contents()</code>，<code>fsockopen()</code> 等函数是几个主要产生ssrf漏洞的函数。</p>
-<p><strong>1) curl()</strong></p>
+                <h2 id="0x01-数组的定义与类型"><a href="#0x01-数组的定义与类型" class="headerlink" title="0x01.数组的定义与类型"></a>0x01.数组的定义与类型</h2><p><strong>如何定义数组？</strong><br>一般都是使用 array() 函数定义的数组</p>
 <pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
-<span class="token keyword">function</span> <span class="token function">curl</span><span class="token punctuation">(</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token variable">$ch</span> <span class="token operator">=</span> <span class="token function">curl_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span><span class="token constant">CURLOPT_URL</span><span class="token punctuation">,</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token shell-comment comment">#curl_setopt($ch,CUPLOPT_HEADER,1);</span>
-    <span class="token function">curl_exec</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">curl_close</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'jsp'</span><span class="token punctuation">,</span><span class="token string">'asp'</span><span class="token punctuation">,</span><span class="token string">'php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">print_r</span><span class="token punctuation">(</span><span class="token variable">$arr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter">?></span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200411181549382.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="输出结果"><br><strong>数组的两种类型</strong><br>数组类型分<br><code>1.索引数组</code><br><code>2.关联数组</code></p>
+<p><strong>索引数组</strong>，其实就是全名叫 数字索引数组，顾名思义<br>就是以数字索引的数组，也就是上面那串代码定义的，就索引数组<br>（在PHP中，数组的值第一位是 0）</p>
+<p>关联数组，也很简单，数组其实就是由键值组成的，与python中的字典相似，关联数组其实就是我们自定义的键</p>
+<pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token operator">=</span><span class="token operator">></span><span class="token string">'young'</span><span class="token punctuation">,</span><span class="token string">'old'</span><span class="token operator">=</span><span class="token operator">></span><span class="token string">'17'</span><span class="token punctuation">,</span><span class="token string">'from'</span><span class="token operator">=</span><span class="token operator">></span><span class="token string">'中国'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">print_r</span><span class="token punctuation">(</span><span class="token variable">$arr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter">?></span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200411182309594.png" alt="输出结果"><br>这样看的话可能不是很清楚，我们可以直接查看源代码，看起来不会懵逼<br><img src="https://img-blog.csdnimg.cn/20200411182354735.png" alt><br>这样其实就是关联数组，而直接使用array定义的就是的 索引数组，第一位是0，觉得很麻烦。也可以这样定义，把第一位定义成 1</p>
+<h2 id="0x02-一维数组、二维数组-与-多维数组"><a href="#0x02-一维数组、二维数组-与-多维数组" class="headerlink" title="0x02. 一维数组、二维数组 与 多维数组"></a>0x02. 一维数组、二维数组 与 多维数组</h2><pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token variable">$arr1</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'young'</span><span class="token punctuation">,</span><span class="token string">'17'</span><span class="token punctuation">,</span><span class="token string">'中国'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//一维数组</span>
+<span class="token function">print_r</span><span class="token punctuation">(</span><span class="token variable">$arr1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                        <span class="token comment" spellcheck="true">//输出数组</span>
+<span class="token keyword">echo</span> <span class="token string">"&lt;br>"</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//定义二维数组</span>
+<span class="token variable">$arr2</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+<span class="token string">'name'</span><span class="token operator">=</span><span class="token operator">></span><span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'张三'</span><span class="token punctuation">,</span><span class="token string">'李四'</span><span class="token punctuation">,</span><span class="token string">'王五'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token string">'old'</span><span class="token operator">=</span><span class="token operator">></span><span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'20'</span><span class="token punctuation">,</span><span class="token string">'21'</span><span class="token punctuation">,</span><span class="token string">'23'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">print_r</span><span class="token punctuation">(</span><span class="token variable">$arr2</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//输出数组</span>
+<span class="token delimiter">?></span></code></pre>
+<p>上面定义的其实就是一维数组，其实听着很高大尚，其实就是跟嵌套差不多<br>在一个数组中嵌套这另外一个数组<br><img src="https://img-blog.csdnimg.cn/20200411183330801.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="输出结果对比"><br>这样就更容易的对比了，我们也可以查看源代码，这样看起来舒服<br><img src="https://img-blog.csdnimg.cn/20200411183525791.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="查看源代码"></p>
+<p>然后我们继续在数组中嵌套一层就是 三维数组，几层嵌套，就是几层数组，但是建议不要太多</p>
+<h2 id="0x03-数组遍历"><a href="#0x03-数组遍历" class="headerlink" title="0x03.数组遍历"></a>0x03.数组遍历</h2><h4 id="1）for循环遍历数组"><a href="#1）for循环遍历数组" class="headerlink" title="1）for循环遍历数组"></a>1）for循环遍历数组</h4><pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">'张三'</span><span class="token punctuation">,</span><span class="token string">"a公司"</span><span class="token punctuation">,</span><span class="token string">"北京市"</span><span class="token punctuation">,</span><span class="token string">"(010)987654321"</span><span class="token punctuation">,</span><span class="token string">"gao@qq.com"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token variable">$i</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token variable">$i</span> <span class="token operator">&lt;</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token variable">$arr</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token variable">$i</span><span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">echo</span> <span class="token variable">$arr</span><span class="token punctuation">[</span><span class="token variable">$i</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token string">"   "</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-<span class="token variable">$url</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token function">curl</span><span class="token punctuation">(</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token delimiter">?></span></code></pre>
-<p><code>function</code> 定义一个函数，叫做curl，有一个参数，叫<code>$url</code><br><code>curl_init()</code>   初始化一个cURL会话后。将<code>$url</code>传入<code>curl_setopt($ch,CURLOPT_URL,$url);</code></p>
-<blockquote>
-<p><strong>（<code>curl_setopt($ch, CURLOPT_HEADER, 1)</code> 这边是设定返回信息信息，是否要返回响应信息头这里的话可以注释掉）</strong><br><img src="https://img-blog.csdnimg.cn/20200326131908813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="这是注释后"><br><img src="https://img-blog.csdnimg.cn/20200326131952608.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="这是没注释的"></p>
-</blockquote>
-<p>然后通过 curl_exec 发起一个请求，<a href="https://www.php.cn/php-weizijiaocheng-364221.html" target="_blank" rel="noopener">curl_exec详细信息</a><br>然后这就是一个函数，接下来再设置一个get传参为变量url，然后再把这个变量url代入前面所创建的那个 curl函数</p>
-<p><strong>2）file_get_contents()</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20200411184921850.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="源代码"><br>我们依旧右键点击查看源代码<br>其实for循环主要是通过  <code>$arr[$i]</code><br>首先定义一个一维数组，然后使用for循环，初始值为0，count()就是判断数组的长度，有几个值，这里的话是从1开始算的，每遍历一次就 加1.</p>
+<p>它先是 执行 <code>$i=0</code>,<br>然后代入 <code>$arr[0]</code> 就输出了1，然后 i 加 1。判断是否小于数组的值，然后再次循环…<br>直到 i 为6时，才停止循环。因为 6 不可能小于 6。<br><strong>对于多维数组的遍历，只需要多加一个for循环即可</strong></p>
+<h4 id="2）foreach-遍历数组"><a href="#2）foreach-遍历数组" class="headerlink" title="2）foreach() 遍历数组"></a>2）foreach() 遍历数组</h4><p><code>foreach()</code>遍历有2种形式<br><strong>第一种:</strong></p>
+<pre class=" language-php"><code class="language-php"><span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'baidu'</span><span class="token punctuation">,</span><span class="token string">'taobao'</span><span class="token punctuation">,</span><span class="token string">'google'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token variable">$arr</span> <span class="token keyword">as</span> <span class="token variable">$value</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    循环体
+<span class="token punctuation">}</span></code></pre>
+<p><strong>第二种：</strong></p>
+<pre class=" language-php"><code class="language-php"><span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'baidu'</span><span class="token punctuation">,</span><span class="token string">'taobao'</span><span class="token punctuation">,</span><span class="token string">'google'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token variable">$arr</span> <span class="token keyword">as</span> <span class="token variable">$key</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$value</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    循环体
+<span class="token punctuation">}</span></code></pre>
+<p><strong>①.第一种解释</strong>：<br>其实第一种遍历的是数组里面的值</p>
 <pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
-
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">isset</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token variable">$content</span><span class="token operator">=</span><span class="token function">file_get_contents</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token variable">$filename</span><span class="token operator">=</span><span class="token string">'./images/'</span><span class="token punctuation">.</span><span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token string">'.img'</span><span class="token punctuation">;</span>\
-    <span class="token function">file_put_contents</span><span class="token punctuation">(</span><span class="token variable">$filename</span><span class="token punctuation">,</span><span class="token variable">$content</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">echo</span> <span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token variable">$img</span><span class="token operator">=</span><span class="token string">"&lt;img src=\""</span><span class="token punctuation">.</span><span class="token variable">$filename</span><span class="token punctuation">.</span><span class="token string">"\"/>"</span><span class="token punctuation">;</span>
-
+<span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">"baidu"</span><span class="token punctuation">,</span><span class="token string">"taobao"</span><span class="token punctuation">,</span><span class="token string">"google"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token variable">$arr</span> <span class="token keyword">as</span> <span class="token variable">$value</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token variable">$arr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">echo</span> <span class="token string">'$value为：'</span><span class="token punctuation">.</span><span class="token variable">$value</span><span class="token punctuation">.</span><span class="token string">"&lt;br>"</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-<span class="token keyword">echo</span> <span class="token variable">$img</span><span class="token punctuation">;</span>
 <span class="token delimiter">?></span></code></pre>
+<p>我其实不用 print_r 的，但是为了清楚<br>首先<code>foreach（$arr as $value）</code><br><code>$arr</code> 其实就是一维数组里面的内容，而变量<code>$value</code> 其实就是数组中的值，也就是说，<code>$arr as $value</code> 其实就是遍历数组中的内容，把 <code>$arr</code> 中的内容，赋值给 value</p>
+<p>至于 <code>$value</code> 可以自定义命名的</p>
+<p><strong>②第二种解释：</strong></p>
 <pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
-<span class="token variable">$url</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">echo</span> <span class="token function">file_get_contents</span><span class="token punctuation">(</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'baidu'</span><span class="token punctuation">,</span><span class="token string">'taobao'</span><span class="token punctuation">,</span><span class="token string">'google'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token variable">$arr</span> <span class="token keyword">as</span> <span class="token variable">$key</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$value</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">echo</span> <span class="token variable">$key</span><span class="token punctuation">.</span><span class="token string">'=>'</span><span class="token punctuation">.</span><span class="token variable">$value</span><span class="token punctuation">.</span><span class="token string">"&lt;br>"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 <span class="token delimiter">?></span></code></pre>
-<p>file_get_content函数从用户指定的url获取内容，然后指定一个文件名进行保存，并展示给用户。file_put_content函数把一个字符串写入文件中。</p>
-<p><strong>3) fsockopen()</strong></p>
+<p>其实就是把键也给遍历了，并且赋值给了 key</p>
+<h4 id="0x04-字符串与数组转换"><a href="#0x04-字符串与数组转换" class="headerlink" title="0x04.字符串与数组转换"></a>0x04.字符串与数组转换</h4><p><strong>1. 将字符串变为数组   explode()</strong></p>
 <pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
-<span class="token variable">$host</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token variable">$fp</span> <span class="token operator">=</span> <span class="token function">fsockopen</span><span class="token punctuation">(</span><span class="token string">"$host"</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">,</span> <span class="token variable">$errno</span><span class="token punctuation">,</span> <span class="token variable">$errstr</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$fp</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">echo</span> <span class="token string">"$errstr ($errno)&lt;br />\n"</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-    <span class="token variable">$out</span> <span class="token operator">=</span> <span class="token string">"GET / HTTP/1.1\r\n"</span><span class="token punctuation">;</span>
-    <span class="token variable">$out</span> <span class="token punctuation">.</span><span class="token operator">=</span> <span class="token string">"Host: $host\r\n"</span><span class="token punctuation">;</span>
-    <span class="token variable">$out</span> <span class="token punctuation">.</span><span class="token operator">=</span> <span class="token string">"Connection: Close\r\n\r\n"</span><span class="token punctuation">;</span>
-    <span class="token function">fwrite</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">,</span> <span class="token variable">$out</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">feof</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">echo</span> <span class="token function">fgets</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">fclose</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token delimiter">?></span></code></pre>
-<p><code>fsockopen</code>   函数实现对用户指定url数据的获取，该函数使用socket（端口）跟服务器建立tcp连接，传输数据。变量host为主机名，port为端口，errstr表示错误信息将以字符串的信息返回，30为时限</p>
-<p><strong>注意</strong><br><strong>1.</strong> 一般情况下PHP不会开启fopen的gopher wrapper<br><strong>2.</strong> file_get_contents的gopher协议不能URL编码<br><strong>3.</strong> file_get_contents关于Gopher的302跳转会出现bug，导致利用失败<br><strong>4.</strong> curl/libcurl 7.43 上gopher协议存在bug(%00截断) 经测试7.49 可用<br><strong>5.</strong> curl_exec() //默认不跟踪跳转，<br><strong>6.</strong> file_get_contents()  //   file_get_contents支持  php://input协议</p>
-<p><strong>2.协议</strong><br><strong>（1）file</strong>： 在有回显的情况下，利用 file 协议可以读取任意内容<br><strong>（2）dict</strong>：泄露安装软件版本信息，查看端口，操作内网redis服务等<br><strong>（3）gopher</strong>：gopher支持发出GET、POST请求：可以先截获get请求包和post请求包，再构造成符合gopher协议的请求。gopher协议是ssrf利用中一个最强大的协议(俗称万能协议)。可用于反弹shell<br>（<strong>4）http/s</strong>：探测内网主机存活</p>
-<h2 id="0x02-一些ssrf利用文章"><a href="#0x02-一些ssrf利用文章" class="headerlink" title="0x02.一些ssrf利用文章"></a>0x02.一些ssrf利用文章</h2><p><strong>1.</strong><a href="https://www.xd10086.com/posts/1516523858457311553/" target="_blank" rel="noopener">SSRF漏洞的利用与攻击内网应用实战</a><br><strong>2.</strong> <a href="https://mp.weixin.qq.com/s?__biz=MzI4NTE4NDAyNA==&mid=2650383259&idx=1&sn=68a01c433d744e94ebc14d568e2ac174&chksm=f3fd1aecc48a93fa27183525f9593efb43a172d1af2c690818cbda7d85a6334879a1b4df2bd6&scene=21#wechat_redirect" target="_blank" rel="noopener">Web安全基础学习之SSRF漏洞利用及绕过方式</a><br><strong>3.</strong><a href="https://mp.weixin.qq.com/s/ZL91c2YnHbIu75KG20eBJA" target="_blank" rel="noopener">挖洞达人必杀技之SSRF漏洞的利用与攻击内网应用实战</a></p>
-<h2 id="0x03-修复方式"><a href="#0x03-修复方式" class="headerlink" title="0x03 修复方式"></a>0x03 修复方式</h2><p><strong>1.</strong>限制请求的端口，只能为web端口，只允许访问http 和 https的请求<br><strong>2.</strong>限制不能访问内网ip，以防止对内网进行攻击<br><strong>3.</strong>屏蔽 返回的详细信息</p>
+<span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token string">'baidu,taobao,google'</span><span class="token punctuation">;</span>
+<span class="token variable">$array</span> <span class="token operator">=</span> <span class="token function">explode</span><span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">,</span><span class="token variable">$arr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">print_r</span><span class="token punctuation">(</span><span class="token variable">$array</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter">?></span></code></pre>
+<p>其实这里就是分割，这边是逗号，然后我们就以逗号分割，分割的时候<br>它会返回数组（这里也就是分割）</p>
+<p><strong>2. 将数组变为字符串   implode()</strong></p>
+<pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'baidu'</span><span class="token punctuation">,</span><span class="token string">'taobao'</span><span class="token punctuation">,</span><span class="token string">'google'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token function">implode</span><span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">,</span><span class="token variable">$arr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$str</span><span class="token punctuation">;</span>
+<span class="token delimiter">?></span></code></pre>
+<p>implode(‘符号’,str)<br>看上面这个就知道了，符号就是说，要用什么分割</p>
+<h4 id="0x05-数组的一些操作"><a href="#0x05-数组的一些操作" class="headerlink" title="0x05.数组的一些操作"></a>0x05.数组的一些操作</h4><h5 id="1）统计数组个数-count"><a href="#1）统计数组个数-count" class="headerlink" title="1）统计数组个数 count()"></a>1）统计数组个数 count()</h5><pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'baidu'</span><span class="token punctuation">,</span><span class="token string">'taobao'</span><span class="token punctuation">,</span><span class="token string">'google'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token variable">$arr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$str</span><span class="token punctuation">;</span>
+<span class="token delimiter">?></span></code></pre>
+<p>然后这里的话就是，使用count函数，如果要统计多维数组呢？</p>
+<pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+<span class="token string">'baidu'</span><span class="token operator">=</span><span class="token operator">></span><span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'www.baidu.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token string">'taobao'</span><span class="token operator">=</span><span class="token operator">></span><span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'www.taobao.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token string">'google'</span><span class="token operator">=</span><span class="token operator">></span><span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'www.google.com'</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token variable">$arr</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$str</span><span class="token punctuation">;</span>
+<span class="token delimiter">?></span></code></pre>
+<p>这里只需要在count() 函数添加一个 1 参数就可以了<br><img src="https://img-blog.csdnimg.cn/20200411210608590.png" alt></p>
+<h5 id="2）数组中的-“增”-array-push"><a href="#2）数组中的-“增”-array-push" class="headerlink" title="2）数组中的 “增”  array_push()"></a>2）数组中的 “增”  <code>array_push()</code></h5><p>使用 <code>array_push(add,add_var)</code></p>
+<pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'baidu'</span><span class="token punctuation">,</span><span class="token string">'taobao'</span><span class="token punctuation">,</span><span class="token string">'google'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">array_push</span><span class="token punctuation">(</span><span class="token variable">$arr</span><span class="token punctuation">,</span><span class="token string">'boke'</span><span class="token punctuation">,</span><span class="token string">'baidu'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">print_r</span><span class="token punctuation">(</span><span class="token variable">$arr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter">?></span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200411211026662.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="成功的把boke和baidu添加进去了"></p>
+<h5 id="3-数组中的-“删”-array-unique"><a href="#3-数组中的-“删”-array-unique" class="headerlink" title="3) 数组中的 “删”  array_unique()"></a>3) 数组中的 “删”  <code>array_unique()</code></h5><p>这时候我们看上面似乎多添加了一个百度</p>
+<pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'baidu'</span><span class="token punctuation">,</span><span class="token string">'taobao'</span><span class="token punctuation">,</span><span class="token string">'google'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">array_push</span><span class="token punctuation">(</span><span class="token variable">$arr</span><span class="token punctuation">,</span><span class="token string">'boke'</span><span class="token punctuation">,</span><span class="token string">'baidu'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">print_r</span><span class="token punctuation">(</span><span class="token variable">$arr</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token comment" spellcheck="true">//上面是添加，下面删除重复值</span>
+<span class="token variable">$del</span> <span class="token operator">=</span> <span class="token function">array_unique</span><span class="token punctuation">(</span><span class="token variable">$arr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">print_r</span><span class="token punctuation">(</span><span class="token variable">$del</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter">?></span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200411211759472.png" alt></p>
+<h5 id="4-数组中的-“查”-array-search"><a href="#4-数组中的-“查”-array-search" class="headerlink" title="4)  数组中的 “查”  array_search()"></a>4)  数组中的 “查”  <code>array_search()</code></h5><p><strong>①<code>array_search(var,array,strict)</code>:  查找 值 返回键</strong><br>var ：是我们需要查找的值<br>array：是指定被我们查询的数组<br>strict：是可选参数，当参数为 true时，还会给数组中检查给定值得类型</p>
+<p>这个函数是查找指定的值，然后返回键，如果没有查找到的话返回 null，不是flase</p>
+<pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'baidu'</span><span class="token punctuation">,</span><span class="token string">'taobao'</span><span class="token punctuation">,</span><span class="token string">'google'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$result</span> <span class="token operator">=</span> <span class="token function">array_search</span><span class="token punctuation">(</span><span class="token string">'taobao'</span><span class="token punctuation">,</span><span class="token variable">$arr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">print_r</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter">?></span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200411212819812.png" alt="查找到值返回键名"><br><img src="https://img-blog.csdnimg.cn/20200411212849751.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="没有查找到值"></p>
+<p>②通过键查找 值</p>
+<pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'baidu'</span><span class="token punctuation">,</span><span class="token string">'taobao'</span><span class="token punctuation">,</span><span class="token string">'google'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$arr</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token delimiter">?></span></code></pre>
+<p>这样就可以查找到了<br><img src="https://img-blog.csdnimg.cn/20200411213118492.png" alt></p>
+<h5 id="5-数组中的-“改”"><a href="#5-数组中的-“改”" class="headerlink" title="5) 数组中的 “改”"></a>5) 数组中的 “改”</h5><pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'baidu'</span><span class="token punctuation">,</span><span class="token string">'taobao'</span><span class="token punctuation">,</span><span class="token string">'google'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$arr</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"boke"</span><span class="token punctuation">;</span>
+<span class="token function">print_r</span><span class="token punctuation">(</span><span class="token variable">$arr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter">?></span></code></pre>
+<p>这里的修改，其实就是在查询的基础上 重新赋值一下就可以了</p>
+<h3 id="数组的的一些其他操作"><a href="#数组的的一些其他操作" class="headerlink" title="数组的的一些其他操作"></a>数组的的一些其他操作</h3><p><strong>获取数组的最后一个元素 <code>array_pop()</code></strong><br>array_pop 函数返回数组的最后一个值，并且数组长度减 1，如果数组为空，或者不是数组，则返回 null</p>
+<p>array_pop(array)<br>这里的array 其实就是 定义的那个要获取的数组</p>
+<pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token variable">$arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'baidu'</span><span class="token punctuation">,</span><span class="token string">'taobao'</span><span class="token punctuation">,</span><span class="token string">'google'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$array</span> <span class="token operator">=</span> <span class="token function">array_pop</span><span class="token punctuation">(</span><span class="token variable">$arr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">print_r</span><span class="token punctuation">(</span><span class="token variable">$arr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">"&lt;br> 被弹出的函数：$array"</span><span class="token punctuation">;</span>
+<span class="token delimiter">?></span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200411214811251.png" alt></p>
+<p>除了上面这些常用的操作，还有 联合使用 <code>list()，each()，while()</code> 遍历数组</p>
 
             </div>
             <hr/>
@@ -586,7 +663,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://youngscript.github.io/2020/032630644.html">http://youngscript.github.io/2020/032630644.html</a>
+                    <a href="http://youngscript.github.io/2020/041151042.html">http://youngscript.github.io/2020/041151042.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1050,43 +1127,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/040161007.html">
+                <a href="/2020/041151042.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="过滤逻辑错误审计">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="php中的数组">
                         
-                        <span class="card-title">过滤逻辑错误审计</span>
+                        <span class="card-title">php中的数组</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            0x00 简介本文章来自 公众号：404安全
-本文审计的系统为云ec电商系统版本1.2.3，网上也有审计文章这里主要是讲讲，有些程序可能本身他的过滤代码还是比较不错，但是逻辑问题造成了过滤函数没有起作用。
-0x01 实例审计还是先从inde
+                            0x01.数组的定义与类型如何定义数组？一般都是使用 array() 函数定义的数组
+&lt;?php
+$arr = array('jsp','asp','php');
+print_r($arr);
+?>
+数组的两种类型数组类型分1.索引数
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
-                                    代码审计
+                            <a href="/categories/php/" class="post-category">
+                                    php
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -1097,35 +1179,36 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/032030464.html">
+                <a href="/2020/040144396.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="python中request模块的基本使用">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="初始代码审计">
                         
-                        <span class="card-title">python中request模块的基本使用</span>
+                        <span class="card-title">初始代码审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Requests库的基础使用Get/Post请求 
-Get请求
- requests.get('http://www.baidu.com',参数)        
-Post请求
- requests.post('http://www.baidu
+                            0x00 简介本文章来自 公众号：404安全
+终于来到了代码审计篇章。希望看了朋友有所收获，我们通常把代码审计分为黑盒和白盒，我们一般结合起来用。
+通常我们白盒审计有多种方法我们可以归纳为：
+1.通读全文
+2.回溯
+其中通读全文费时间，但是
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Python/" class="post-category">
-                                    Python
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
                                 </a>
                             
                             
