@@ -1110,21 +1110,20 @@ if (!empty($_POST)){ foreach($_POST AS $key =&gt; $value) $$key = addslashes_yec
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/040121312.html">
+                <a href="/2020/04013701.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="通读全文审计">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="变量覆盖审计">
                         
-                        <span class="card-title">通读全文审计</span>
+                        <span class="card-title">变量覆盖审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             0x00 简介本文章来自 公众号：404安全
-通读全文推荐大家开始可以审计一些比较好看懂的CMS，我们先看大体网站框架，这里你大概知道什么文件夹是放什么类型的文件，然后从index.php文件开始往里面读,然后重点关注是否有全局过滤等等。
-
+变量覆盖，顾名思义就是可以覆盖已有变量值，导致变量覆盖的漏洞有：extract()、parse_str()、import_request_variables() 使用不当，或者使用了$$或者开启
                         
                     </div>
                     <div class="publish-info">
@@ -1153,32 +1152,33 @@ if (!empty($_POST)){ foreach($_POST AS $key =&gt; $value) $$key = addslashes_yec
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/032630644.html">
+                <a href="/2020/040121312.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="ssrf漏洞详解">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="通读全文审计">
                         
-                        <span class="card-title">ssrf漏洞详解</span>
+                        <span class="card-title">通读全文审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            0x01. ssrf概述1、SSRF漏洞概述SSRF(服务器端请求伪造)： 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。
-一般情况下，SSRF攻击的目标是从外网无法访问的内部系统。（因为它是由服务端发起的，所以它能够请求到与它相连
+                            0x00 简介本文章来自 公众号：404安全
+通读全文推荐大家开始可以审计一些比较好看懂的CMS，我们先看大体网站框架，这里你大概知道什么文件夹是放什么类型的文件，然后从index.php文件开始往里面读,然后重点关注是否有全局过滤等等。
+
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/SSRF/" class="post-category">
-                                    SSRF
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
                                 </a>
                             
                             
@@ -1392,7 +1392,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
                    type="playlist"
                    id="503838841"
                    fixed='true'
-                   autoplay='true'
+                   autoplay='false'
                    theme='#42b983'
                    loop='all'
                    order='random'
@@ -1417,7 +1417,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">20.1k</span>&nbsp;字
+                class="white-color">20.3k</span>&nbsp;字
             
             
             

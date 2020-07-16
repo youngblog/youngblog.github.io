@@ -449,8 +449,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/SSRF/" class="post-category">
-                                SSRF
+                            <a href="/categories/WEB%E5%AE%89%E5%85%A8/" class="post-category">
+                                WEB安全
                             </a>
                         
                     </div>
@@ -469,7 +469,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-26
+                    2020-07-16
                 </div>
                 
 
@@ -500,7 +500,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="0x01-ssrf概述"><a href="#0x01-ssrf概述" class="headerlink" title="0x01. ssrf概述"></a>0x01. ssrf概述</h2><h5 id="1、SSRF漏洞概述"><a href="#1、SSRF漏洞概述" class="headerlink" title="1、SSRF漏洞概述"></a>1、SSRF漏洞概述</h5><p><code>SSRF(服务器端请求伪造)</code>： 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。</p>
-<p>一般情况下，SSRF攻击的目标是从外网无法访问的内部系统。（因为它是由服务端发起的，所以它能够请求到与它相连而与外网隔离的内网。也就是说可以利用一个网络请求的服务，当作跳板进行攻击）<br><img src="https://img-blog.csdnimg.cn/20200326134731702.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>一般情况下，SSRF攻击的目标是从外网无法访问的内部系统。（因为它是由服务端发起的，所以它能够请求到与它相连而与外网隔离的内网。也就是说可以利用一个网络请求的服务，当作跳板进行攻击）<br><img src="https://img-blog.csdnimg.cn/20200326134731702.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt></p>
 <h5 id="2、SSRF漏洞产生原因"><a href="#2、SSRF漏洞产生原因" class="headerlink" title="2、SSRF漏洞产生原因"></a>2、SSRF漏洞产生原因</h5><p>SSRF 形成的原因往往是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。</p>
 <p>如：从指定URL地址获取网页文本内容，加载指定地址的图片，下载等。利用的就是服务端的请求伪造。ssrf是利用存在缺陷的web应用作为代理攻击远程和本地的服务器。</p>
 <h5 id="3-漏洞的产生"><a href="#3-漏洞的产生" class="headerlink" title="3.漏洞的产生"></a>3.漏洞的产生</h5><p>在PHP中的<code>curl()</code>，<code>file_get_contents()</code>，<code>fsockopen()</code> 等函数是几个主要产生ssrf漏洞的函数。</p>
@@ -1054,21 +1054,21 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/040161007.html">
+                <a href="/2020/040121312.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="过滤逻辑错误审计">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="通读全文审计">
                         
-                        <span class="card-title">过滤逻辑错误审计</span>
+                        <span class="card-title">通读全文审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             0x00 简介本文章来自 公众号：404安全
-本文审计的系统为云ec电商系统版本1.2.3，网上也有审计文章这里主要是讲讲，有些程序可能本身他的过滤代码还是比较不错，但是逻辑问题造成了过滤函数没有起作用。
-0x01 实例审计还是先从inde
+通读全文推荐大家开始可以审计一些比较好看懂的CMS，我们先看大体网站框架，这里你大概知道什么文件夹是放什么类型的文件，然后从index.php文件开始往里面读,然后重点关注是否有全局过滤等等。
+
                         
                     </div>
                     <div class="publish-info">
@@ -1339,7 +1339,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
                    type="playlist"
                    id="503838841"
                    fixed='true'
-                   autoplay='true'
+                   autoplay='false'
                    theme='#42b983'
                    loop='all'
                    order='random'
@@ -1364,7 +1364,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">20.1k</span>&nbsp;字
+                class="white-color">20.3k</span>&nbsp;字
             
             
             

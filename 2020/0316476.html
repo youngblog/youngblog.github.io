@@ -449,8 +449,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/xss/" class="post-category">
-                                xss
+                            <a href="/categories/WEB%E5%AE%89%E5%85%A8/" class="post-category">
+                                WEB安全
                             </a>
                         
                     </div>
@@ -469,7 +469,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-17
+                    2020-07-16
                 </div>
                 
 
@@ -543,7 +543,7 @@
 <p><code>存储型xss</code>：<strong>用户输入内容插入了数据库，内存，文件等其他地方。然后再次访问的时候没有输入payload，就会自动弹窗</strong><br>（例如留言板，或者个人资料修改。第一次插入后，连续访问还自动弹窗，说明这就是存储型xss）</p>
 <p><code>反射型xss</code>：<strong>用户想要利用，就得输入一次payload</strong> （例如在搜索处发现xss，想要让他弹窗，就得重新输入一遍）</p>
 </blockquote>
-<p><strong>3. 靶场演示</strong><br>通过源码，我们知道这是这是输出xss表中的内容<br>我们先看下xss表有没有内容<br><img src="https://img-blog.csdnimg.cn/20200317113852628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>发现没有内容，这时候我们进入靶场先插入id和name<br><img src="https://img-blog.csdnimg.cn/20200317113948174.png" alt="在这里插入图片描述"><br>然后会输出我们的名字<br><img src="https://img-blog.csdnimg.cn/20200317114029746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>这时候就成功的输出了，我们查看下xss这个表中有没有内容<br><img src="https://img-blog.csdnimg.cn/20200317114118487.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这时候发现有条内容了。说明我们插入，或者我们平时注册的时候<br>会插入数据库等等，一般在网站后台可以看到</p>
+<p><strong>3. 靶场演示</strong><br>通过源码，我们知道这是这是输出xss表中的内容<br>我们先看下xss表有没有内容<br><img src="https://img-blog.csdnimg.cn/20200317113852628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt><br>发现没有内容，这时候我们进入靶场先插入id和name<br><img src="https://img-blog.csdnimg.cn/20200317113948174.png" alt="在这里插入图片描述"><br>然后会输出我们的名字<br><img src="https://img-blog.csdnimg.cn/20200317114029746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt><br>这时候就成功的输出了，我们查看下xss这个表中有没有内容<br><img src="https://img-blog.csdnimg.cn/20200317114118487.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这时候发现有条内容了。说明我们插入，或者我们平时注册的时候<br>会插入数据库等等，一般在网站后台可以看到</p>
 <blockquote>
 <p>我应该把上面的第三个php输出内容的代码单独拿出来，模拟管理员访问的页面 QAQ 但是写到这里了，我也不想弄，大概理解个意思就好了</p>
 </blockquote>
@@ -557,12 +557,12 @@
 `狭义的总结`：
 原本不应该出现xss的地方，但是经过javascript的操作之后产生了xss
 
-<p>这里涉及到了document对象的一些操作，看过前面偏移注入的话应该知道<br><code>document.cookie</code>  这样的话就是查看自己的cookie<br><img src="https://img-blog.csdnimg.cn/20200317141516218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>这里的话也可以使用下面这条命令，判断是否伪静态<br>如果使用这条的话，时间再不断的变化，就是动态</p>
+<p>这里涉及到了document对象的一些操作，看过前面偏移注入的话应该知道<br><code>document.cookie</code>  这样的话就是查看自己的cookie<br><img src="https://img-blog.csdnimg.cn/20200317141516218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt><br>这里的话也可以使用下面这条命令，判断是否伪静态<br>如果使用这条的话，时间再不断的变化，就是动态</p>
 <p><code>document.lastModifiled</code></p>
-<p>还有其他的一些方法<br><img src="https://img-blog.csdnimg.cn/20200317142919710.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里具体讲<code>document.write()</code><br>这个有啥用？<br>其实就是在页面上面输出<br><img src="https://img-blog.csdnimg.cn/20200317143505236.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>先判断下是不是动态页面，然后再写<br><code>document.write(&quot;young&quot;)</code><br>要write什么可以自己定义<br><img src="https://img-blog.csdnimg.cn/20200317143432531.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然而上面提到了，其实这个write() 也是个js语句<br>接受编码，那我们试着将下面这个编码，看会不会弹窗<br><code>&lt;script&gt;alert(1)&lt;/script&gt;</code><br><img src="https://img-blog.csdnimg.cn/20200317144009626.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>编码后再使用document.write()写入<br><img src="https://img-blog.csdnimg.cn/20200317144052305.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>发现这里弹窗了<del>~<br>我们通过js编码后，它成功的弹窗了<br>（但是这个不是漏洞，这里想说的是，像document.write() 会自动对编码进行解码</del>）</p>
+<p>还有其他的一些方法<br><img src="https://img-blog.csdnimg.cn/20200317142919710.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里具体讲<code>document.write()</code><br>这个有啥用？<br>其实就是在页面上面输出<br><img src="https://img-blog.csdnimg.cn/20200317143505236.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>先判断下是不是动态页面，然后再写<br><code>document.write(&quot;young&quot;)</code><br>要write什么可以自己定义<br><img src="https://img-blog.csdnimg.cn/20200317143432531.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然而上面提到了，其实这个write() 也是个js语句<br>接受编码，那我们试着将下面这个编码，看会不会弹窗<br><code>&lt;script&gt;alert(1)&lt;/script&gt;</code><br><img src="https://img-blog.csdnimg.cn/20200317144009626.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt><br>编码后再使用document.write()写入<br><img src="https://img-blog.csdnimg.cn/20200317144052305.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt><br>发现这里弹窗了<del>~<br>我们通过js编码后，它成功的弹窗了<br>（但是这个不是漏洞，这里想说的是，像document.write() 会自动对编码进行解码</del>）</p>
 <p>似乎扯的有点远了，但是如果被拦截了<br>这里可以通过Js代码的解码，去进行绕过 QAQ<br>然而xss的时候，也可以使用burp<br>因为有可能前端有限制，但是数据包没有</p>
 <p>例如还有比较偏的，在上传头像的地方打xss QAQ</p>
-<h2 id="靶场实战"><a href="#靶场实战" class="headerlink" title="靶场实战"></a>靶场实战</h2><p>这里的话借用靶场，因为我觉得这个靶场很容易讲的话很容易理解<br><img src="https://img-blog.csdnimg.cn/20200317152317345.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt=""><br>通过审查源码，我们可以发现，这里是document.write()进行输出到页面上的<br>这时候我们可以尝试的，也在这个页面弹窗，通过修改发现，这个输入点是在url那边<br><code>&lt;script&gt;alert(1)&lt;/script&gt;</code><br>这时候发现，似乎没有弹窗<br><img src="https://img-blog.csdnimg.cn/20200317152801970.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>但是注意看，我们输入的内容，已经被<code>&lt;script&gt;</code>给包围了<br>这时候我们用其他的语句测试<br><code>&lt;img src=a onerror=alert(1) /&gt;</code><br><img src="https://img-blog.csdnimg.cn/20200317152957637.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这时候成功的弹窗了，说明了我们输入的内容被执行了<br>可以简单理解成，标签内不可以使用<code>&lt;script&gt;</code></p>
+<h2 id="靶场实战"><a href="#靶场实战" class="headerlink" title="靶场实战"></a>靶场实战</h2><p>这里的话借用靶场，因为我觉得这个靶场很容易讲的话很容易理解<br><img src="https://img-blog.csdnimg.cn/20200317152317345.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt><br>通过审查源码，我们可以发现，这里是document.write()进行输出到页面上的<br>这时候我们可以尝试的，也在这个页面弹窗，通过修改发现，这个输入点是在url那边<br><code>&lt;script&gt;alert(1)&lt;/script&gt;</code><br>这时候发现，似乎没有弹窗<br><img src="https://img-blog.csdnimg.cn/20200317152801970.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>但是注意看，我们输入的内容，已经被<code>&lt;script&gt;</code>给包围了<br>这时候我们用其他的语句测试<br><code>&lt;img src=a onerror=alert(1) /&gt;</code><br><img src="https://img-blog.csdnimg.cn/20200317152957637.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzA0ODQw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这时候成功的弹窗了，说明了我们输入的内容被执行了<br>可以简单理解成，标签内不可以使用<code>&lt;script&gt;</code></p>
 <p>其他常用的弹窗语句<br>1.<code>&lt;img src=a onerror=alert(1) &gt;</code><br>2.<code>&lt;svg onload=alert(1)&gt;</code><br>这几个是我经常用的</p>
 <h2 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h2><p>dom型xss其实本质上还是反射型xss，他没有与数据库交互，没次想要弹窗，都需要输入一次payload<br>对dom型xss没有深入了解</p>
 <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊<br><img src="https://img-blog.csdnimg.cn/20200317153445786.png" alt="尴尬"></p>
@@ -1083,8 +1083,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/xss/" class="post-category">
-                                    xss
+                            <a href="/categories/WEB%E5%AE%89%E5%85%A8/" class="post-category">
+                                    WEB安全
                                 </a>
                             
                             
@@ -1105,9 +1105,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Who are Young?">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Who Are Me?">
                         
-                        <span class="card-title">Who are Young?</span>
+                        <span class="card-title">Who Are Me?</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1336,7 +1336,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
                    type="playlist"
                    id="503838841"
                    fixed='true'
-                   autoplay='true'
+                   autoplay='false'
                    theme='#42b983'
                    loop='all'
                    order='random'
@@ -1361,7 +1361,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">20.1k</span>&nbsp;字
+                class="white-color">20.3k</span>&nbsp;字
             
             
             

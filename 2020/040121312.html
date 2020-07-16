@@ -1048,19 +1048,21 @@ require dirname(dirname(__FILE__)). &#39;/inc/zzz_client.php&#39;;
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/040118672.html">
+                <a href="/2020/040161007.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="反序列化审计">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="过滤逻辑错误审计">
                         
-                        <span class="card-title">反序列化审计</span>
+                        <span class="card-title">过滤逻辑错误审计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            0x00 简介本文章来自 公众号：404安全PHP反序列化漏洞，在我们使用unserialize()进行反序列化的时候，如果反序列化对象中存在一些我们可以利用的魔法函数且传入的变量可控，那么这个过程就可能触发这个魔法函数，来执行我们想要的过
+                            0x00 简介本文章来自 公众号：404安全
+本文审计的系统为云ec电商系统版本1.2.3，网上也有审计文章这里主要是讲讲，有些程序可能本身他的过滤代码还是比较不错，但是逻辑问题造成了过滤函数没有起作用。
+0x01 实例审计还是先从inde
                         
                     </div>
                     <div class="publish-info">
@@ -1089,33 +1091,32 @@ require dirname(dirname(__FILE__)). &#39;/inc/zzz_client.php&#39;;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/040161007.html">
+                <a href="/2020/032630644.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="过滤逻辑错误审计">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="ssrf漏洞详解">
                         
-                        <span class="card-title">过滤逻辑错误审计</span>
+                        <span class="card-title">ssrf漏洞详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            0x00 简介本文章来自 公众号：404安全
-本文审计的系统为云ec电商系统版本1.2.3，网上也有审计文章这里主要是讲讲，有些程序可能本身他的过滤代码还是比较不错，但是逻辑问题造成了过滤函数没有起作用。
-0x01 实例审计还是先从inde
+                            0x01. ssrf概述1、SSRF漏洞概述SSRF(服务器端请求伪造)： 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。
+一般情况下，SSRF攻击的目标是从外网无法访问的内部系统。（因为它是由服务端发起的，所以它能够请求到与它相连
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-26
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
-                                    代码审计
+                            <a href="/categories/WEB%E5%AE%89%E5%85%A8/" class="post-category">
+                                    WEB安全
                                 </a>
                             
                             
@@ -1329,7 +1330,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
                    type="playlist"
                    id="503838841"
                    fixed='true'
-                   autoplay='true'
+                   autoplay='false'
                    theme='#42b983'
                    loop='all'
                    order='random'
@@ -1354,7 +1355,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">20.1k</span>&nbsp;字
+                class="white-color">20.3k</span>&nbsp;字
             
             
             
