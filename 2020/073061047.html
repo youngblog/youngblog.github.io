@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SQL注入, Youngboy,github">
+    <meta name="keywords" content="红队姿势, Youngboy,github">
     <meta name="description" content="北冥有鱼，其名为鲲，鲲之大，不知其几千里也； 化而为鸟，其名为鹏.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SQL注入 | Young&#39;s Blogs</title>
+    <title>红队姿势 | Young&#39;s Blogs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,7 +306,7 @@
 <script src="/libs/cryptojs/crypto-js.min.js"></script>
 <script>
     (function() {
-        let pwd = '';
+        let pwd = '18350405381';
         if (pwd && pwd.length > 0) {
             if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
                 alert('密码错误，将返回主页！');
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SQL注入</h1>
+                    <h1 class="description center-align post-title">红队姿势</h1>
                 </div>
             </div>
         </div>
@@ -449,8 +449,12 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/WEB%E5%AE%89%E5%85%A8/" class="post-category">
-                                WEB安全
+                            <a href="/categories/%E7%BA%A2%E9%98%9F/" class="post-category">
+                                红队
+                            </a>
+                        
+                            <a href="/categories/%E7%BA%A2%E9%98%9F/%E5%86%85%E7%BD%91/" class="post-category">
+                                内网
                             </a>
                         
                     </div>
@@ -462,28 +466,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-16
+                    2020-07-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-07-16
+                    2020-07-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    318
+                    2.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    8 分
                 </div>
                 
 
@@ -499,20 +503,185 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>——————————————————————————————————————</p>
-<p>这是我之前发布到的其他的一个网址，这里的话我重新总结</p>
-<p>可能分很多，我也不是很清楚，只是皮毛的研究了一下</p>
-<h2 id="1，sql按数据库分的话，常用的有："><a href="#1，sql按数据库分的话，常用的有：" class="headerlink" title="1，sql按数据库分的话，常用的有："></a>1，sql按数据库分的话，常用的有：</h2><p><strong>MySQL，access，oracle，ms sql</strong></p>
-<h2 id="2，按传参类型，分"><a href="#2，按传参类型，分" class="headerlink" title="2，按传参类型，分"></a>2，按传参类型，分</h2><p>Get，Post，cookie</p>
-<p>总而言之有：<br><code>盲注</code>       ：（盲注分布尔型，和时间型）<br><code>union注入</code>：（我叫他显错注入）<br><code>head注入</code> ： （在请求头注入）<br><code>Post注入</code>  ：（也就是对于表单的注入，例如登录框）</p>
-<p>还有就是关于其他数据库的骚姿势，例如<strong>mysql</strong>的<strong>dnslog</strong>注入，<strong>mssql</strong>的反弹注入</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>我也就废话不多说，写出来，这是我原本csdn写的，不想重复，就这样把对应地址贴出来</p>
-<h4 id="Mysql数据库注入："><a href="#Mysql数据库注入：" class="headerlink" title="Mysql数据库注入："></a>Mysql数据库注入：</h4><p><code>1：union注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104343242" target="_blank" rel="noopener">点击查看</a></p>
-<p><code>2：盲注：</code><br><a href="https://blog.csdn.net/m0_46304840/article/details/104640938" target="_blank" rel="noopener">布尔型</a><br><a href="https://blog.csdn.net/m0_46304840/article/details/104688966" target="_blank" rel="noopener">时间型</a><br><code>3：报错注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104733922" target="_blank" rel="noopener">点击查看</a><br><code>4：宽字节注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104758798" target="_blank" rel="noopener">点击查看</a><br><code>5：cookie注入&amp;base64注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104774792" target="_blank" rel="noopener">点击查看</a><br><code>6：head注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104805895" target="_blank" rel="noopener">xff头注入</a><br>————————————————————————————————————————</p>
-<h4 id="Access数据库注入"><a href="#Access数据库注入" class="headerlink" title="Access数据库注入"></a>Access数据库注入</h4><p><code>偏移注入&amp;移位溢注&amp;逐字猜解：：</code></p>
-<p><a href="https://blog.csdn.net/m0_46304840/article/details/104808825" target="_blank" rel="noopener">点击查看</a></p>
-<h4 id="MS-SQL数据库注入"><a href="#MS-SQL数据库注入" class="headerlink" title="MS SQL数据库注入"></a>MS SQL数据库注入</h4><p><code>mssql-union注入：</code> <a href="https://blog.csdn.net/m0_46304840/article/details/104815241" target="_blank" rel="noopener">union注入</a><br><code>mssql-反弹注入</code>：<a href="https://blog.csdn.net/m0_46304840/article/details/104818304" target="_blank" rel="noopener">反弹注入</a></p>
-<p>至于其他的还没写，以后直接更新到这里</p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>红队的特点是什么?</strong><br>区别于传统的渗透测试,更偏向于实战,面对的场景也更加复杂,技术繁多,以目的为导向,需要有能够解决突发问题的能力.<br><strong>红队的核心是什么?</strong><br>发散思维,让各种技术有应用场景,需要有更多的攻击面,掌握特殊技巧.<br><strong>红队之路是什么?</strong><br>在实践中不断地”填坑”,不断实战,完善战术和武器的过程.<br><strong>大型网络渗透的思路有哪些?</strong><br>参考来自红队的一些Tricks(小灰师傅的另外一个议题),ppt自行谷歌查找.</p>
+<ul>
+<li>撕开口子(ssrf-&gt;内网渗透)</li>
+<li>判断出目标位置和目标环境</li>
+<li>通过osint,获得关键信息,攻击脆弱系统,进入内网.</li>
+<li>寻找”软柿子”,从邮箱突破 -&gt;获得VPN账号密码-&gt;内网渗透-&gt;…..</li>
+<li>边界渗透<ul>
+<li>组织业务架构分析(天眼查,主站业务方向,业务合作单位,海外业务)</li>
+<li>判断目标网络架构(ssrf,内网ip泄露,citrix,exchange,域认证,云盘,文库,git)</li>
+<li>关键业务分析(员工通讯录,密码字典制作,各种oa(泛微,通达,致远,金蝶),mail,vpn,通讯工具,sso)</li>
+</ul>
+</li>
+<li>外网攻击入口选择<ul>
+<li>关注度低和防护薄弱的系统(边远地区,无MFA机制的系统,使用高危漏洞进行批量)</li>
+</ul>
+</li>
+<li>供应链打击</li>
+<li>办公系统,集权系统</li>
+<li>有敏感信息泄露的系统</li>
+<li>业务线较长的系统(公司的网络结构分布在各个地市,进行迂回攻击)</li>
+<li>常见的信息收集<ul>
+<li>pdns</li>
+<li>子域名网段</li>
+<li>github检索</li>
+<li>爬兄弟域名</li>
+<li>app请求</li>
+<li>js信息收集</li>
+<li>微信公众号</li>
+<li>favicon.ico</li>
+<li>ssl cert</li>
+</ul>
+</li>
+<li>横|纵向移动<ul>
+<li>先潜伏,别急于扫描,会触发edr</li>
+<li>潜伏策略(dns,icmp,tcp,http,测试机,备份机,老资产,运维终端pc,办公区,业务大,复杂的系统)</li>
+<li>内网知识储备(很多人问我内网渗透怎么学好点,我的建议都是去copy dm写的那本书的目录,自己网上查查资料,东西不多,需要实践,不实践你永远不会踩坑,也不会进步)</li>
+<li>域渗透基础知识(自行谷歌学习)</li>
+<li>内网信息收集(自行谷歌学习)</li>
+<li>防御对抗<ul>
+<li>hw遇到的防护手段 (封ip,waf,白名单机制,各种安全设备(nids,hids,edr,soc,蜜罐),溯源反制)</li>
+<li>对策(代理池,cms识别,waf测试与绕过,加载自己的dll,逆向agent,patch掉防火墙等设备,流量加密,虚拟机,心跳包回连,回连cdn,回连端口转发)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h2><ul>
+<li>“水坑攻击”在红队场景的运用</li>
+<li>对抗技术在红队行动中的实践</li>
+<li>主被动方式结合-实现挖坑反击</li>
+<li>RedTeamer的未来</li>
+</ul>
+<h2 id="“水坑攻击”在红队场景的运用"><a href="#“水坑攻击”在红队场景的运用" class="headerlink" title="“水坑攻击”在红队场景的运用"></a>“水坑攻击”在红队场景的运用</h2><p>github蜜罐,你遇到过吗?<br>以及内网的一些常见服务蜜罐.将redis部署在真实环境里,但是redis服务的流量走的是蜜罐系统,导致被防守方逮到.</p>
+<h3 id="使用OSINT进行情报搜集"><a href="#使用OSINT进行情报搜集" class="headerlink" title="使用OSINT进行情报搜集"></a>使用OSINT进行情报搜集</h3><ul>
+<li>搜索引擎(fofa,shodan,Google,Zoomeye,bing)</li>
+<li>百度文库,CSDN</li>
+<li>天眼查相关资产</li>
+<li>riskiq.com开源情报</li>
+<li>子域名,爬虫链接,github</li>
+<li>内部情报(加QQ群,钉钉群,微信群)</li>
+</ul>
+<p>收集到架构,资产,邮箱,敏感资料,专利,账号密码等等</p>
+<p>通过收集的账号密码登录邮箱系统,coremail rce-&gt;导出邮件内容-&gt;被系统制裁╮(╯_╰)╭</p>
+<h3 id="tricks"><a href="#tricks" class="headerlink" title="tricks"></a>tricks</h3><p>github在设置邮箱的时候可以获得github账户名,脚本批量测试<br>看图说话</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDEvMTMvMTU3ODkwMzU4ODcxMzEuanBn?x-oss-process=image/format,png" alt="-w760"></p>
+<p>jsonp劫持可以获取目标的互联网信息,qq邮箱,163邮箱等.</p>
+<h3 id="供应链攻击-留后门"><a href="#供应链攻击-留后门" class="headerlink" title="供应链攻击,留后门"></a>供应链攻击,留后门</h3><p>获取到开发人员权限后,可以选择往源码里插入一段js,等源码部署以后,可以结合xss平台进行权限维持(键盘记录,内网渗透等等)<br>xss平台beef其实很香的,模块很多.<br>js后门的好处:</p>
+<ul>
+<li>获得代码部署地址</li>
+<li>键盘记录</li>
+<li>通过ajax动态获得页面内容</li>
+<li>通过访问ip分析人员区域</li>
+<li>随时更改js内容,做进一步利用,ie浏览器和flash攻击</li>
+</ul>
+<h3 id="近源攻击"><a href="#近源攻击" class="headerlink" title="近源攻击"></a>近源攻击</h3><p>(<a href="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDEvMTMvMTU3ODkwNDc3MDY5NzMuanBn?x-oss-process=image/format,png" target="_blank" rel="noopener">https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDEvMTMvMTU3ODkwNDc3MDY5NzMuanBn?x-oss-process=image/format,png</a>)</p>
+<h4 id="U盘攻击"><a href="#U盘攻击" class="headerlink" title="U盘攻击"></a>U盘攻击</h4><p>直接往人家银行门口扔U盘?你咋知道被谁捡去了,赔钱的买卖.<br>通过信息收集,和其他的方法找到工作人员地址,比如订单信息泄露,寄一个badusb到他家,往U盘里送上最真挚的祝福,加一个小贺卡,让他快点打开看看U盘里面你对他到底进行了啥祝福.<br>￣ω￣=</p>
+<p>badusb的一些tricks:</p>
+<ul>
+<li>使用unicode反转字符攻击,诱导点击</li>
+<li>可执行文件的后缀-dll,hta,bat,sct,vbs,ps1</li>
+<li>office漏洞利用和宏攻击</li>
+<li>特殊文件后缀名,exe,pif,com,cmd,scr</li>
+<li>双击反弹shell文件和脚本,chm,ink,iqy,jsjse,cpl,wsh,wsf</li>
+</ul>
+<p>注册表<code>HKEY/LOCALMACHINE/SOFTWARE/Classes</code>中可以找到能执行命令的后缀,</p>
+<h4 id="WIFI钓鱼"><a href="#WIFI钓鱼" class="headerlink" title="WIFI钓鱼"></a>WIFI钓鱼</h4><p>近源攻击中最为常见的就是路由器,有0day的话可以进行链路劫持,进行行为审计,<br>看一下无声的这个武器.</p>
+<p>(<a href="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDEvMTMvMTU3ODkwNDk4OTcwODAuanBn?x-oss-process=image/format,png" target="_blank" rel="noopener">https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDEvMTMvMTU3ODkwNDk4OTcwODAuanBn?x-oss-process=image/format,png</a>)</p>
+<p><strong>-w1136</strong></p>
+<p>可见武器化的好处</p>
+<p>一次攻击链:</p>
+<ul>
+<li>webrtc获取内网地址</li>
+<li>对可以发起http请求导致rce的路由器发起探测</li>
+<li>获得权限后,通过流量采集获取某些网站接口的凭据,强制加好友</li>
+<li>聊天触发某插件热更新,劫持替换,运行导致手机rce</li>
+</ul>
+<p><strong>WIFI登录页面钓鱼</strong></p>
+<ul>
+<li>在内网的话,可以获取员工的工号和密码,ACl配置不当的情况下可以扫描内网资源(DNS重定向)</li>
+<li>抓hash</li>
+<li>dns可控的情况下,结合WPAD进行中继攻击</li>
+</ul>
+<h2 id="对抗技术在红队行动中的实践"><a href="#对抗技术在红队行动中的实践" class="headerlink" title="对抗技术在红队行动中的实践"></a>对抗技术在红队行动中的实践</h2><h3 id="ip封禁"><a href="#ip封禁" class="headerlink" title="ip封禁"></a>ip封禁</h3><p><a href="https://github.com/RhinSecurityLabs/IPRotate_Burp_Extension" target="_blank" rel="noopener">https://github.com/RhinSecurityLabs/IPRotate_Burp_Extension</a></p>
+<p>通过aws的服务进行ip替换</p>
+<p>或者使用pymultitor</p>
+<h3 id="DMZ出网的权限维持"><a href="#DMZ出网的权限维持" class="headerlink" title="DMZ出网的权限维持"></a>DMZ出网的权限维持</h3><p>常规是使用DNS,HTTP协议</p>
+<p>换个思路,直接把邮件服务器当做C2,传递信息回来,相关代码自己github查找</p>
+<h3 id="EDR多维度对抗"><a href="#EDR多维度对抗" class="headerlink" title="EDR多维度对抗"></a>EDR多维度对抗</h3><ul>
+<li>实时监控是否有特定的进程执行,参数和进程的调用关系树</li>
+<li>内存分析</li>
+<li>异常检测</li>
+<li>流量监测</li>
+</ul>
+<p>Bypass(后面几种是我的想法):</p>
+<ul>
+<li>参数污染</li>
+<li>shellcode分离加载</li>
+<li>行为免杀</li>
+<li>反沙箱(判断当前环境是否是沙箱,内存,磁盘空间,等等,参考veil模块)</li>
+<li>无文件技术(用forfiles免杀)</li>
+<li>流量免杀</li>
+<li>shellcode加密</li>
+<li>blockdll</li>
+<li>白加黑利用</li>
+</ul>
+<h3 id="权限维持"><a href="#权限维持" class="headerlink" title="权限维持"></a>权限维持</h3><h4 id="单机权限维持-这个我最近在写总结-尽快赶出来"><a href="#单机权限维持-这个我最近在写总结-尽快赶出来" class="headerlink" title="单机权限维持(这个我最近在写总结,尽快赶出来)"></a>单机权限维持(这个我最近在写总结,尽快赶出来)</h4><ul>
+<li>服务类:bitadmin,计划任务,sqlserver job</li>
+<li>logon Scripts修改注册表</li>
+<li>dll劫持</li>
+<li>白加黑利用</li>
+<li>服务类路径,通过powerup寻找加以利用</li>
+</ul>
+<h4 id="域权限维持"><a href="#域权限维持" class="headerlink" title="域权限维持"></a>域权限维持</h4><p>看图,做一个补充</p>
+<p>(<a href="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDEvMTMvMTU3ODkwNjI0NDE0MjkuanBn?x-oss-process=image/format,png" target="_blank" rel="noopener">https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDEvMTMvMTU3ODkwNjI0NDE0MjkuanBn?x-oss-process=image/format,png</a>)</p>
+<h3 id="主被动方式实现挖坑反击"><a href="#主被动方式实现挖坑反击" class="headerlink" title="主被动方式实现挖坑反击"></a>主被动方式实现挖坑反击</h3><h4 id="内网横向移动技术到底是研究什么"><a href="#内网横向移动技术到底是研究什么" class="headerlink" title="内网横向移动技术到底是研究什么?"></a>内网横向移动技术到底是研究什么?</h4><ul>
+<li>内网拓扑环境,知道有哪些机器,我现在在哪个位置,下一步我要去哪?</li>
+<li>获得当前账户,具有什么权限,受什么规则影响,可以进行什么操作,可以用什么手段横向?</li>
+<li>怎么获得更多的用户名和密码以及权限</li>
+<li>怎么拿到域内指定的机器(日志,邮件,收集的信息,ldap查询)</li>
+</ul>
+<h4 id="护网横向移动优先攻击策略"><a href="#护网横向移动优先攻击策略" class="headerlink" title="护网横向移动优先攻击策略"></a>护网横向移动优先攻击策略</h4><p>目标内网往往非常大,快读定位和找到关键节点是攻击的关键,选择的主要原则为:</p>
+<ul>
+<li>快速掌握目标网络架构和网络设备及集权系统,(堡垒机,运维管理机,性能监控系统,集中管控系统,域控等)</li>
+<li>查找配置文件,系统日志,管理文件,建设方案,wiki,文档云,托管代码等,获取敏感信息,为纵向移动打下基础.</li>
+</ul>
+<h4 id="网络环境中的信息收集"><a href="#网络环境中的信息收集" class="headerlink" title="网络环境中的信息收集"></a>网络环境中的信息收集</h4><ul>
+<li>dns信息</li>
+<li>快速定位域控(方法很多,不多说)</li>
+<li>route信息</li>
+<li>net view \dc</li>
+<li>域信息(dc,group,user,密码策略,委派关系,票据,域信任关系)</li>
+<li>445端口获取banner判断是否在域内</li>
+<li>ldap query</li>
+<li>spn扫描</li>
+<li>域认证服务机器日志</li>
+</ul>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><ul>
+<li>使用ping -a反向解析IP</li>
+<li>先通过ldap查询获得域内计算机名称,再通过dns查询获得ip</li>
+<li>dnscnd的使用</li>
+</ul>
+<h3 id="单主机-系统程序-安装软件"><a href="#单主机-系统程序-安装软件" class="headerlink" title="单主机,系统程序,安装软件"></a>单主机,系统程序,安装软件</h3><ul>
+<li>系统日志(追踪来源,堡垒机,管理人员电脑)</li>
+<li>最近使用的程序</li>
+<li>安装应用</li>
+<li>浏览器历史记录,浏览器密码,代理配置</li>
+<li>系统密码,hash,mscache,rdp连接记录,rdp凭据,vpn,xshell,Navicat,winscp</li>
+<li>内存中kerberos票据</li>
+<li>其他用户token</li>
+<li>session信息</li>
+<li>redthief被动获取密码</li>
+</ul>
+<h3 id="精准定位"><a href="#精准定位" class="headerlink" title="精准定位"></a>精准定位</h3><ul>
+<li>域控日志</li>
+<li>系统记录日志</li>
+<li>查询用户userWorkstation字段</li>
+<li>使用组策略给用户绑定登录脚本</li>
+<li>Email</li>
+</ul>
 
             </div>
             <hr/>
@@ -538,7 +707,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://youngscript.github.io/2020/031626401.html">http://youngscript.github.io/2020/031626401.html</a>
+                    <a href="http://youngscript.github.io/2020/073061047.html">http://youngscript.github.io/2020/073061047.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1002,42 +1171,47 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/031711755.html">
+                <a href="/2020/073061047.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Linux常用命令">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="红队姿势">
                         
-                        <span class="card-title">Linux常用命令</span>
+                        <span class="card-title">红队姿势</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            正文废话不多说，冲冲冲什么是shell呢？看看这张图，早期是开机后直接面对黑黑的命令行，shell命令才能控制其他软件
-shell ：是为用户与机器之间搭建成的一个桥梁，让我们能够通过shell来对计算机进行操作和交互，从而达到让计算机为我
+                            前言红队的特点是什么?区别于传统的渗透测试,更偏向于实战,面对的场景也更加复杂,技术繁多,以目的为导向,需要有能够解决突发问题的能力.红队的核心是什么?发散思维,让各种技术有应用场景,需要有更多的攻击面,掌握特殊技巧.红队之路是什么?在实践
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/kali/" class="post-category">
-                                    kali
+                            <a href="/categories/%E7%BA%A2%E9%98%9F/" class="post-category">
+                                    红队
+                                </a>
+                            
+                            <a href="/categories/%E7%BA%A2%E9%98%9F/%E5%86%85%E7%BD%91/" class="post-category">
+                                    内网
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -1048,32 +1222,37 @@ shell ：是为用户与机器之间搭建成的一个桥梁，让我们能够�
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/031611755.html">
+                <a href="/2020/073026401.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="kali的基本配置">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="内网入口">
                         
-                        <span class="card-title">kali的基本配置</span>
+                        <span class="card-title">内网入口</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            0x01 ：vmware网络配置
-在有下角有个网络适配器点击一下就出现了虚拟机设置虚拟机有三个网络配置1：桥接模式（虚拟机和主机在同一个网络环境下的两台电脑）2：NAT模式（虚拟机通过主机联网）3：主机模式（只能虚拟机和主机直接交互）前面2
+                            说明以下仅针对日常 &quot;红队&quot; 场景, 进行了一次相对全面完整的实战攻击利用技术提炼汇总
+针对不同的渗透阶段,所可能会用到的一些技术都做了详尽梳理说明 (后面可能还会整理出对应的完整工具链,虽然那不是最主要的)
+由于红队不
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-30
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/kali/" class="post-category">
-                                    kali
+                            <a href="/categories/%E7%BA%A2%E9%98%9F/" class="post-category">
+                                    红队
+                                </a>
+                            
+                            <a href="/categories/%E7%BA%A2%E9%98%9F/%E5%86%85%E7%BD%91/" class="post-category">
+                                    内网
                                 </a>
                             
                             

